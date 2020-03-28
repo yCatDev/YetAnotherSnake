@@ -91,7 +91,7 @@ namespace YetAnotherSnake.Components
                 if (result.Collider.Entity.Name.Contains("Snake"))
                 {
                     _snakeHead.GetComponent<GridModifier>().Impulse();
-                    result.Collider.Entity.GetComponent<SpriteRenderer>().Color = Color.Red;
+                    //result.Collider.Entity.GetComponent<SpriteRenderer>().Color = Color.Red;
                 }
 
             if (_space.IsPressed)

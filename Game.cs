@@ -14,7 +14,7 @@ namespace YetAnotherSnake
             Window.AllowUserResizing = false; 
             Screen.EnableMultiSampling = true;
             Screen.IsFullscreen = false;
-            Screen.SetSize(Screen.MonitorWidth,Screen.MonitorHeight);
+            Screen.SetSize(1440,900);
             
             Scene = new GameScene();
             

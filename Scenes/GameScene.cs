@@ -20,13 +20,13 @@ namespace YetAnotherSnake.Scenes
             ClearColor = Color.Black;
 
             var gridEntity = CreateEntity("grid");
-            gridEntity.AddComponent(new SpringGrid(new Rectangle(100, 100, 1280, 720), new Vector2(30))
+            gridEntity.AddComponent(new SpringGrid(new Rectangle(-1280, -720, 2560, 1440), new Vector2(30))
             {
                 GridMinorThickness = 0f,
                 GridMajorThickness = 3,
                 GridMajorColor = Color.Purple
             });
-            
+            gridEntity.AddComponent(new CameraBounds(new Vector2(-1280, -720),new Vector2(1280, 720)));
             _snake = CreateEntity("SnakeHead");
             _snake.AddComponent(new Snake(_snakeSize, _snake.Position,new Vector2(10, 10)));
             

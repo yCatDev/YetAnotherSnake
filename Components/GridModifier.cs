@@ -21,7 +21,7 @@ namespace YetAnotherSnake.Components
             
             var velocity = Entity.Position - _lastPosition;
             
-            _grid.ApplyExplosiveForce(0.5f * velocity.Length(), Entity.Position, 120);
+            _grid.ApplyExplosiveForce(0.25f * velocity.Length(), Entity.Position, 125);
 
             _lastPosition = Entity.Position;
         }
