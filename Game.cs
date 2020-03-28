@@ -11,9 +11,13 @@ namespace YetAnotherSnake
         protected override void Initialize()
         {
             base.Initialize();
-            Window.AllowUserResizing = false;
+            Window.AllowUserResizing = false; 
+            Screen.EnableMultiSampling = true;
+            Screen.IsFullscreen = false;
+            Screen.SetSize(Screen.MonitorWidth,Screen.MonitorHeight);
             
-            Scene = new Menu();
+            Scene = new GameScene();
+            
         }
     }
 }

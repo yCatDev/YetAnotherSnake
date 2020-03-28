@@ -26,3 +26,5 @@ E:\Universitet\YetAnotherSnake\YetAnotherSnake\YetAnotherSnake\obj\Debug\netcore
 E:\Universitet\YetAnotherSnake\YetAnotherSnake\YetAnotherSnake\obj\Debug\netcoreapp3.1\YetAnotherSnake.csproj.CopyComplete
 E:\Universitet\YetAnotherSnake\YetAnotherSnake\YetAnotherSnake\obj\Debug\netcoreapp3.1\YetAnotherSnake.dll
 E:\Universitet\YetAnotherSnake\YetAnotherSnake\YetAnotherSnake\obj\Debug\netcoreapp3.1\YetAnotherSnake.pdb
+E:\Universitet\YetAnotherSnake\YetAnotherSnake\YetAnotherSnake\bin\Debug\netcoreapp3.1\Content\Sprites\blank.xnb
+E:\Universitet\YetAnotherSnake\YetAnotherSnake\YetAnotherSnake\bin\Debug\netcoreapp3.1\Content\Sprites\white.xnb
