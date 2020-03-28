@@ -7,8 +7,8 @@ namespace YetAnotherSnake
         [STAThread]
         static void Main()
         {
-            using (var game = new Game1())
-                game.Run();
+            var game = new MyGame();
+            game.Run();
         }
     }
 }
