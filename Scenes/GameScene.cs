@@ -32,6 +32,7 @@ namespace YetAnotherSnake.Scenes
                 GridMajorColor = new Color(61,9,107)
             });
             gridEntity.AddComponent(new CameraBounds(new Vector2(-1280, -720),new Vector2(1280, 720)));
+            gridEntity.AddComponent(new SnakeBounds(new Vector2(1280, 720),new Vector2(-1280, -720)));
             gridEntity.GetComponent<SpringGrid>().RenderLayer = 9999;
 
             gridEntity.AddComponent<FoodSpawner>();

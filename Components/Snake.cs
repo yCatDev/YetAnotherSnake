@@ -17,12 +17,14 @@ namespace YetAnotherSnake.Components
         private List<Entity> _snakeParts;
         private int _startSnakeSize;
         private Scene _scene;
-        private Entity _marker, _snakeHead;
+        private Entity _marker;
         private Texture2D _bodySprite;
         private Vector2 _startDirection;
         private BoxCollider _snakeHeadCollider;
         private bool _isAlive;
         private List<Vector2> _deathVectors;
+
+        public Entity SnakeHead;
         
         public Snake(int startSnakeSize, Vector2 startPosition, Vector2 startDirection, float step = 0.05f)
         {
@@ -66,13 +68,13 @@ namespace YetAnotherSnake.Components
                 _snakeParts.Add(e);
             }
 
-            _snakeHead = _snakeParts[0];
-            _snakeHeadCollider = _snakeHead.AddComponent<BoxCollider>();
+            SnakeHead = _snakeParts[0];
+            _snakeHeadCollider = SnakeHead.AddComponent<BoxCollider>();
             _snakeHeadCollider.Width -= 5;
             _snakeHeadCollider.Height -= 5;
-            _snakeHead.AddComponent(new GridModifier());
-            _marker.Parent = _snakeHead.Transform;
-            _scene.Camera.Entity.AddComponent(new FollowCamera(_snakeHead));
+            SnakeHead.AddComponent(new GridModifier());
+            _marker.Parent = SnakeHead.Transform;
+            _scene.Camera.Entity.AddComponent(new FollowCamera(SnakeHead));
         }
 
         public void Update()
@@ -80,12 +82,12 @@ namespace YetAnotherSnake.Components
 
             if (_isAlive)
             {
-                _snakeHead.Position = Utils.Move(_snakeHead.Position, _marker.Position, _step * 10);
+                SnakeHead.Position = Utils.Move(SnakeHead.Position, _marker.Position, _step * 10);
                 if (_leftArrow.IsDown)
                     _marker.Position = Utils.RotateAboutOrigin(_marker.Position, _marker.Parent.Position, -0.1f);
                 if (_rightArrow.IsDown)
                     _marker.Position = Utils.RotateAboutOrigin(_marker.Position, _marker.Parent.Position, 0.1f);
-                _snakeHead.Position = Utils.Move(_snakeHead.Position, _marker.Position, _step);
+                SnakeHead.Position = Utils.Move(SnakeHead.Position, _marker.Position, _step);
 
                 for (int i = _snakeParts.Count - 1; i > 0; i--)
                 {
@@ -98,20 +100,20 @@ namespace YetAnotherSnake.Components
                     render.RenderLayer = i;
                     render.Color = new Color(51 + i, 30, 213 - i);
                 }
-
+                
                 if (_snakeHeadCollider.CollidesWithAny(out CollisionResult result))
                 {
                     var c = result.Collider.Entity;
 
                     if (c.Name.Contains("Snake"))
                     {
-                        _snakeHead.GetComponent<GridModifier>().Impulse(_snakeHead.Position, 200);
+                        SnakeHead.GetComponent<GridModifier>().Impulse(SnakeHead.Position, 200);
                         Die();
                     }
 
                     if (c.HasComponent<SnakeFood>())
                     {
-                        _snakeHead.GetComponent<GridModifier>().Impulse(_snakeHead.Position, 100);
+                        SnakeHead.GetComponent<GridModifier>().Impulse(SnakeHead.Position, 100);
                         IncSnake(5);
                         c.Destroy();
                     }
@@ -126,8 +128,10 @@ namespace YetAnotherSnake.Components
                 }
             }
         }
+        
+        
 
-        private void Die()
+        public void Die()
         {
             _isAlive = false;
             _deathVectors = new List<Vector2>();
@@ -136,9 +140,22 @@ namespace YetAnotherSnake.Components
                 Vector2 dir = Vector2.Zero;
                 while (dir == Vector2.Zero)
                 {
-                    dir = new Vector2(Random.Range(-1, 2),Random.Range(-1, 2))*Random.Range(15000, 30000);
+                    dir = new Vector2(Random.Range(-1, 2),Random.Range(-1, 2))*Random.Range(20000, 35000);
+                    
                 }
-                _snakeHead.RemoveComponent<SpriteRenderer>();
+
+                var render = _snakeParts[i].GetComponent<SpriteRenderer>();
+                if (i > 0)
+                {
+                    var trail = _snakeParts[i]
+                        .AddComponent(new SpriteTrail(render));
+                    trail.FadeDelay = 0;
+                    trail.FadeDuration = 0.2f;
+                    trail.MinDistanceBetweenInstances = 10f;
+                    trail.InitialColor = render.Color * 0.5f;
+                }
+
+                SnakeHead.RemoveComponent<SpriteRenderer>();
                 _deathVectors.Add(dir);
             }
         }
