@@ -136,7 +136,7 @@ namespace YetAnotherSnake.Components
                 Vector2 dir = Vector2.Zero;
                 while (dir == Vector2.Zero)
                 {
-                    dir = new Vector2(Random.Range(-1, 2),Random.Range(-1, 2))*Random.Range(10000, 20000);
+                    dir = new Vector2(Random.Range(-1, 2),Random.Range(-1, 2))*Random.Range(15000, 30000);
                 }
                 _snakeHead.RemoveComponent<SpriteRenderer>();
                 _deathVectors.Add(dir);
