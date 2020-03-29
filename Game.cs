@@ -8,19 +8,18 @@ namespace YetAnotherSnake
 {
     public class MyGame : Core
     {
+        
         protected override void Initialize()
         {
             base.Initialize();
+         
             Window.AllowUserResizing = false; 
-            Screen.EnableMultiSampling = true;
+           
             Screen.IsFullscreen = false;
             Screen.SetSize(1440,900);
-            GraphicsDevice.SamplerStates[0] = new SamplerState()
-            {
-                Filter = TextureFilter.Anisotropic
-            };
-            Scene = new GameScene();
-            
+
+            Scene = new GameScene {SamplerState = SamplerState.PointClamp};
+            Screen.EnableMultiSampling = true;
         }
     }
 }

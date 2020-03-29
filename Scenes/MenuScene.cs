@@ -9,6 +9,7 @@ namespace YetAnotherSnake.Scenes
         public override void Initialize()
         {
             base.Initialize();
+            
             SetDesignResolution(1280, 720, SceneResolutionPolicy.ShowAll);
             ClearColor = Color.Black;
             var gridEntity = CreateEntity("grid");

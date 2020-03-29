@@ -96,6 +96,11 @@ namespace YetAnotherSnake.Components
                         Utils.Move(_snakeParts[i].Position, _snakeParts[i - 1].Position, _step * 10);
                     _snakeParts[i].LocalRotationDegrees =
                         Utils.LookAt(_snakeParts[i].Transform, _snakeParts[i - 1].Transform);
+                   
+
+                    if (!_snakeParts[i].HasComponent<SpriteRenderer>())
+                        _snakeParts[i].AddComponent(new SpriteRenderer(_bodySprite));
+                    
                     var render = _snakeParts[i].GetComponent<SpriteRenderer>();
                     render.RenderLayer = i;
                     render.Color = new Color(51 + i, 30, 213 - i);
@@ -165,9 +170,8 @@ namespace YetAnotherSnake.Components
         {
             int last = _snakeParts.Count;
             var e = _scene.CreateEntity($"Snake{last}", 
-                new Vector2(_snakeParts[last-1].Position.X, _snakeParts[last-1].Position.Y+(_bodySprite.Height/2)));
-
-            e.AddComponent(new SpriteRenderer(_bodySprite));
+                new Vector2(_snakeParts[last-1].Position.X, _snakeParts[last-1].Position.Y));
+            
 
             e.AddComponent<BoxCollider>();
             _snakeParts.Add(e);
