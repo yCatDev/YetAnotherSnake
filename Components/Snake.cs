@@ -58,7 +58,7 @@ namespace YetAnotherSnake.Components
             for (int i = 0; i < _startSnakeSize; i++)
             {
                 var e =_scene.CreateEntity($"Snake{_snakeParts.Count}", 
-                    new Vector2(Entity.Position.X, Entity.Position.Y+(_bodySprite.Height*i)));
+                    new Vector2(Entity.Position.X, Entity.Position.Y+(_bodySprite.Height/4*i)));
 
                 e.AddComponent(new SpriteRenderer(_bodySprite));
                 
@@ -75,6 +75,7 @@ namespace YetAnotherSnake.Components
             SnakeHead.AddComponent(new GridModifier());
             _marker.Parent = SnakeHead.Transform;
             _scene.Camera.Entity.AddComponent(new FollowCamera(SnakeHead));
+            
         }
 
         public void Update()
