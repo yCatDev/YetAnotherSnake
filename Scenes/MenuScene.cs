@@ -19,7 +19,7 @@ namespace YetAnotherSnake.Scenes
                 GridMajorColor = Color.Purple
             });
             var test = CreateEntity("Test", new Vector2(0, 0))
-                .AddComponent<TextComponent>().AddComponent<GridModifier>();
+                .AddComponent<TextComponent>().AddComponent(new GridModifier());
             
             var text = test.GetComponent<TextComponent>();
             text.SetText("Hello World");

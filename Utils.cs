@@ -1,6 +1,7 @@
 ﻿using System;
 using Microsoft.Xna.Framework;
 using Nez;
+using Random = Nez.Random;
 
 namespace YetAnotherSnake
 {
@@ -29,6 +30,8 @@ namespace YetAnotherSnake
             angle = angle * (180/Math.PI);
             return (float) angle;
         }
+
+        
         
     }
 }
