@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Nez;
@@ -18,21 +19,23 @@ namespace YetAnotherSnake.Scenes
         {
             base.Initialize();
             ClearColor = Color.Black;
-
+            
+           
+            _snake = CreateEntity("SnakeHead");
+            _snake.AddComponent(new Snake(_snakeSize, _snake.Position,new Vector2(10, 10)));
+            
             var gridEntity = CreateEntity("grid");
             gridEntity.AddComponent(new SpringGrid(new Rectangle(-1280, -720, 2560, 1440), new Vector2(30))
             {
                 GridMinorThickness = 0f,
-                GridMajorThickness = 3,
-                GridMajorColor = Color.Purple
+                GridMajorThickness = 10,
+                GridMajorColor = new Color(61,9,107)
             });
             gridEntity.AddComponent(new CameraBounds(new Vector2(-1280, -720),new Vector2(1280, 720)));
-            _snake = CreateEntity("SnakeHead");
-            _snake.AddComponent(new Snake(_snakeSize, _snake.Position,new Vector2(10, 10)));
-            
-            
-            AddPostProcessor(new VignettePostProcessor(1){Power = 0.55f});
-            AddPostProcessor(new BloomPostProcessor(3)).Settings = BloomSettings.PresetSettings[0];
+            gridEntity.GetComponent<SpringGrid>().RenderLayer = 9999;
+
+            AddPostProcessor(new VignettePostProcessor(1){Power = 0.75f});
+            AddPostProcessor(new BloomPostProcessor(3)).Settings = BloomSettings.PresetSettings[6];
             
         }
     }

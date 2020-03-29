@@ -28,3 +28,5 @@ E:\Universitet\YetAnotherSnake\YetAnotherSnake\YetAnotherSnake\obj\Debug\netcore
 E:\Universitet\YetAnotherSnake\YetAnotherSnake\YetAnotherSnake\obj\Debug\netcoreapp3.1\YetAnotherSnake.pdb
 E:\Universitet\YetAnotherSnake\YetAnotherSnake\YetAnotherSnake\bin\Debug\netcoreapp3.1\Content\Sprites\blank.xnb
 E:\Universitet\YetAnotherSnake\YetAnotherSnake\YetAnotherSnake\bin\Debug\netcoreapp3.1\Content\Sprites\white.xnb
+E:\Universitet\YetAnotherSnake\YetAnotherSnake\YetAnotherSnake\bin\Debug\netcoreapp3.1\Content\Sprites\circle.xnb
+E:\Universitet\YetAnotherSnake\YetAnotherSnake\YetAnotherSnake\bin\Debug\netcoreapp3.1\Content\Sprites\snake_body.xnb

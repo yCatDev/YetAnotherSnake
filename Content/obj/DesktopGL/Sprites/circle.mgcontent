@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <SourceFile>E:/Universitet/YetAnotherSnake/YetAnotherSnake/YetAnotherSnake/Content/Sprites/blank.png</SourceFile>
-  <SourceTime>2020-03-29T14:32:30.4619618+03:00</SourceTime>
-  <DestFile>E:/Universitet/YetAnotherSnake/YetAnotherSnake/YetAnotherSnake/Content/bin/DesktopGL/Sprites/blank.xnb</DestFile>
-  <DestTime>2020-03-29T14:32:33.6623816+03:00</DestTime>
+  <SourceFile>E:/Universitet/YetAnotherSnake/YetAnotherSnake/YetAnotherSnake/Content/Sprites/circle.png</SourceFile>
+  <SourceTime>2020-03-29T14:38:58.1425425+03:00</SourceTime>
+  <DestFile>E:/Universitet/YetAnotherSnake/YetAnotherSnake/YetAnotherSnake/Content/bin/DesktopGL/Sprites/circle.xnb</DestFile>
+  <DestTime>2020-03-29T14:57:42.4238218+03:00</DestTime>
   <Importer>TextureImporter</Importer>
   <ImporterTime>2018-12-08T19:35:54+03:00</ImporterTime>
   <Processor>TextureProcessor</Processor>
@@ -26,7 +26,7 @@
   </Parameters>
   <Parameters>
     <Key>ResizeToPowerOfTwo</Key>
-    <Value>True</Value>
+    <Value>False</Value>
   </Parameters>
   <Parameters>
     <Key>MakeSquare</Key>

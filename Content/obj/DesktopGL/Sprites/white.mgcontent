@@ -3,7 +3,7 @@
   <SourceFile>E:/Universitet/YetAnotherSnake/YetAnotherSnake/YetAnotherSnake/Content/Sprites/white.png</SourceFile>
   <SourceTime>2020-03-28T22:12:00.07567+03:00</SourceTime>
   <DestFile>E:/Universitet/YetAnotherSnake/YetAnotherSnake/YetAnotherSnake/Content/bin/DesktopGL/Sprites/white.xnb</DestFile>
-  <DestTime>2020-03-28T22:12:17.036913+03:00</DestTime>
+  <DestTime>2020-03-29T14:02:53.8237381+03:00</DestTime>
   <Importer>TextureImporter</Importer>
   <ImporterTime>2018-12-08T19:35:54+03:00</ImporterTime>
   <Processor>TextureProcessor</Processor>
@@ -18,7 +18,7 @@
   </Parameters>
   <Parameters>
     <Key>GenerateMipmaps</Key>
-    <Value>False</Value>
+    <Value>True</Value>
   </Parameters>
   <Parameters>
     <Key>PremultiplyAlpha</Key>
@@ -26,7 +26,7 @@
   </Parameters>
   <Parameters>
     <Key>ResizeToPowerOfTwo</Key>
-    <Value>False</Value>
+    <Value>True</Value>
   </Parameters>
   <Parameters>
     <Key>MakeSquare</Key>

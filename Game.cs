@@ -15,7 +15,10 @@ namespace YetAnotherSnake
             Screen.EnableMultiSampling = true;
             Screen.IsFullscreen = false;
             Screen.SetSize(1440,900);
-            
+            GraphicsDevice.SamplerStates[0] = new SamplerState()
+            {
+                Filter = TextureFilter.Anisotropic
+            };
             Scene = new GameScene();
             
         }

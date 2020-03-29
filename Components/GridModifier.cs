@@ -26,10 +26,10 @@ namespace YetAnotherSnake.Components
             _lastPosition = Entity.Position;
         }
 
-        public void Impulse()
+        public void Impulse(Vector2 pos)
         {
-            _grid.ApplyDirectedForce(new Vector3(0, 0, 1000), new Vector3(Entity.Position.X, Entity.Position.Y, 0),
-                200);
+            _grid.ApplyDirectedForce(new Vector3(0, 0, 1000), new Vector3(pos.X, pos.Y, 0),
+                150);
         }
     }
 

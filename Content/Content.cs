@@ -7,5 +7,7 @@ namespace YetAnotherSnake
     {
         public const string Blank = @"Sprites/blank";
         public const string White = @"Sprites/white";
+        public const string Circle = @"Sprites/circle";
+        public const string SnakeBody = @"Sprites/snake_body";
     }
 }
