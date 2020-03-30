@@ -4,7 +4,9 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Nez;
+using Nez.Audio;
 using Nez.Sprites;
+using YetAnotherSnake.Scenes;
 using Random = Nez.Random;
 
 namespace YetAnotherSnake.Components
@@ -77,7 +79,9 @@ namespace YetAnotherSnake.Components
             _snakeHeadCollider = SnakeHead.AddComponent<BoxCollider>();
             _snakeHeadCollider.Width -= 5;
             _snakeHeadCollider.Height -= 5;
-            SnakeHead.AddComponent(new GridModifier());
+            
+            SnakeHead.AddComponent(new GridModifier()).AddComponent<CameraShake>();
+
             _marker.Parent = SnakeHead.Transform;
             _scene.Camera.Entity.AddComponent(new FollowCamera(SnakeHead));
             _cameraBounds = _scene.Camera.Entity.GetComponent<CameraBounds>();
@@ -128,6 +132,7 @@ namespace YetAnotherSnake.Components
                         SnakeHead.GetComponent<GridModifier>().Impulse(SnakeHead.Position, 100);
                         IncSnake(5);
                         _score.IncScore();
+                        MyGame.AudioManager.PickUpSound.Play();
                         c.Destroy();
                     }
                 }
@@ -150,6 +155,7 @@ namespace YetAnotherSnake.Components
 
         public void Die()
         {
+            
             _isAlive = false;
             _deathVectors = new List<Vector2>();
             for (int i = 0; i < _snakeParts.Count; i++)
@@ -161,6 +167,8 @@ namespace YetAnotherSnake.Components
                     
                 }
 
+                
+                
                 var render = _snakeParts[i].GetComponent<SpriteRenderer>();
                 if (i > 0)
                 {
@@ -175,6 +183,9 @@ namespace YetAnotherSnake.Components
                 SnakeHead.RemoveComponent<SpriteRenderer>();
                 _deathVectors.Add(dir);
             }
+            MyGame.AudioManager.DeathSound.Play();
+            SnakeHead.AddComponent<CameraShake>().Shake(75, 1.5f);
+            MyGame.AudioManager.StopMusic();
         }
         
         

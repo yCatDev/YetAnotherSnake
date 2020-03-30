@@ -30,3 +30,9 @@ E:\Universitet\YetAnotherSnake\YetAnotherSnake\YetAnotherSnake\bin\Debug\netcore
 E:\Universitet\YetAnotherSnake\YetAnotherSnake\YetAnotherSnake\bin\Debug\netcoreapp3.1\Content\Sprites\white.xnb
 E:\Universitet\YetAnotherSnake\YetAnotherSnake\YetAnotherSnake\bin\Debug\netcoreapp3.1\Content\Sprites\circle.xnb
 E:\Universitet\YetAnotherSnake\YetAnotherSnake\YetAnotherSnake\bin\Debug\netcoreapp3.1\Content\Sprites\snake_body.xnb
+E:\Universitet\YetAnotherSnake\YetAnotherSnake\YetAnotherSnake\bin\Debug\netcoreapp3.1\Content\Audio\bg.ogg
+E:\Universitet\YetAnotherSnake\YetAnotherSnake\YetAnotherSnake\bin\Debug\netcoreapp3.1\Content\Audio\bg.xnb
+E:\Universitet\YetAnotherSnake\YetAnotherSnake\YetAnotherSnake\bin\Debug\netcoreapp3.1\Content\Audio\snake_death.xnb
+E:\Universitet\YetAnotherSnake\YetAnotherSnake\YetAnotherSnake\bin\Debug\netcoreapp3.1\Content\Audio\snake_pickup.xnb
+E:\Universitet\YetAnotherSnake\YetAnotherSnake\YetAnotherSnake\bin\Debug\netcoreapp3.1\Content\Audio\menu.ogg
+E:\Universitet\YetAnotherSnake\YetAnotherSnake\YetAnotherSnake\bin\Debug\netcoreapp3.1\Content\Audio\menu.xnb

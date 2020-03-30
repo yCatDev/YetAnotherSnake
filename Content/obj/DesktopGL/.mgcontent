@@ -4,12 +4,20 @@
   <Platform>DesktopGL</Platform>
   <Config />
   <SourceFiles>
+    <File>E:/Universitet/YetAnotherSnake/YetAnotherSnake/YetAnotherSnake/Content/Audio/bg.mp3</File>
+    <File>E:/Universitet/YetAnotherSnake/YetAnotherSnake/YetAnotherSnake/Content/Audio/menu.mp3</File>
+    <File>E:/Universitet/YetAnotherSnake/YetAnotherSnake/YetAnotherSnake/Content/Audio/snake_death.wav</File>
+    <File>E:/Universitet/YetAnotherSnake/YetAnotherSnake/YetAnotherSnake/Content/Audio/snake_pickup.wav</File>
     <File>E:/Universitet/YetAnotherSnake/YetAnotherSnake/YetAnotherSnake/Content/Sprites/blank.png</File>
     <File>E:/Universitet/YetAnotherSnake/YetAnotherSnake/YetAnotherSnake/Content/Sprites/circle.png</File>
     <File>E:/Universitet/YetAnotherSnake/YetAnotherSnake/YetAnotherSnake/Content/Sprites/snake_body.png</File>
     <File>E:/Universitet/YetAnotherSnake/YetAnotherSnake/YetAnotherSnake/Content/Sprites/white.png</File>
   </SourceFiles>
   <DestFiles>
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />

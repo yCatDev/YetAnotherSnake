@@ -14,7 +14,7 @@ namespace YetAnotherSnake.Scenes
 
         private Entity _snake;
         private int _snakeSize = 40;
-        private VignettePostProcessor _vignettePostProcessor;
+        public VignettePostProcessor _vignettePostProcessor;
         
         public override void Initialize()
         {
