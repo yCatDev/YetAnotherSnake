@@ -35,6 +35,10 @@ namespace YetAnotherSnake.Scenes
             gridEntity.AddComponent(new SnakeBounds(new Vector2(1280, 720),new Vector2(-1280, -720)));
             gridEntity.GetComponent<SpringGrid>().RenderLayer = 9999;
             gridEntity.AddComponent<FoodSpawner>();
+
+            var score = CreateEntity("scoreText");
+            score.AddComponent<TextComponent>().AddComponent<ScoreDisplay>();
+            
             
             _vignettePostProcessor = new VignettePostProcessor(1) {Power = 0.75f};
             AddPostProcessor(_vignettePostProcessor);
