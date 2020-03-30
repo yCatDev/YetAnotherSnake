@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using Microsoft.Xna.Framework;
 using Nez;
 using Random = Nez.Random;
@@ -31,7 +32,17 @@ namespace YetAnotherSnake
             return (float) angle;
         }
 
-        
+        public static bool WaitFor(float ms)
+        {
+            float t = ms;
+            while (t >= 0)
+            {
+                t--;
+                
+            }
+
+            return true;
+        }
         
     }
 }

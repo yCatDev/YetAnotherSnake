@@ -20,14 +20,24 @@ namespace YetAnotherSnake.Scenes
         {
             base.Initialize();
             ClearColor = Color.Black;
-            
-          
+
             Camera.AddComponent(new CameraBounds(new Vector2(-1280, -720),new Vector2(1280, 720)));
+            
+            
+            _vignettePostProcessor = new VignettePostProcessor(1) {Power = 0.75f};
+            AddPostProcessor(_vignettePostProcessor);
+            AddPostProcessor(new BloomPostProcessor(3)).Settings = BloomSettings.PresetSettings[6];
+        }
+
+        public override void OnStart()
+        {
+            base.OnStart();
+            
             var gridEntity = CreateEntity("grid");
             gridEntity.AddComponent(new SpringGrid(new Rectangle(-1280, -720, 2560, 1440), new Vector2(30))
             {
                 GridMinorThickness = 0f,
-                GridMajorThickness = 10,
+                GridMajorThickness = 7,
                 GridMajorColor = new Color(61,9,107)
             });
             gridEntity.GetComponent<SpringGrid>().RenderLayer = 9999;
@@ -39,9 +49,7 @@ namespace YetAnotherSnake.Scenes
             _snake = CreateEntity("SnakeHead");
             _snake.AddComponent(new Snake(_snakeSize, _snake.Position,new Vector2(10, 10)));
             
-            _vignettePostProcessor = new VignettePostProcessor(1) {Power = 0.75f};
-            AddPostProcessor(_vignettePostProcessor);
-            AddPostProcessor(new BloomPostProcessor(3)).Settings = BloomSettings.PresetSettings[6];
+            MyGame.AudioManager.PlayMusic();
         }
     }
 }

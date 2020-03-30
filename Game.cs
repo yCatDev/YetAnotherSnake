@@ -12,6 +12,7 @@ namespace YetAnotherSnake
     public class MyGame : Core
     {
         public static AudioManager AudioManager;
+        public static Scene GameScene, MenuScene;
         
         protected override void Initialize()
         {
@@ -23,9 +24,8 @@ namespace YetAnotherSnake
             Screen.SetSize(1440,900);
 
             AudioManager = new AudioManager();
-            AudioManager.PlayMusic();
             
-            Scene = new GameScene {SamplerState = SamplerState.PointClamp};
+            Scene = new MenuScene();
             Screen.EnableMultiSampling = true;
         }
     }

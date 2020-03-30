@@ -36,7 +36,7 @@ namespace YetAnotherSnake.Components
             food.Scale = new Vector2(0.25f, 0.25f);
             food.Position = new Vector2(Random.Range(-1000,1000),Random.Range(-500,500));
             foodRender.Color.A = 0;
-            Core.StartCoroutine(Animations.SpawnFood(food));
+            Core.StartCoroutine(Coroutines.SpawnFood(food));
             return food;
         }
         

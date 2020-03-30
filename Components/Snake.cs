@@ -77,8 +77,8 @@ namespace YetAnotherSnake.Components
 
             SnakeHead = _snakeParts[0];
             _snakeHeadCollider = SnakeHead.AddComponent<BoxCollider>();
-            _snakeHeadCollider.Width -= 5;
-            _snakeHeadCollider.Height -= 5;
+            _snakeHeadCollider.Width -= 2;
+            _snakeHeadCollider.Height -= 2;
             
             SnakeHead.AddComponent(new GridModifier()).AddComponent<CameraShake>();
 
@@ -185,7 +185,12 @@ namespace YetAnotherSnake.Components
             }
             MyGame.AudioManager.DeathSound.Play();
             SnakeHead.AddComponent<CameraShake>().Shake(75, 1.5f);
+
+            //Core.StartCoroutine(Animations.MoveTextToCenter(_score.Entity));
+            //_score.Entity.RemoveComponent<ScoreDisplay>();
             MyGame.AudioManager.StopMusic();
+                      
+            Core.StartCoroutine(Coroutines.ReturnToMenu());
         }
         
         
