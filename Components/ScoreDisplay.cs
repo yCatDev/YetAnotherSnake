@@ -21,7 +21,7 @@ namespace YetAnotherSnake.Components
 
         public void Update()
         {
-            Entity.Position = new Vector2(_camera.Bounds.Left, _camera.Bounds.Top);
+            Entity.Position = new Vector2(_camera.Bounds.Left, _camera.Bounds.Top)*0.95f;
         }
 
         public void IncScore()

@@ -21,9 +21,8 @@ namespace YetAnotherSnake.Scenes
             base.Initialize();
             ClearColor = Color.Black;
             
-            _snake = CreateEntity("SnakeHead");
-            _snake.AddComponent(new Snake(_snakeSize, _snake.Position,new Vector2(10, 10)));
-            
+          
+            Camera.AddComponent(new CameraBounds(new Vector2(-1280, -720),new Vector2(1280, 720)));
             var gridEntity = CreateEntity("grid");
             gridEntity.AddComponent(new SpringGrid(new Rectangle(-1280, -720, 2560, 1440), new Vector2(30))
             {
@@ -31,14 +30,14 @@ namespace YetAnotherSnake.Scenes
                 GridMajorThickness = 10,
                 GridMajorColor = new Color(61,9,107)
             });
-            gridEntity.AddComponent(new CameraBounds(new Vector2(-1280, -720),new Vector2(1280, 720)));
-            gridEntity.AddComponent(new SnakeBounds(new Vector2(1280, 720),new Vector2(-1280, -720)));
             gridEntity.GetComponent<SpringGrid>().RenderLayer = 9999;
             gridEntity.AddComponent<FoodSpawner>();
 
             var score = CreateEntity("scoreText");
             score.AddComponent<TextComponent>().AddComponent<ScoreDisplay>();
             
+            _snake = CreateEntity("SnakeHead");
+            _snake.AddComponent(new Snake(_snakeSize, _snake.Position,new Vector2(10, 10)));
             
             _vignettePostProcessor = new VignettePostProcessor(1) {Power = 0.75f};
             AddPostProcessor(_vignettePostProcessor);

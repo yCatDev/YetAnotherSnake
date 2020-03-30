@@ -18,12 +18,17 @@ namespace YetAnotherSnake.Components
         private int _startSnakeSize;
         private Scene _scene;
         private Entity _marker;
-        private Texture2D _bodySprite;
         private Vector2 _startDirection;
+        
+        private Texture2D _bodySprite;
         private BoxCollider _snakeHeadCollider;
+        private CameraBounds _cameraBounds;
+        private ScoreDisplay _score;
+        
         private bool _isAlive;
         private List<Vector2> _deathVectors;
-
+        
+        
         public Entity SnakeHead;
         
         public Snake(int startSnakeSize, Vector2 startPosition, Vector2 startDirection, float step = 0.05f)
@@ -75,7 +80,8 @@ namespace YetAnotherSnake.Components
             SnakeHead.AddComponent(new GridModifier());
             _marker.Parent = SnakeHead.Transform;
             _scene.Camera.Entity.AddComponent(new FollowCamera(SnakeHead));
-            
+            _cameraBounds = _scene.Camera.Entity.GetComponent<CameraBounds>();
+            _score = Entity.Scene.FindEntity("scoreText").GetComponent<ScoreDisplay>();
         }
 
         public void Update()
@@ -121,9 +127,12 @@ namespace YetAnotherSnake.Components
                     {
                         SnakeHead.GetComponent<GridModifier>().Impulse(SnakeHead.Position, 100);
                         IncSnake(5);
+                        _score.IncScore();
                         c.Destroy();
                     }
                 }
+                if (_cameraBounds.OutOfBounds(SnakeHead.Position)) 
+                    Die();
             }
             else
             {
@@ -133,6 +142,8 @@ namespace YetAnotherSnake.Components
                     part.Position = Utils.Move(part.Position, _deathVectors[index], _step/100);
                 }
             }
+
+            
         }
         
         

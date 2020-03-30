@@ -33,19 +33,19 @@ namespace YetAnotherSnake.Components
             var cameraBounds = Entity.Scene.Camera.Bounds;
 
             if (cameraBounds.Top < Min.Y)
-                Entity.Scene.Camera.Position += new Vector2(0, Min.Y - cameraBounds.Top);
+                Entity.Position += new Vector2(0, Min.Y - cameraBounds.Top);
 
             if (cameraBounds.Left < Min.X)
-                Entity.Scene.Camera.Position += new Vector2(Min.X - cameraBounds.Left, 0);
+                Entity.Position += new Vector2(Min.X - cameraBounds.Left, 0);
 
             if (cameraBounds.Bottom > Max.Y)
-                Entity.Scene.Camera.Position += new Vector2(0, Max.Y - cameraBounds.Bottom);
+                Entity.Position += new Vector2(0, Max.Y - cameraBounds.Bottom);
 
             if (cameraBounds.Right > Max.X)
-                Entity.Scene.Camera.Position += new Vector2(Max.X - cameraBounds.Right, 0);
+                Entity.Position += new Vector2(Max.X - cameraBounds.Right, 0);
         }
 
-        public bool InBounds(Vector2 target) =>
-            !(target.Y > Min.Y || target.X > Min.X || target.Y < Max.Y || target.X < Max.X);
+        public bool OutOfBounds(Vector2 target) =>
+            (target.Y < Min.Y || target.X < Min.X || target.Y > Max.Y || target.X > Max.X);
     }
 }
