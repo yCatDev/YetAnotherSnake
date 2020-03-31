@@ -36,3 +36,5 @@ E:\Universitet\YetAnotherSnake\YetAnotherSnake\YetAnotherSnake\bin\Debug\netcore
 E:\Universitet\YetAnotherSnake\YetAnotherSnake\YetAnotherSnake\bin\Debug\netcoreapp3.1\Content\Audio\snake_pickup.xnb
 E:\Universitet\YetAnotherSnake\YetAnotherSnake\YetAnotherSnake\bin\Debug\netcoreapp3.1\Content\Audio\menu.ogg
 E:\Universitet\YetAnotherSnake\YetAnotherSnake\YetAnotherSnake\bin\Debug\netcoreapp3.1\Content\Audio\menu.xnb
+E:\Universitet\YetAnotherSnake\YetAnotherSnake\YetAnotherSnake\bin\Debug\netcoreapp3.1\Content\Sprites\snake_bodyV2.xnb
+E:\Universitet\YetAnotherSnake\YetAnotherSnake\YetAnotherSnake\bin\Debug\netcoreapp3.1\Content\FX\FXAA.xnb

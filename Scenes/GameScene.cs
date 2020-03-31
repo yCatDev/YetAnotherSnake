@@ -20,7 +20,7 @@ namespace YetAnotherSnake.Scenes
         {
             base.Initialize();
             ClearColor = Color.Black;
-
+            SetDesignResolution(Screen.MonitorWidth,Screen.MonitorHeight,SceneResolutionPolicy.ShowAll);
             Camera.AddComponent(new CameraBounds(new Vector2(-1280, -720),new Vector2(1280, 720)));
             
             
@@ -37,7 +37,7 @@ namespace YetAnotherSnake.Scenes
             gridEntity.AddComponent(new SpringGrid(new Rectangle(-1280, -720, 2560, 1440), new Vector2(30))
             {
                 GridMinorThickness = 0f,
-                GridMajorThickness = 7,
+                GridMajorThickness = 8,
                 GridMajorColor = new Color(61,9,107)
             });
             gridEntity.GetComponent<SpringGrid>().RenderLayer = 9999;

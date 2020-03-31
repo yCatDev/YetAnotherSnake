@@ -18,7 +18,6 @@ namespace YetAnotherSnake.Components
 
         public void Update()
         {
-            
             if (!_scene.Entities.Contains(_food))
                 _food = CreateFood();
         }
@@ -27,7 +26,7 @@ namespace YetAnotherSnake.Components
         {
             var foodSprite = _scene.Content.Load<Texture2D>(YetAnotherSnake.Content.Blank);
             var food = _scene.CreateEntity("Food").AddComponent<SnakeFood>()
-                .AddComponent(new GridModifier(350, false)).Entity;
+                .AddComponent(new GridModifier()).Entity;
             var foodCollider = food.AddComponent<BoxCollider>();
             foodCollider.Width = 400;
             foodCollider.Height = 400;

@@ -20,13 +20,16 @@ namespace YetAnotherSnake
          
             Window.AllowUserResizing = false; 
            
-            Screen.IsFullscreen = false;
+            Core.DefaultSamplerState = SamplerState.LinearClamp;
+                Screen.IsFullscreen = false;
             Screen.SetSize(1440,900);
 
             AudioManager = new AudioManager();
             
+            
+            
             Scene = new MenuScene();
-            Screen.EnableMultiSampling = true;
+            
         }
     }
 }

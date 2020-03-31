@@ -59,7 +59,7 @@ namespace YetAnotherSnake.Components
             base.Initialize();
             _scene = Entity.Scene;
             _bodySprite = _scene.Content.Load<Texture2D>(Content.SnakeBody);
-            _marker = _scene.CreateEntity("marker",  Entity.Position+(_startDirection));
+            
 
 
             for (int i = 0; i < _startSnakeSize; i++)
@@ -69,8 +69,10 @@ namespace YetAnotherSnake.Components
 
                 e.AddComponent(new SpriteRenderer(_bodySprite));
                 
-                if (i > 10)
+                
+                if (i > 10){
                     e.AddComponent<BoxCollider>();
+                }
                 
                 _snakeParts.Add(e);
             }
@@ -81,8 +83,9 @@ namespace YetAnotherSnake.Components
             _snakeHeadCollider.Height -= 2;
             
             SnakeHead.AddComponent(new GridModifier()).AddComponent<CameraShake>();
-
+            _marker = _scene.CreateEntity("marker",  SnakeHead.Position + _startDirection);
             _marker.Parent = SnakeHead.Transform;
+            
             _scene.Camera.Entity.AddComponent(new FollowCamera(SnakeHead));
             _cameraBounds = _scene.Camera.Entity.GetComponent<CameraBounds>();
             _score = Entity.Scene.FindEntity("scoreText").GetComponent<ScoreDisplay>();
@@ -99,7 +102,7 @@ namespace YetAnotherSnake.Components
                 if (_rightArrow.IsDown)
                     _marker.Position = Utils.RotateAboutOrigin(_marker.Position, _marker.Parent.Position, 0.1f);
                 SnakeHead.Position = Utils.Move(SnakeHead.Position, _marker.Position, _step);
-
+                
                 for (int i = _snakeParts.Count - 1; i > 0; i--)
                 {
 
@@ -111,7 +114,6 @@ namespace YetAnotherSnake.Components
 
                     if (!_snakeParts[i].HasComponent<SpriteRenderer>())
                         _snakeParts[i].AddComponent(new SpriteRenderer(_bodySprite));
-                    
                     var render = _snakeParts[i].GetComponent<SpriteRenderer>();
                     render.RenderLayer = i;
                     render.Color = new Color(51 + i, 30, 213 - i);
@@ -123,21 +125,22 @@ namespace YetAnotherSnake.Components
 
                     if (c.Name.Contains("Snake"))
                     {
-                        SnakeHead.GetComponent<GridModifier>().Impulse(SnakeHead.Position, 200);
+                        SnakeHead.GetComponent<GridModifier>().Impulse(200);
                         Die();
                     }
 
                     if (c.HasComponent<SnakeFood>())
                     {
-                        SnakeHead.GetComponent<GridModifier>().Impulse(SnakeHead.Position, 100);
+                        SnakeHead.GetComponent<GridModifier>().Impulse(100);
                         IncSnake(5);
                         _score.IncScore();
                         MyGame.AudioManager.PickUpSound.Play();
                         c.Destroy();
                     }
                 }
+
                 if (_cameraBounds.OutOfBounds(SnakeHead.Position)) 
-                    Die();
+                 Die();
             }
             else
             {

@@ -7,14 +7,11 @@ namespace YetAnotherSnake.Components
     public class GridModifier : Component, IUpdatable
     {
         private SpringGrid _grid;
-        private Vector2 _lastPosition;
-        private float _forceRadius;
-        private bool _dynamic;
+
         
-        public GridModifier(float forceRadius = 125f, bool dynamic = true)
+        public GridModifier()
         {
-            _forceRadius = forceRadius;
-            _dynamic = dynamic;
+       
         }
         
         public override void OnAddedToEntity()
@@ -25,25 +22,22 @@ namespace YetAnotherSnake.Components
 
         void IUpdatable.Update()
         {
-
-            if (_dynamic)
-            {
-                var velocity = Entity.Position - _lastPosition;
-                _grid.ApplyExplosiveForce(0.55f * velocity.Length(), Entity.Position, _forceRadius);
-                _lastPosition = Entity.Position;
-            }
-            else
-            {
-                _grid.ApplyImplosiveForce(5, Entity.Position.ToVector3(),
-                    _forceRadius);
-            }
+            
         }
 
-        public void Impulse(Vector2 pos, float radius)
+        public void Impulse(float radius)
         {
+            var pos = Entity.Position;
             _grid.ApplyDirectedForce(new Vector3(0, 0, 1000), new Vector3(pos.X, pos.Y, 0),
                 radius);
         }
+        
+        public void Implosive(float force, float radius)
+        {
+            _grid.ApplyImplosiveForce(force, Entity.Position.ToVector3(),
+                radius);
+        }
+        
     }
 
 }

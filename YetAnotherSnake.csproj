@@ -28,6 +28,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Content\FX" />
     <Folder Include="Utils" />
   </ItemGroup>
 
