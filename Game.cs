@@ -13,23 +13,24 @@ namespace YetAnotherSnake
     {
         public static AudioManager AudioManager;
         public static Scene GameScene, MenuScene;
+        public static GameSkin Skin;
         
         protected override void Initialize()
         {
             base.Initialize();
-         
+            
             Window.AllowUserResizing = false; 
            
-            Core.DefaultSamplerState = SamplerState.LinearClamp;
-                Screen.IsFullscreen = false;
+            DefaultSamplerState = SamplerState.LinearClamp;
+            
+            Screen.IsFullscreen = false;
             Screen.SetSize(1440,900);
 
             AudioManager = new AudioManager();
             
-            
-            
+            Skin = new GameSkin(Content);
+            //Here we go again
             Scene = new MenuScene();
-            
         }
     }
 }

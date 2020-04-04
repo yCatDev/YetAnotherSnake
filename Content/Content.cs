@@ -15,5 +15,10 @@ namespace YetAnotherSnake
         public const string SoundPickUp = @"Audio/snake_pickup";
         public const string SoundDeath = @"Audio/snake_death";
 
+        public const string UISkin = @"uiskin";
+        
+        public const string OswaldTitleFont = @"Content/Fonts/oswald_title.fnt";
+        public const string DefaultTitleFont = @"Content/Fonts/inria.fnt";
+
     }
 }

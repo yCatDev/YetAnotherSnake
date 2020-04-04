@@ -10,6 +10,7 @@
 
 #-------------------------------- References --------------------------------#
 
+/reference:MonoGame.Extended.Content.Pipeline.dll
 
 #---------------------------------- Content ---------------------------------#
 
@@ -36,6 +37,30 @@
 /processor:SoundEffectProcessor
 /processorParam:Quality=Medium
 /build:Audio/snake_pickup.wav
+
+#begin Fonts/inria.fnt
+/copy:Fonts/inria.fnt
+
+#begin Fonts/inria_0.png
+/copy:Fonts/inria_0.png
+
+#begin Fonts/oswald_title.fnt
+/copy:Fonts/oswald_title.fnt
+
+#begin Fonts/oswald_title_0.png
+/copy:Fonts/oswald_title_0.png
+
+#begin Fonts/oswald_title_1.png
+/copy:Fonts/oswald_title_1.png
+
+#begin Fonts/oswald_title_2.png
+/copy:Fonts/oswald_title_2.png
+
+#begin Fonts/oswald_title_3.png
+/copy:Fonts/oswald_title_3.png
+
+#begin Fonts/oswald_title_4.png
+/copy:Fonts/oswald_title_4.png
 
 #begin Sprites/blank.png
 /importer:TextureImporter
@@ -66,24 +91,12 @@
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
 /processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:Sprites/snake_body.png
-
-#begin Sprites/snake_bodyV2.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
 /processorParam:GenerateMipmaps=True
 /processorParam:PremultiplyAlpha=True
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:Sprites/snake_bodyV2.png
+/build:Sprites/snake_body.png
 
 #begin Sprites/white.png
 /importer:TextureImporter

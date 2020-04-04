@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -16,7 +17,7 @@ namespace YetAnotherSnake.Components
         
         private float _step;
         private VirtualButton _leftArrow, _rightArrow, _space;
-        private FixedList<Entity> _snakeParts;
+        private List<Entity> _snakeParts;
         private int _startSnakeSize;
         private Scene _scene;
         private Entity _marker;
@@ -28,7 +29,7 @@ namespace YetAnotherSnake.Components
         private ScoreDisplay _score;
         
         private bool _isAlive;
-        private FixedList<Vector2> _deathVectors;
+        private List<Vector2> _deathVectors;
         
         
         public Entity SnakeHead;
@@ -45,7 +46,7 @@ namespace YetAnotherSnake.Components
             _rightArrow = new VirtualButton();
             _rightArrow.AddKeyboardKey(Keys.Right);
             _startSnakeSize = startSnakeSize;
-            _snakeParts = new FixedList<Entity>(1000);
+            _snakeParts = new List<Entity>(1000);
             
             _space = new VirtualButton();
             _space.AddKeyboardKey(Keys.Space);
@@ -64,7 +65,7 @@ namespace YetAnotherSnake.Components
 
             for (int i = 0; i < _startSnakeSize; i++)
             {
-                var e =_scene.CreateEntity($"Snake{_snakeParts.Length}", 
+                var e =_scene.CreateEntity($"Snake{_snakeParts.Count}", 
                     new Vector2(Entity.Position.X, Entity.Position.Y+(_bodySprite.Height/4*i)));
 
                 e.AddComponent(new SpriteRenderer(_bodySprite));
@@ -103,7 +104,7 @@ namespace YetAnotherSnake.Components
                     _marker.Position = Utils.RotateAboutOrigin(_marker.Position, _marker.Parent.Position, 0.1f);
                 SnakeHead.Position = Utils.Move(SnakeHead.Position, _marker.Position, _step);
                 
-                for (int i = _snakeParts.Length - 1; i > 0; i--)
+                for (int i = _snakeParts.Count - 1; i > 0; i--)
                 {
 
                     _snakeParts[i].Position =
@@ -144,7 +145,7 @@ namespace YetAnotherSnake.Components
             }
             else
             {
-                for (var index = 1; index < _snakeParts.Length; index++)
+                for (var index = 1; index < _snakeParts.Count; index++)
                 {
                     var part = _snakeParts[index];
                     part.Position = Utils.Move(part.Position, _deathVectors[index], _step/100);
@@ -160,8 +161,9 @@ namespace YetAnotherSnake.Components
         {
             
             _isAlive = false;
-            _deathVectors = new FixedList<Vector2>(_snakeParts.Length);
-            for (int i = 0; i < _snakeParts.Length; i++)
+            
+            _deathVectors = new List<Vector2>(_snakeParts.Count);
+            for (int i = 0; i < _snakeParts.Count; i++)
             {
                 Vector2 dir = Vector2.Zero;
                 while (dir == Vector2.Zero)
@@ -199,7 +201,7 @@ namespace YetAnotherSnake.Components
         
         private void _addPart()
         {
-            int last = _snakeParts.Length;
+            int last = _snakeParts.Count;
             var e = _scene.CreateEntity($"Snake{last}", 
                 new Vector2(_snakeParts[last-1].Position.X, _snakeParts[last-1].Position.Y));
             
