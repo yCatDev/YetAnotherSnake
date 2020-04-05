@@ -68,14 +68,9 @@ namespace YetAnotherSnake.Components
             {
                 var e =_scene.CreateEntity($"Snake{_snakeParts.Count}", 
                     new Vector2(Entity.Position.X, Entity.Position.Y+(_bodySprite.Height/4*i)));
-
                 e.AddComponent(new SpriteRenderer(_bodySprite));
-                
-                
-                if (i > 10){
+                if (i > 10)
                     e.AddComponent<BoxCollider>();
-                }
-                
                 _snakeParts.Add(e);
             }
 
@@ -110,8 +105,8 @@ namespace YetAnotherSnake.Components
 
                     _snakeParts[i].Position =
                         Utils.Move(_snakeParts[i].Position, _snakeParts[i - 1].Position, _step * 10);
-                    _snakeParts[i].LocalRotationDegrees =
-                        Utils.LookAt(_snakeParts[i].Transform, _snakeParts[i - 1].Transform);
+                    //_snakeParts[i].LocalRotationDegrees =
+                    //    Utils.LookAt(_snakeParts[i].Transform, _snakeParts[i - 1].Transform);
                    
 
                     if (!_snakeParts[i].HasComponent<SpriteRenderer>())
@@ -206,7 +201,7 @@ namespace YetAnotherSnake.Components
             var e = _scene.CreateEntity($"Snake{last}", 
                 new Vector2(_snakeParts[last-1].Position.X, _snakeParts[last-1].Position.Y));
             
-
+            
             e.AddComponent<BoxCollider>();
             _snakeParts.Add(e);
         }
@@ -225,20 +220,12 @@ namespace YetAnotherSnake.Components
             {
                 _addPart();
             }
+
+            if (_step<0.08f)
+                _step += 0.000125f;
         }
 
 
-        private Vector2 MakeStep(Vector2 from, float step)
-        {
-            if (from.X > 0)
-                from.X+=step;
-            else
-                from.X-=step;
-            if (from.Y > 0)
-                from.Y+=step;
-            else
-                from.Y-=step;
-            return from;
-        }
+      
     }
 }

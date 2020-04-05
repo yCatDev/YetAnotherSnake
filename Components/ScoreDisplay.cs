@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Nez;
+using Nez.BitmapFonts;
 
 namespace YetAnotherSnake.Components
 {
@@ -14,8 +15,9 @@ namespace YetAnotherSnake.Components
         {
             base.OnAddedToEntity();
             _text = Entity.GetComponent<TextComponent>();
+            _text.SetFont(Entity.Scene.Content.LoadBitmapFont(Content.DefaultTitleFont));
             _text.SetText("Score: 0");
-            Entity.Scale *= 4;
+            Entity.Scale *= 0.75f;
             _camera = Entity.Scene.Camera;
             _hiscore = MyGame.Instance.SaveSystem.SaveFile.Score;
         }
