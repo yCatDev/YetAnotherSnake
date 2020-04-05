@@ -144,9 +144,9 @@ namespace YetAnotherSnake.Scenes
             table.Row();
 
             const string infoText = @"
-            Use left and right arrow for rotating snake head.
-                Collect food and dont touch anything else!
-                  Bigger you grow better score you get...
+            Use the left and right arrow to rotate the snake head. 
+                         Eat food and try not to crash. 
+                    The more you eat, the more you become!
                 ";
             var info = new Label(infoText, MyGame.Instance.Skin.Skin.Get<LabelStyle>("label"));
             table.Add(info);

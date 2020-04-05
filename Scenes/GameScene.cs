@@ -115,10 +115,12 @@ namespace YetAnotherSnake.Scenes
             if (MyGame.Instance.Pause)
             {
                 gridEntity.UpdateInterval = 9999;
+                MyGame.Instance.AudioManager.PauseMusic();
             }
             else
             {
                 gridEntity.UpdateInterval = 1;
+                MyGame.Instance.AudioManager.ResumeMusic();
             }
         }
     }

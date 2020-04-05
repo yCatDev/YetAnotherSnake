@@ -125,13 +125,13 @@ namespace YetAnotherSnake.Components
 
                     if (c.Name.Contains("Snake"))
                     {
-                        SnakeHead.GetComponent<GridModifier>().Impulse(200);
+                        SnakeHead.GetComponent<GridModifier>().Impulse( 500);
                         Die();
                     }
 
                     if (c.HasComponent<SnakeFood>())
                     {
-                        SnakeHead.GetComponent<GridModifier>().Impulse(100);
+                        SnakeHead.GetComponent<GridModifier>().Impulse( 200);
                         IncSnake(5);
                         _score.IncScore();
                         MyGame.Instance.AudioManager.PickUpSound.Play();
@@ -225,7 +225,7 @@ namespace YetAnotherSnake.Components
             }
 
             if (_step<0.08f)
-                _step += 0.000125f;
+                _step += 0.0002f;
         }
 
 

@@ -28,7 +28,7 @@ namespace YetAnotherSnake.Components
         public void Impulse(float radius)
         {
             var pos = Entity.Position;
-            _grid.ApplyDirectedForce(new Vector3(0, 0, 1000), new Vector3(pos.X, pos.Y, 0),
+            _grid.ApplyDirectedForce(new Vector3(0, 0, 500), new Vector3(pos.X, pos.Y, 0),
                 radius);
         }
         

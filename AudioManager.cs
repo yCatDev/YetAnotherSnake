@@ -25,6 +25,15 @@ namespace YetAnotherSnake
         public void PlayMusic() => MediaPlayer.Play(BackgroundAudio);
         public void StopMusic() => MediaPlayer.Stop();
 
+        public void PauseMusic() => MediaPlayer.Pause();
+
+        public void ResumeMusic()
+        {
+            if (MediaPlayer.State==MediaState.Paused)
+                MediaPlayer.Resume();
+        }
+
+        private void nothing() {;}
 
         public void Dispose()
         {
