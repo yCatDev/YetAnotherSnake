@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using System;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
@@ -29,7 +30,7 @@ namespace YetAnotherSnake
             RegisterGlobalManager( imGuiManager );
             
             imGuiManager.SetEnabled(false);
-            
+            Console.WriteLine(Core.GraphicsDevice.Adapter.Description);
             Window.AllowUserResizing = false;
             ExitOnEscapeKeypress = false;
             
