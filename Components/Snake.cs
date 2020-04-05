@@ -29,7 +29,7 @@ namespace YetAnotherSnake.Components
         private ScoreDisplay _score;
         
         
-        private bool _isAlive;
+        public bool IsAlive;
         private List<Vector2> _deathVectors;
         
         
@@ -51,8 +51,8 @@ namespace YetAnotherSnake.Components
             
             _space = new VirtualButton();
             _space.AddKeyboardKey(Keys.Space);
-
-            _isAlive = true;
+            
+            IsAlive = true;
 
         }
 
@@ -90,9 +90,12 @@ namespace YetAnotherSnake.Components
 
         public void Update()
         {
-
-            if (_isAlive)
+            
+            
+            if (IsAlive)
             {
+                if (MyGame.Instance.Pause)
+                    return;
                 SnakeHead.Position = Utils.Move(SnakeHead.Position, _marker.Position, _step * 10);
                 if (_leftArrow.IsDown)
                     _marker.Position = Utils.RotateAboutOrigin(_marker.Position, _marker.Parent.Position, -0.1f);
@@ -144,7 +147,7 @@ namespace YetAnotherSnake.Components
                 for (var index = 1; index < _snakeParts.Count; index++)
                 {
                     var part = _snakeParts[index];
-                    part.Position = Utils.Move(part.Position, _deathVectors[index], _step/100);
+                    part.Position = Utils.Move(part.Position, _deathVectors[index], _step/75);
                 }
             }
 
@@ -156,7 +159,7 @@ namespace YetAnotherSnake.Components
         public void Die()
         {
             
-            _isAlive = false;
+            IsAlive = false;
             _score.CheckHiScore();
             _deathVectors = new List<Vector2>(_snakeParts.Count);
             for (int i = 0; i < _snakeParts.Count; i++)

@@ -110,12 +110,12 @@ namespace YetAnotherSnake.Scenes
             table.Row();
             CreateBtn(table, "Settings", button =>
             {
-                Core.StartCoroutine(Coroutines.MoveTo(_rootTable, -Screen.MonitorWidth));
+                Core.StartCoroutine(Coroutines.MoveToX(_rootTable, -Screen.MonitorWidth));
             });
             table.Row();
             CreateBtn(table, "How to play", button =>
             {
-                Core.StartCoroutine(Coroutines.MoveTo(_rootTable, Screen.MonitorWidth));
+                Core.StartCoroutine(Coroutines.MoveToX(_rootTable, Screen.MonitorWidth));
             });
             table.Row();
             CreateBtn(table, "Exit", button =>
@@ -153,7 +153,7 @@ namespace YetAnotherSnake.Scenes
             table.Row();
             CreateBtn(table, "Back", button =>
                 {
-                    Core.StartCoroutine(Coroutines.MoveTo(_rootTable, 0));
+                    Core.StartCoroutine(Coroutines.MoveToX(_rootTable, 0));
                 });
             table.Row();
             table.Pack();
@@ -227,12 +227,12 @@ namespace YetAnotherSnake.Scenes
             CreateBtn(table, "Apply", button =>
             {
                 MyGame.Instance.SaveSystem.SaveChanges();
-                Core.StartCoroutine(Coroutines.MoveTo(_rootTable, 0));
+                Core.StartCoroutine(Coroutines.MoveToX(_rootTable, 0));
             });
             table.Row();
             CreateBtn(table, "Back", button =>
             {
-                Core.StartCoroutine(Coroutines.MoveTo(_rootTable, 0));
+                Core.StartCoroutine(Coroutines.MoveToX(_rootTable, 0));
             });
             table.Row();
             table.Pack();

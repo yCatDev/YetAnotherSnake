@@ -11,18 +11,6 @@ namespace YetAnotherSnake
     public static class Coroutines
     {
 
-        public static IEnumerator SpawnFood(Entity food)
-        {
-            var oldScale = food.Scale;
-            food.Scale = Vector2.Zero;
-            
-            while (food.Scale!=oldScale)
-            {
-                food.Scale = Utils.Move(food.Scale, oldScale, 0.05f);
-                
-                yield return null;
-            }
-        }
 
         public static IEnumerator MoveTextToCenter(Entity t)
         {
@@ -37,7 +25,7 @@ namespace YetAnotherSnake
 
        
         
-        public static IEnumerator MoveTo(Element el, float x)
+        public static IEnumerator MoveToX(Element el, float x)
         {
             Coroutine.StopLast();
             while (Math.Abs(el.GetX() - x) > 0.1f)
@@ -46,6 +34,18 @@ namespace YetAnotherSnake
                 yield return null;
             }
             el.SetX(x);
+        } 
+        public static IEnumerator MoveToY(Element el, float y, Action after = null)
+        {
+            Coroutine.StopLast();
+            while (Math.Abs(el.GetY() - y) > 0.1f)
+            {
+                
+                el.SetY(MathHelper.Lerp(el.GetY(), y, 0.1f));
+                yield return null;
+            }
+            el.SetY(y);
+            after?.Invoke();
         }
         
     }

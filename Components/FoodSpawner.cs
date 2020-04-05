@@ -18,12 +18,11 @@ namespace YetAnotherSnake.Components
 
         public void Update()
         {
+            if (MyGame.Instance.Pause)
+                return;
+            
             if (!_scene.Entities.Contains(_food))
                 _food = CreateFood();
-            else
-            {
-                _food.LocalRotation += 0.05f;
-            }
         }
 
         private Entity CreateFood()
@@ -46,7 +45,6 @@ namespace YetAnotherSnake.Components
             });
             
             
-            Core.StartCoroutine(Coroutines.SpawnFood(food));
             return food;
         }
         

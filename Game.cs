@@ -19,7 +19,7 @@ namespace YetAnotherSnake
         public  SaveSystem SaveSystem;
         public  VignettePostProcessor VignettePostProcessor;
         public  BloomPostProcessor BloomPostProcessor;
-        
+        public bool Pause = false;
         
         protected override void Initialize()
         {
