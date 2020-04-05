@@ -32,6 +32,7 @@ namespace YetAnotherSnake.Scenes
                 GridMajorThickness = 8,
                 GridMajorColor = new Color(61,9,107)
             });
+            gridEntity.AddComponent(new MenuGrid(3500));
             gridEntity.GetComponent<SpringGrid>().RenderLayer = 9999;
             
             var ui = CreateEntity("UI").AddComponent<UICanvas>();

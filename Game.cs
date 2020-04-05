@@ -26,13 +26,13 @@ namespace YetAnotherSnake
             base.Initialize();
             Instance = this;
             var imGuiManager = new ImGuiManager();
-            Core.RegisterGlobalManager( imGuiManager );
-
-// toggle ImGui rendering on/off. It starts out enabled.
+            RegisterGlobalManager( imGuiManager );
+            
             imGuiManager.SetEnabled(false);
             
-            Window.AllowUserResizing = false; 
-           
+            Window.AllowUserResizing = false;
+            ExitOnEscapeKeypress = false;
+            
             DefaultSamplerState = SamplerState.LinearClamp;
             Screen.SetSize(Screen.MonitorWidth,Screen.MonitorHeight);
 
