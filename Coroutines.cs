@@ -1,7 +1,9 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using Microsoft.Xna.Framework;
 using Nez;
 using Nez.Sprites;
+using Nez.UI;
 using YetAnotherSnake.Scenes;
 
 namespace YetAnotherSnake
@@ -32,18 +34,17 @@ namespace YetAnotherSnake
             }
         }
 
-        public static IEnumerator ReturnToMenu()
+       
+        
+        public static IEnumerator MoveTo(Element el, float x)
         {
-            float t = 100;
-            while (t > 0)
+            Coroutine.StopLast();
+            while (Math.Abs(el.GetX() - x) > 0.1f)
             {
-                t--;
+                el.SetX(MathHelper.Lerp(el.GetX(), x, 0.1f));
                 yield return null;
             }
-            
-            Core.StartSceneTransition(new FadeTransition(() => new MenuScene()));
-            
-            yield return null;
+            el.SetX(x);
         }
         
     }

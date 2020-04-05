@@ -16,6 +16,9 @@
     "frameworks": {
       "netcoreapp3.1": {
         "projectReferences": {
+          "E:\\Universitet\\YetAnotherSnake\\YetAnotherSnake\\Nez\\Nez.ImGui\\Nez.ImGui.csproj": {
+            "projectPath": "E:\\Universitet\\YetAnotherSnake\\YetAnotherSnake\\Nez\\Nez.ImGui\\Nez.ImGui.csproj"
+          },
           "E:\\Universitet\\YetAnotherSnake\\YetAnotherSnake\\Nez\\Nez.Portable\\Nez.csproj": {
             "projectPath": "E:\\Universitet\\YetAnotherSnake\\YetAnotherSnake\\Nez\\Nez.Portable\\Nez.csproj"
           }

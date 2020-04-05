@@ -24,9 +24,8 @@ namespace YetAnotherSnake.Scenes
             Camera.AddComponent(new CameraBounds(new Vector2(-1280, -720),new Vector2(1280, 720)));
             
             
-            _vignettePostProcessor = new VignettePostProcessor(1) {Power = 0.75f};
-            AddPostProcessor(_vignettePostProcessor);
-            AddPostProcessor(new BloomPostProcessor(3)).Settings = BloomSettings.PresetSettings[6];
+            AddPostProcessor(MyGame.Instance.VignettePostProcessor);
+            AddPostProcessor(MyGame.Instance.BloomPostProcessor).Settings = BloomSettings.PresetSettings[6];
         }
 
         public override void OnStart()
@@ -49,7 +48,7 @@ namespace YetAnotherSnake.Scenes
             _snake = CreateEntity("SnakeHead");
             _snake.AddComponent(new Snake(_snakeSize, _snake.Position,new Vector2(10, 10)));
             
-            MyGame.AudioManager.PlayMusic();
+           
         }
     }
 }

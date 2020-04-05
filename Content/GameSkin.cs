@@ -23,6 +23,15 @@ namespace YetAnotherSnake
             {
                 Font = contentManager.LoadBitmapFont(Content.DefaultTitleFont)
             });
+
+            var slider_style = SliderStyle.Create(Color.Yellow, new Color(61, 9, 107));
+            
+            slider_style.Knob.MinWidth *= 1.5f;
+            slider_style.Knob.MinHeight *= 1.5f;
+            slider_style.Background.MinWidth *= 0.5f;
+
+            Skin.Add("slider", slider_style);
+
         }
     }
 }

@@ -19,6 +19,8 @@ namespace YetAnotherSnake
             MediaPlayer.IsRepeating = true;
         }
 
+        public float Volume { get=>MediaPlayer.Volume; set=>MediaPlayer.Volume = value; }
+
         public void PlayMusic() => MediaPlayer.Play(BackgroundAudio);
         public void StopMusic() => MediaPlayer.Stop();
 

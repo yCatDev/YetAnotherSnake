@@ -53,3 +53,13 @@ E:\Universitet\YetAnotherSnake\YetAnotherSnake\YetAnotherSnake\bin\Debug\netcore
 E:\Universitet\YetAnotherSnake\YetAnotherSnake\YetAnotherSnake\bin\Debug\netcoreapp3.1\Content\Fonts\oswald_title_3.png
 E:\Universitet\YetAnotherSnake\YetAnotherSnake\YetAnotherSnake\bin\Debug\netcoreapp3.1\Content\Fonts\oswald_title_4.png
 E:\Universitet\YetAnotherSnake\YetAnotherSnake\YetAnotherSnake\bin\Debug\netcoreapp3.1\Content\Fonts\inria_0.png
+E:\Universitet\YetAnotherSnake\YetAnotherSnake\YetAnotherSnake\bin\Debug\netcoreapp3.1\cimgui.dll
+E:\Universitet\YetAnotherSnake\YetAnotherSnake\YetAnotherSnake\bin\Debug\netcoreapp3.1\ImGui.NET.dll
+E:\Universitet\YetAnotherSnake\YetAnotherSnake\YetAnotherSnake\bin\Debug\netcoreapp3.1\runtimes\linux-x64\native\libcimgui.so
+E:\Universitet\YetAnotherSnake\YetAnotherSnake\YetAnotherSnake\bin\Debug\netcoreapp3.1\runtimes\osx-x64\native\libcimgui.dylib
+E:\Universitet\YetAnotherSnake\YetAnotherSnake\YetAnotherSnake\bin\Debug\netcoreapp3.1\runtimes\win-x64\native\cimgui.dll
+E:\Universitet\YetAnotherSnake\YetAnotherSnake\YetAnotherSnake\bin\Debug\netcoreapp3.1\runtimes\win-x86\native\cimgui.dll
+E:\Universitet\YetAnotherSnake\YetAnotherSnake\YetAnotherSnake\bin\Debug\netcoreapp3.1\Nez.ImGui.dll
+E:\Universitet\YetAnotherSnake\YetAnotherSnake\YetAnotherSnake\bin\Debug\netcoreapp3.1\Nez.Persistence.dll
+E:\Universitet\YetAnotherSnake\YetAnotherSnake\YetAnotherSnake\bin\Debug\netcoreapp3.1\Nez.ImGui.pdb
+E:\Universitet\YetAnotherSnake\YetAnotherSnake\YetAnotherSnake\bin\Debug\netcoreapp3.1\Nez.Persistence.pdb

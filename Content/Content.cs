@@ -5,6 +5,8 @@ namespace YetAnotherSnake
 {
     public static class Content
     {
+        public const string Save = @"Content/save.file";
+        
         public const string Blank = @"Sprites/blank";
         public const string White = @"Sprites/white";
         public const string Circle = @"Sprites/circle";

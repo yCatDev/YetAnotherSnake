@@ -28,6 +28,7 @@ namespace YetAnotherSnake.Components
         private CameraBounds _cameraBounds;
         private ScoreDisplay _score;
         
+        
         private bool _isAlive;
         private List<Vector2> _deathVectors;
         
@@ -135,7 +136,7 @@ namespace YetAnotherSnake.Components
                         SnakeHead.GetComponent<GridModifier>().Impulse(100);
                         IncSnake(5);
                         _score.IncScore();
-                        MyGame.AudioManager.PickUpSound.Play();
+                        MyGame.Instance.AudioManager.PickUpSound.Play();
                         c.Destroy();
                     }
                 }
@@ -161,7 +162,7 @@ namespace YetAnotherSnake.Components
         {
             
             _isAlive = false;
-            
+            _score.CheckHiScore();
             _deathVectors = new List<Vector2>(_snakeParts.Count);
             for (int i = 0; i < _snakeParts.Count; i++)
             {
@@ -188,14 +189,14 @@ namespace YetAnotherSnake.Components
                 SnakeHead.RemoveComponent<SpriteRenderer>();
                 _deathVectors.Add(dir);
             }
-            MyGame.AudioManager.DeathSound.Play();
+            MyGame.Instance.AudioManager.DeathSound.Play();
             SnakeHead.AddComponent<CameraShake>().Shake(75, 1.5f);
 
             //Core.StartCoroutine(Animations.MoveTextToCenter(_score.Entity));
             //_score.Entity.RemoveComponent<ScoreDisplay>();
-            MyGame.AudioManager.StopMusic();
+            MyGame.Instance.AudioManager.StopMusic();
                       
-            Core.StartCoroutine(Coroutines.ReturnToMenu());
+            Core.StartCoroutine(ReturnToMenu());
         }
         
         
@@ -209,7 +210,15 @@ namespace YetAnotherSnake.Components
             e.AddComponent<BoxCollider>();
             _snakeParts.Add(e);
         }
-
+        private IEnumerator ReturnToMenu()
+        {
+            yield return Coroutine.WaitForSeconds(2);
+            
+            Core.StartSceneTransition(new FadeTransition(() => new MenuScene()));
+            _scene.RemovePostProcessor(MyGame.Instance.BloomPostProcessor);
+            _scene.RemovePostProcessor(MyGame.Instance.VignettePostProcessor);
+            yield return null;
+        }
         public void IncSnake(int addSize)
         {
             for (int i = 0; i < addSize; i++)
