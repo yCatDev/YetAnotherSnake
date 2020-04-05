@@ -105,7 +105,7 @@
 /processorParam:ColorKeyEnabled=True
 /processorParam:GenerateMipmaps=True
 /processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=True
+/processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:Sprites/white.png

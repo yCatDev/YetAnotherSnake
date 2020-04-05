@@ -19,6 +19,7 @@ namespace YetAnotherSnake
             while (food.Scale!=oldScale)
             {
                 food.Scale = Utils.Move(food.Scale, oldScale, 0.05f);
+                
                 yield return null;
             }
         }

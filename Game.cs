@@ -45,7 +45,7 @@ namespace YetAnotherSnake
             BloomPostProcessor = new BloomPostProcessor(3);
 
             //Here we go again
-            Scene = new MenuScene();
+            Scene = new BlankScene();
         }
     }
 }
