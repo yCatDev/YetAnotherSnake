@@ -174,10 +174,11 @@ namespace YetAnotherSnake.Scenes
             table.Add(info);
             table.Row();
             
-            var slider = new Slider(0, 100, 1f, false,MyGame.Instance.Skin.Skin.Get<SliderStyle>());
+            var slider = new Slider(0, 1, 0.05f, false,MyGame.Instance.Skin.Skin.Get<SliderStyle>());
             slider.SetValue(MyGame.Instance.SaveSystem.SaveFile.Volume);
-            slider.OnChanged += f => { 
-                MyGame.Instance.SaveSystem.SaveFile.Volume = (int) f;
+            slider.OnChanged += f =>
+            {
+                MyGame.Instance.SaveSystem.SaveFile.Volume = f;
                 MyGame.Instance.AudioManager.Volume = f;
             }; 
             table.Add(slider);

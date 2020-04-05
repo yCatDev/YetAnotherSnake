@@ -7,9 +7,10 @@ namespace YetAnotherSnake
 {
     public class AudioManager: IDisposable
     {
-        private Song BackgroundAudio;
-        public SoundEffect PickUpSound, DeathSound;
-        
+        private readonly Song BackgroundAudio;
+        public readonly SoundEffect PickUpSound;
+        public readonly SoundEffect DeathSound;
+
         public AudioManager()
         {
             BackgroundAudio = Core.Content.Load<Song>(Content.BackgroundMusic);

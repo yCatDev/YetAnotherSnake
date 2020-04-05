@@ -6,10 +6,11 @@ namespace YetAnotherSnake
 {
     public class SaveFile
     {
-        public int _volume = 100, _score = 0;
-        public bool _isFullScreen=false, _isVignette=true, _isBloom=true;
+        private float _volume = 100; 
+        private int _score = 0;
+        private bool _isFullScreen=false, _isVignette=true, _isBloom=true;
 
-        public int Volume
+        public float Volume
         {
             get => _volume;
             set => _volume = value;
