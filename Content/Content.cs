@@ -21,6 +21,11 @@ namespace YetAnotherSnake
         
         public const string OswaldTitleFont = @"Content/Fonts/oswald_title.fnt";
         public const string DefaultTitleFont = @"Content/Fonts/inria.fnt";
+        public const string HowToPlayText = @"
+            Use the left and right arrow to rotate the snake head. 
+                         Eat food and try not to crash. 
+                    The more you eat, the more you become!
+                ";
 
     }
 }

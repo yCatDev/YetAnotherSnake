@@ -6,10 +6,21 @@ using Nez.UI;
 
 namespace YetAnotherSnake
 {
+    
+    /// <summary>
+    /// Class that creates base skin style for game ui
+    /// </summary>
     public class GameSkin
     {
-        public Skin Skin;
+        /// <summary>
+        /// Nez skin
+        /// </summary>
+        public readonly Skin Skin;
 
+        /// <summary>
+        /// Creates skin styles
+        /// </summary>
+        /// <param name="contentManager">Content manager</param>
         public GameSkin(NezContentManager contentManager)
         {
             Skin = new Skin();
@@ -24,13 +35,16 @@ namespace YetAnotherSnake
                 Font = contentManager.LoadBitmapFont(Content.DefaultTitleFont)
             });
 
-            var slider_style = SliderStyle.Create(Color.Yellow, new Color(61, 9, 107));
+            Skin.Add("regular-button", TextButtonStyle.Create(Color.Black, new Color(61, 9, 85), new Color(61, 9, 107)));
             
-            slider_style.Knob.MinWidth *= 1.5f;
-            slider_style.Knob.MinHeight *= 1.5f;
-            slider_style.Background.MinWidth *= 0.5f;
+            
+            var sliderStyle = SliderStyle.Create(Color.Yellow, new Color(61, 9, 107));
+            
+            sliderStyle.Knob.MinWidth *= 1.5f;
+            sliderStyle.Knob.MinHeight *= 1.5f;
+            sliderStyle.Background.MinWidth *= 0.5f;
 
-            Skin.Add("slider", slider_style);
+            Skin.Add("slider", sliderStyle);
 
         }
     }

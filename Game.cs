@@ -22,10 +22,6 @@ namespace YetAnotherSnake
         /// </summary>
         public  AudioManager AudioManager;
         /// <summary>
-        /// UI skin settings
-        /// </summary>
-        public  GameSkin Skin;
-        /// <summary>
         /// Save file
         /// </summary>
         public  SaveSystem SaveSystem;
@@ -51,7 +47,6 @@ namespace YetAnotherSnake
             Screen.SetSize(Screen.MonitorWidth,Screen.MonitorHeight);
 
             AudioManager = new AudioManager();
-            Skin = new GameSkin(Content);
             SaveSystem = new SaveSystem();
             
             VignettePostProcessor = new VignettePostProcessor(1) {Power = 0.75f};

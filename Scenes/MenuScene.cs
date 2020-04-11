@@ -11,7 +11,8 @@ namespace YetAnotherSnake.Scenes
 {
     public class MenuScene: Scene
     {
-        [Inspectable]
+        
+        private GameUIHelper _uiHelper;
         private Table _rootTable, _tableMain, _tableSettings, _tableHowToPlay;
         
         public override void Initialize()
@@ -20,10 +21,6 @@ namespace YetAnotherSnake.Scenes
             ClearColor = Color.Black;
             
             SetDesignResolution(Screen.MonitorWidth,Screen.MonitorHeight,SceneResolutionPolicy.ShowAll);
-            
-            /*var text = CreateEntity("MenuText").AddComponent<MenuTest>().AddComponent<TextComponent>();
-            text.SetFont(new NezSpriteFont(Content.Load<SpriteFont>(YetAnotherSnake.Content.OswaldFont)));
-            text.Text = "Yet another snake";*/
 
             var gridEntity = CreateEntity("grid");
             gridEntity.AddComponent(new SpringGrid(new Rectangle(0, 0, 2560, 1440), new Vector2(30))
@@ -35,19 +32,8 @@ namespace YetAnotherSnake.Scenes
             gridEntity.AddComponent(new MenuGrid(3500));
             gridEntity.GetComponent<SpringGrid>().RenderLayer = 9999;
             
-            var ui = CreateEntity("UI").AddComponent<UICanvas>();
-            _rootTable = ui.Stage.AddElement( new Table() );
-            
-            InitMainMenu(ref _tableMain);
-            InitHowToPlayMenu(ref _tableHowToPlay);
-            InitSettingsMenu(ref _tableSettings);
-            
-            _rootTable.Pack();
-
-            _tableMain.SetPosition(Screen.MonitorWidth/2f, Screen.MonitorHeight/2f);
-            _tableHowToPlay.SetPosition(-Screen.MonitorWidth/2f, Screen.MonitorHeight/2f);
-            _tableSettings.SetPosition(Screen.MonitorWidth*1.5f, Screen.MonitorHeight/2f);
-            
+            //Creating UI
+            CreateUI();
             
             MyGame.GameInstance.AudioManager.PlayMusic();
             
@@ -55,70 +41,54 @@ namespace YetAnotherSnake.Scenes
             AddPostProcessor(MyGame.GameInstance.BloomPostProcessor).Settings = BloomSettings.PresetSettings[6];
         }
 
-        private TextButton CreateBtn(Table t, string label, Action<Button> action)
+
+        private void CreateUI()
         {
-            var button = new TextButton(label,TextButtonStyle.Create( Color.Black, new Color(61,9,85), new Color(61,9,107) ) );
-            button.GetLabel().SetStyle(MyGame.GameInstance.Skin.Skin.Get<LabelStyle>("label"));
-            button.OnClicked += btn =>
-            {
-                btn.ResetMouseHover();
-                action(btn);
-            };
-            t.Add( button ).SetMinWidth( 400 ).SetMinHeight( 100 );
+            var ui = CreateEntity("UI").AddComponent<UICanvas>();
+            _rootTable = ui.Stage.AddElement( new Table() );
+            _uiHelper = new GameUIHelper(Content);
             
-            return button;
-        }
+            _tableMain = InitMainMenu();
+            _tableHowToPlay = InitHowToPlayMenu();
+            _tableSettings = InitSettingsMenu();
+            
+            _rootTable.Pack();
 
-        private CheckBox CreateCheckBox(Table t, string label, bool defaultState, Action<bool> action)
-        {
-            var checkBox = new CheckBox(label, Skin.CreateDefaultSkin());
-            checkBox.GetLabel().GetStyle().Font = MyGame.GameInstance.Skin.Skin.Get<LabelStyle>("label").Font;
-            checkBox.GetLabel().SetFontScale(0.75f);
-            checkBox.IsChecked = defaultState;
-            checkBox.OnChanged += action;
-            action.Invoke(defaultState);
-            t.Add(checkBox);
+            _tableMain.SetPosition(Screen.MonitorWidth/2f, Screen.MonitorHeight/2f);
+            _tableHowToPlay.SetPosition(-Screen.MonitorWidth/2f, Screen.MonitorHeight/2f);
+            _tableSettings.SetPosition(Screen.MonitorWidth*1.5f, Screen.MonitorHeight/2f);
 
-            return checkBox;
         }
-        private void InitMainMenu(ref Table table)
+        
+        private Table InitMainMenu()
         {
-            table = _rootTable.AddElement(new Table());
+            var table = _rootTable.AddElement(new Table());
             
             table.SetFillParent( true );
-
-            var title = new Label("Yet another snake", MyGame.GameInstance.Skin.Skin.Get<LabelStyle>("title-label"));
-            table.Add(title);
-            
+            _uiHelper.CreateTitleLabel(table, "Yet another snake");
             table.Row();
-
-            var score = new Label($"High score: {MyGame.GameInstance.SaveSystem.SaveFile.Score}",
-                MyGame.GameInstance.Skin.Skin.Get<LabelStyle>("label"));
-            table.Add(score);
-
-            var el = new Container();
-            el.SetHeight(200);
-            table.Add(el);
+            _uiHelper.CreateRegularLabel(table,$"High score: {MyGame.GameInstance.SaveSystem.SaveFile.Score}");
+            _uiHelper.CreateVerticalIndent(table, 200);
             table.Row();
             
-            CreateBtn(table, "Play", button =>
+            _uiHelper.CreateBtn(table, "Play", button =>
             {
                 Core.StartSceneTransition(new FadeTransition(()=>new GameScene()));
                 RemovePostProcessor(MyGame.GameInstance.BloomPostProcessor);
                 RemovePostProcessor(MyGame.GameInstance.VignettePostProcessor);
             });
             table.Row();
-            CreateBtn(table, "Settings", button =>
+            _uiHelper.CreateBtn(table, "Settings", button =>
             {
                 Core.StartCoroutine(Coroutines.MoveToX(_rootTable, -Screen.MonitorWidth));
             });
             table.Row();
-            CreateBtn(table, "How to play", button =>
+            _uiHelper.CreateBtn(table, "How to play", button =>
             {
                 Core.StartCoroutine(Coroutines.MoveToX(_rootTable, Screen.MonitorWidth));
             });
             table.Row();
-            CreateBtn(table, "Exit", button =>
+            _uiHelper.CreateBtn(table, "Exit", button =>
             {
                 MyGame.GameInstance.AudioManager.Dispose();
                 Environment.Exit(0);
@@ -126,62 +96,54 @@ namespace YetAnotherSnake.Scenes
             table.Row();
             table.Pack();
 
+            return table;
         }
 
-        private void InitHowToPlayMenu(ref Table table)
+        private Table InitHowToPlayMenu()
         {
-            table = _rootTable.AddElement(new Table());
+            var table = _rootTable.AddElement(new Table());
             
             table.SetFillParent( true );
-            
-            var title = new Label("How to Play", MyGame.GameInstance.Skin.Skin.Get<LabelStyle>("title-label"));
-            title.SetFontScale(0.75f);
-            table.Add(title);
-            
+
+            _uiHelper.CreateTitleLabel(table, "How to Play").SetFontScale(0.75f);
+
             var el = new Container();
             el.SetHeight(200);
             table.Add(el);
             table.Row();
 
-            const string infoText = @"
-            Use the left and right arrow to rotate the snake head. 
-                         Eat food and try not to crash. 
-                    The more you eat, the more you become!
-                ";
-            var info = new Label(infoText, MyGame.GameInstance.Skin.Skin.Get<LabelStyle>("label"));
-            table.Add(info);
+            
+            _uiHelper.CreateRegularLabel(table, YetAnotherSnake.Content.HowToPlayText);
             table.Row();
-            CreateBtn(table, "Back", button =>
+            _uiHelper.CreateBtn(table, "Back", button =>
                 {
                     Core.StartCoroutine(Coroutines.MoveToX(_rootTable, 0));
                 });
             table.Row();
             table.Pack();
+
+            return table;
         }
 
-        private void InitSettingsMenu(ref Table table)
+        private Table InitSettingsMenu()
         {
-            table = _rootTable.AddElement(new Table());
+            var table = _rootTable.AddElement(new Table());
 
             table.SetFillParent(true);
 
-            var title = new Label("Settings", MyGame.GameInstance.Skin.Skin.Get<LabelStyle>("title-label"));
-            title.SetFontScale(0.75f);
-            table.Add(title);
+            _uiHelper.CreateTitleLabel(table, "Settings").SetFontScale(0.75f);
             table.Row();
-            //
-            var info = new Label("Volume", MyGame.GameInstance.Skin.Skin.Get<LabelStyle>("label"));
-            table.Add(info);
+
+
+            _uiHelper.CreateRegularLabel(table, "Volume");
             table.Row();
-            
-            var slider = new Slider(0, 1, 0.05f, false,MyGame.GameInstance.Skin.Skin.Get<SliderStyle>());
-            slider.SetValue(MyGame.GameInstance.SaveSystem.SaveFile.Volume);
-            slider.OnChanged += f =>
+
+            _uiHelper.CreateSlider(table, f =>
             {
                 MyGame.GameInstance.SaveSystem.SaveFile.Volume = f;
                 MyGame.GameInstance.AudioManager.Volume = f;
-            }; 
-            table.Add(slider);
+            });
+          
             table.Row();
             
             var el2 = new Container();
@@ -190,7 +152,7 @@ namespace YetAnotherSnake.Scenes
             table.Row();
 
 
-            CreateCheckBox(table, "FullScreen", MyGame.GameInstance.SaveSystem.SaveFile.IsFullScreen,b =>
+            _uiHelper.CreateCheckBox(table, "FullScreen", MyGame.GameInstance.SaveSystem.SaveFile.IsFullScreen,b =>
             {
                 if (b)
                     Screen.SetSize(Screen.MonitorWidth, Screen.MonitorHeight);
@@ -204,38 +166,38 @@ namespace YetAnotherSnake.Scenes
             });
             table.Row();
             
-            CreateCheckBox(table, "Enable vignette", MyGame.GameInstance.SaveSystem.SaveFile.IsVignette, b =>
+            _uiHelper.CreateCheckBox(table, "Enable vignette", MyGame.GameInstance.SaveSystem.SaveFile.IsVignette, b =>
             {
                 MyGame.GameInstance.SaveSystem.SaveFile.IsVignette = b;
                 MyGame.GameInstance.VignettePostProcessor.Enabled = b;
             });
             table.Row();
             
-            CreateCheckBox(table, "Enable bloom", MyGame.GameInstance.SaveSystem.SaveFile.IsBloom, b =>
+            _uiHelper.CreateCheckBox(table, "Enable bloom", MyGame.GameInstance.SaveSystem.SaveFile.IsBloom, b =>
             {
                 MyGame.GameInstance.SaveSystem.SaveFile.IsBloom = b;
                 MyGame.GameInstance.BloomPostProcessor.Enabled = b;
             });
             table.Row();
-            
-            
-            var el = new Container();
-            el.SetHeight(100);
-            table.Add(el);
+
+
+            _uiHelper.CreateVerticalIndent(table, 100);
             table.Row();
             
-            CreateBtn(table, "Apply", button =>
+            _uiHelper.CreateBtn(table, "Apply", button =>
             {
                 MyGame.GameInstance.SaveSystem.SaveChanges();
                 Core.StartCoroutine(Coroutines.MoveToX(_rootTable, 0));
             });
             table.Row();
-            CreateBtn(table, "Back", button =>
+            _uiHelper.CreateBtn(table, "Back", button =>
             {
                 Core.StartCoroutine(Coroutines.MoveToX(_rootTable, 0));
             });
             table.Row();
             table.Pack();
+
+            return table;
         }
     }
 }
