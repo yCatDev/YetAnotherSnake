@@ -229,8 +229,7 @@ namespace YetAnotherSnake.Scenes
 
             return table;
         }
-        
-      
+         
 
         public override void Update()
         {
