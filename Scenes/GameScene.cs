@@ -103,10 +103,8 @@ namespace YetAnotherSnake.Scenes
             _rootTable.SetFillParent( true );
                 
             
-            _pauseTable = _rootTable.AddElement(new Table());
             _pauseTable = InitPauseMenu();
             
-            _settingsTable = _rootTable.AddElement(new Table());
             _settingsTable = InitSettingsMenu();
             
             
@@ -124,13 +122,13 @@ namespace YetAnotherSnake.Scenes
             table.SetFillParent(true);
             
             _uiHelper.CreateTitleLabel(table, "PAUSE");
-            _pauseTable.Row();
+            table.Row();
 
             _uiHelper.CreateVerticalIndent(table, 200);
-            _pauseTable.Row();
+            table.Row();
 
            
-            _uiHelper.CreateBtn(_pauseTable, "Continue", button =>
+            _uiHelper.CreateBtn(table, "Continue", button =>
             {
                 Core.StartCoroutine(UIAnimations.MoveToY(_rootTable, Screen.MonitorHeight));
                     
@@ -138,14 +136,14 @@ namespace YetAnotherSnake.Scenes
                 MyGame.GameInstance.AudioManager.ResumeMusic();
                 MyGame.GameInstance.Pause = false;
             });
-            _pauseTable.Row();
-            _uiHelper.CreateBtn(_pauseTable, "Settings", button =>
+            table.Row();
+            _uiHelper.CreateBtn(table, "Settings", button =>
             {
                 Core.StartCoroutine(UIAnimations.MoveToY(_rootTable, -Screen.MonitorHeight*2));
 
             });
-            _pauseTable.Row();
-            _uiHelper.CreateBtn(_pauseTable, "Exit", button =>
+            table.Row();
+            _uiHelper.CreateBtn(table, "Exit", button =>
             {
                 MyGame.GameInstance.Pause = false;
                 
@@ -154,7 +152,7 @@ namespace YetAnotherSnake.Scenes
                 gridEntity.UpdateInterval = 1;
                 
             });
-            _pauseTable.Pack();
+            table.Pack();
 
             return table;
         }
@@ -217,12 +215,13 @@ namespace YetAnotherSnake.Scenes
             _uiHelper.CreateBtn(table, "Apply", button =>
             {
                 MyGame.GameInstance.SaveSystem.SaveChanges();
-                Core.StartCoroutine(UIAnimations.MoveToX(_rootTable, 0));
+                Core.StartCoroutine(UIAnimations.MoveToY(_rootTable, -Screen.MonitorHeight));
+                
             });
             table.Row();
             _uiHelper.CreateBtn(table, "Back", button =>
             {
-                Core.StartCoroutine(UIAnimations.MoveToX(_rootTable, 0));
+                Core.StartCoroutine(UIAnimations.MoveToY(_rootTable, -Screen.MonitorHeight));
             });
             table.Row();
             table.Pack();
