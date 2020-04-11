@@ -5,6 +5,9 @@ using Nez;
 
 namespace YetAnotherSnake
 {
+    /// <summary>
+    /// Audio controlling class
+    /// </summary>
     public class AudioManager: IDisposable
     {
         private readonly Song BackgroundAudio;
@@ -32,8 +35,7 @@ namespace YetAnotherSnake
             if (MediaPlayer.State==MediaState.Paused)
                 MediaPlayer.Resume();
         }
-
-        private void nothing() {;}
+        
 
         public void Dispose()
         {

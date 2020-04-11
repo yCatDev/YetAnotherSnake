@@ -18,7 +18,7 @@ namespace YetAnotherSnake.Components
 
         public void Update()
         {
-            if (MyGame.Instance.Pause)
+            if (MyGame.GameInstance.Pause)
                 return;
             
             if (Entity.Scale!=oldScale)

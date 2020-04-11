@@ -4,61 +4,68 @@ using System.Text.Json;
 
 namespace YetAnotherSnake
 {
+    
+    /// <summary>
+    /// Save file class
+    /// </summary>
     public class SaveFile
     {
-        private float _volume = 100; 
-        private int _score = 0;
-        private bool _isFullScreen=false, _isVignette=true, _isBloom=true;
+        /// <summary>
+        /// Game music volume
+        /// </summary>
+        public float Volume { get; set; } = 100;
 
-        public float Volume
-        {
-            get => _volume;
-            set => _volume = value;
-        }
+        /// <summary>
+        /// High score
+        /// </summary>
+        public int Score { get; set; } = 0;
 
-        public int Score
-        {
-            get => _score;
-            set => _score = value;
-        }
+        /// <summary>
+        /// Fullscreen mode
+        /// </summary>
+        public bool IsFullScreen { get; set; } = false;
 
-        public bool IsFullScreen
-        {
-            get => _isFullScreen;
-            set => _isFullScreen = value;
-        }
+        /// <summary>
+        /// Enable vignette post-processing 
+        /// </summary>
+        public bool IsVignette { get; set; } = true;
 
-        public bool IsVignette
-        {
-            get => _isVignette;
-            set => _isVignette = value;
-        }
-
-        public bool IsBloom
-        {
-            get => _isBloom;
-            set => _isBloom = value;
-        }
+        /// <summary>
+        /// Enable bloom post-processing 
+        /// </summary>
+        public bool IsBloom { get; set; } = true;
     }
 
+    /// <summary>
+    /// Save system class that works with save file
+    /// </summary>
     public class SaveSystem
     {
-        public SaveFile SaveFile;
+        /// <summary>
+        /// Working file
+        /// </summary>
+        public readonly SaveFile SaveFile;
 
         public SaveSystem()
         {
+            //Checking for the first game start and creating save file 
             if (!IsHasSaveFile())
                 File.Create(Content.Save).Dispose();
             
+            //Reading json file with settings
             SaveFile = new SaveFile();
             var sr = new StreamReader(Content.Save);
             var json = sr.ReadToEnd();
             sr.Dispose();
             
+            //If first start create default save file
             if (!string.IsNullOrEmpty(json))
                 SaveFile = JsonSerializer.Deserialize<SaveFile>(json);
         }
 
+        /// <summary>
+        /// Saving changes to json file
+        /// </summary>
         public void SaveChanges()
         {
             var json = JsonSerializer.Serialize(SaveFile);
@@ -68,7 +75,11 @@ namespace YetAnotherSnake
             sr.Dispose();
         }
 
-        private bool IsHasSaveFile() => File.Exists(Content.Save);
+        /// <summary>
+        /// Check if save file exists
+        /// </summary>
+        /// <returns>true if is exists</returns>
+        private static bool IsHasSaveFile() => File.Exists(Content.Save);
     }
     
 }

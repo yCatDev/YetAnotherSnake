@@ -2,9 +2,7 @@
 using System.Collections;
 using Microsoft.Xna.Framework;
 using Nez;
-using Nez.Sprites;
 using Nez.UI;
-using YetAnotherSnake.Scenes;
 
 namespace YetAnotherSnake
 {

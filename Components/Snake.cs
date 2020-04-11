@@ -12,14 +12,14 @@ using Random = Nez.Random;
 
 namespace YetAnotherSnake.Components
 {
-    public class Snake: Component, IUpdatable
+    public class Snake: SceneComponent, IUpdatable
     {
         
         private float _step;
         private VirtualButton _leftArrow, _rightArrow, _space;
         private List<Entity> _snakeParts;
         private int _startSnakeSize;
-        private Scene _scene;
+        
         private Entity _marker;
         private Vector2 _startDirection;
         
@@ -54,20 +54,27 @@ namespace YetAnotherSnake.Components
             
             IsAlive = true;
 
+
         }
 
-        public override void Initialize()
+        public override void OnEnabled()
         {
-            base.Initialize();
-            _scene = Entity.Scene;
-            _bodySprite = _scene.Content.Load<Texture2D>(Content.SnakeBody);
+            base.OnEnabled();
+            Initialize();
+        }
+
+        private void Initialize()
+        {
+            
+            
+            _bodySprite = Scene.Content.Load<Texture2D>(Content.SnakeBody);
             
 
 
             for (int i = 0; i < _startSnakeSize; i++)
             {
-                var e =_scene.CreateEntity($"Snake{_snakeParts.Count}", 
-                    new Vector2(Entity.Position.X, Entity.Position.Y+(_bodySprite.Height/4*i)));
+                var e =Scene.CreateEntity($"Snake{_snakeParts.Count}", 
+                    new Vector2(0, 0+(_bodySprite.Height/4*i)));
                 e.AddComponent(new SpriteRenderer(_bodySprite));
                 if (i > 10)
                     e.AddComponent<BoxCollider>();
@@ -80,21 +87,21 @@ namespace YetAnotherSnake.Components
             _snakeHeadCollider.Height -= 2;
             
             SnakeHead.AddComponent(new GridModifier()).AddComponent<CameraShake>();
-            _marker = _scene.CreateEntity("marker",  SnakeHead.Position + _startDirection);
+            _marker = Scene.CreateEntity("marker",  SnakeHead.Position + _startDirection);
             _marker.Parent = SnakeHead.Transform;
             
-            _scene.Camera.Entity.AddComponent(new FollowCamera(SnakeHead));
-            _cameraBounds = _scene.Camera.Entity.GetComponent<CameraBounds>();
-            _score = Entity.Scene.FindEntity("scoreText").GetComponent<ScoreDisplay>();
+            Scene.Camera.Entity.AddComponent(new FollowCamera(SnakeHead));
+            _cameraBounds = Scene.Camera.Entity.GetComponent<CameraBounds>();
+            _score = Scene.FindEntity("scoreText").GetComponent<ScoreDisplay>();
         }
 
-        public void Update()
+        public override void Update()
         {
             
             
             if (IsAlive)
             {
-                if (MyGame.Instance.Pause)
+                if (MyGame.GameInstance.Pause)
                     return;
                 SnakeHead.Position = Utils.Move(SnakeHead.Position, _marker.Position, _step * 10);
                 if (_leftArrow.IsDown)
@@ -134,7 +141,7 @@ namespace YetAnotherSnake.Components
                         SnakeHead.GetComponent<GridModifier>().Impulse( 200);
                         IncSnake(5);
                         _score.IncScore();
-                        MyGame.Instance.AudioManager.PickUpSound.Play();
+                        MyGame.GameInstance.AudioManager.PickUpSound.Play();
                         c.Destroy();
                     }
                 }
@@ -187,12 +194,10 @@ namespace YetAnotherSnake.Components
                 SnakeHead.RemoveComponent<SpriteRenderer>();
                 _deathVectors.Add(dir);
             }
-            MyGame.Instance.AudioManager.DeathSound.Play();
+            MyGame.GameInstance.AudioManager.DeathSound.Play();
             SnakeHead.AddComponent<CameraShake>().Shake(75, 1.5f);
 
-            //Core.StartCoroutine(Animations.MoveTextToCenter(_score.Entity));
-            //_score.Entity.RemoveComponent<ScoreDisplay>();
-            MyGame.Instance.AudioManager.StopMusic();
+            MyGame.GameInstance.AudioManager.StopMusic();
                       
             Core.StartCoroutine(ReturnToMenu());
         }
@@ -201,7 +206,7 @@ namespace YetAnotherSnake.Components
         private void _addPart()
         {
             int last = _snakeParts.Count;
-            var e = _scene.CreateEntity($"Snake{last}", 
+            var e = Scene.CreateEntity($"Snake{last}", 
                 new Vector2(_snakeParts[last-1].Position.X, _snakeParts[last-1].Position.Y));
             
             
@@ -213,8 +218,8 @@ namespace YetAnotherSnake.Components
             yield return Coroutine.WaitForSeconds(2);
             
             Core.StartSceneTransition(new FadeTransition(() => new MenuScene()));
-            _scene.RemovePostProcessor(MyGame.Instance.BloomPostProcessor);
-            _scene.RemovePostProcessor(MyGame.Instance.VignettePostProcessor);
+            Scene.RemovePostProcessor(MyGame.GameInstance.BloomPostProcessor);
+            Scene.RemovePostProcessor(MyGame.GameInstance.VignettePostProcessor);
             yield return null;
         }
         public void IncSnake(int addSize)

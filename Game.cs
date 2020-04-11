@@ -13,11 +13,26 @@ namespace YetAnotherSnake
 {
     public class MyGame : Core
     {
-        public static MyGame Instance;
+        /// <summary>
+        /// Game Instance
+        /// </summary>
+        public static MyGame GameInstance;
+        /// <summary>
+        /// Game audio manager
+        /// </summary>
         public  AudioManager AudioManager;
-        public  Scene GameScene, MenuScene;
+        /// <summary>
+        /// UI skin settings
+        /// </summary>
         public  GameSkin Skin;
+        /// <summary>
+        /// Save file
+        /// </summary>
         public  SaveSystem SaveSystem;
+        
+        /// <summary>
+        /// Vignette
+        /// </summary>
         public  VignettePostProcessor VignettePostProcessor;
         public  BloomPostProcessor BloomPostProcessor;
         public bool Pause = false;
@@ -25,27 +40,24 @@ namespace YetAnotherSnake
         protected override void Initialize()
         {
             base.Initialize();
-            Instance = this;
-            var imGuiManager = new ImGuiManager();
-            RegisterGlobalManager( imGuiManager );
-            
-            imGuiManager.SetEnabled(false);
-            Console.WriteLine(Core.GraphicsDevice.Adapter.Description);
+            GameInstance = this;
+
+            //Base setting for game window
             Window.AllowUserResizing = false;
             ExitOnEscapeKeypress = false;
             
+            //Set texture filter method
             DefaultSamplerState = SamplerState.LinearClamp;
             Screen.SetSize(Screen.MonitorWidth,Screen.MonitorHeight);
 
             AudioManager = new AudioManager();
-           
             Skin = new GameSkin(Content);
             SaveSystem = new SaveSystem();
             
             VignettePostProcessor = new VignettePostProcessor(1) {Power = 0.75f};
             BloomPostProcessor = new BloomPostProcessor(3);
 
-            //Here we go again
+            //Loading empty scene, for animated loading of next scene 
             Scene = new BlankScene();
         }
     }

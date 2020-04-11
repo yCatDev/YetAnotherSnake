@@ -19,7 +19,7 @@ namespace YetAnotherSnake.Components
             _text.SetText("Score: 0");
             Entity.Scale *= 0.75f;
             _camera = Entity.Scene.Camera;
-            _hiscore = MyGame.Instance.SaveSystem.SaveFile.Score;
+            _hiscore = MyGame.GameInstance.SaveSystem.SaveFile.Score;
         }
 
         public void Update()
@@ -38,8 +38,8 @@ namespace YetAnotherSnake.Components
         {
             if (_score > _hiscore)
             {
-                MyGame.Instance.SaveSystem.SaveFile.Score = _score;
-                MyGame.Instance.SaveSystem.SaveChanges();
+                MyGame.GameInstance.SaveSystem.SaveFile.Score = _score;
+                MyGame.GameInstance.SaveSystem.SaveChanges();
             }
         }
 

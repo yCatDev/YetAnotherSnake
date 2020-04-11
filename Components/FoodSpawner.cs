@@ -5,6 +5,9 @@ using Nez.Sprites;
 
 namespace YetAnotherSnake.Components
 {
+    /// <summary>
+    /// Component thats spawn food for snake
+    /// </summary>
     public class FoodSpawner: Component, IUpdatable
     {
         private Scene _scene;
@@ -18,7 +21,7 @@ namespace YetAnotherSnake.Components
 
         public void Update()
         {
-            if (MyGame.Instance.Pause)
+            if (MyGame.GameInstance.Pause)
                 return;
             
             if (!_scene.Entities.Contains(_food))
