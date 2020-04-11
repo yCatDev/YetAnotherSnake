@@ -3,6 +3,10 @@ using Nez;
 
 namespace YetAnotherSnake
 {
+    
+    /// <summary>
+    /// Static class that contains resource paths and some string values
+    /// </summary>
     public static class Content
     {
         public const string Save = @"Content/save.file";

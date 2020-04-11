@@ -4,27 +4,26 @@ using Nez;
 
 namespace YetAnotherSnake.Components
 {
-    public class GridModifier : Component, IUpdatable
+    //Entity component for controlling grid 
+    public class GridModifier : Component
     {
+        /// <summary>
+        /// Grid
+        /// </summary>
         private SpringGrid _grid;
-
         
-        public GridModifier()
-        {
-       
-        }
         
         public override void OnAddedToEntity()
         {
             _grid = Entity.Scene.FindEntity("grid").GetComponent<SpringGrid>();
         }
 
-
-        void IUpdatable.Update()
-        {
-            
-        }
-
+        
+        
+        /// <summary>
+        /// Apply impulse force to the grid
+        /// </summary>
+        /// <param name="radius">Impulse radius</param>
         public void Impulse(float radius)
         {
             var pos = Entity.Position;
@@ -32,12 +31,14 @@ namespace YetAnotherSnake.Components
                 radius);
         }
         
-        public void Implosive(float force, float radius)
-        {
+        /// <summary>
+        /// Add implosive force to grid
+        /// </summary>
+        /// <param name="force">Force</param>
+        /// <param name="radius">Radius of force area</param>
+        public void Implosive(float force, float radius) =>
             _grid.ApplyImplosiveForce(force, Entity.Position.ToVector3(),
                 radius);
-        }
-        
     }
 
 }

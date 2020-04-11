@@ -3,16 +3,26 @@
 
 namespace YetAnotherSnake.Components
 {
+    /// <summary>
+    /// Entity component that describe snake food
+    /// </summary>
     public class SnakeFood: Component, IUpdatable
     {
+        /// <summary>
+        /// Grid modifier for creating implosive force 
+        /// </summary>
         private GridModifier _modifier;
-        private Vector2 oldScale;
+        
+        /// <summary>
+        /// Scale for animating
+        /// </summary>
+        private Vector2 _oldScale;
 
         public override void OnAddedToEntity()
         {
             base.OnAddedToEntity();
             _modifier = Entity.GetOrCreateComponent<GridModifier>();
-            oldScale = Entity.Scale;
+            _oldScale = Entity.Scale;
             Entity.Scale = Vector2.Zero;
         }
 
@@ -21,10 +31,9 @@ namespace YetAnotherSnake.Components
             if (MyGame.GameInstance.Pause)
                 return;
             
-            if (Entity.Scale!=oldScale)
-            {
-                Entity.Scale = Utils.Move(Entity.Scale, oldScale, 0.05f);
-            }
+            if (Entity.Scale!=_oldScale)
+                Entity.Scale = Utils.Move(Entity.Scale, _oldScale, 0.05f);
+            
             
             Entity.LocalRotation += 0.05f;
             _modifier.Implosive(5,150);

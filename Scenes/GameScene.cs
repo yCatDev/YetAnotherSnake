@@ -72,7 +72,7 @@ namespace YetAnotherSnake.Scenes
                 GridMajorColor = new Color(61,9,107)
             });
             gridEntity.GetComponent<SpringGrid>().RenderLayer = 9999;
-            gridEntity.AddComponent<FoodSpawner>();
+            AddSceneComponent<FoodSpawner>();
 
             //Create text label for displaying score
             var score = CreateEntity("scoreText");
@@ -83,8 +83,17 @@ namespace YetAnotherSnake.Scenes
             _snake = CreateEntity("SnakeHead");
             _snakeController = AddSceneComponent(new Snake(SnakeSize, _snake.Position,new Vector2(10, 10)));
             
-            AddRenderer(new ScreenSpaceRenderer(100, 9990));
+           CreateUI();
 
+            
+            
+        }
+
+        private void CreateUI()
+        {
+            //Fix update layer for active UI elements (Nez bug fix)
+            AddRenderer(new ScreenSpaceRenderer(100, 9990));
+            
             var ui = CreateEntity("UI").AddComponent<UICanvas>();
             ui.IsFullScreen = false;
             ui.RenderLayer = 9990;
@@ -106,9 +115,8 @@ namespace YetAnotherSnake.Scenes
             _rootTable.SetPosition(0, 0);
             _pauseTable.SetPosition(0, Screen.MonitorHeight);
             _settingsTable.SetPosition(0, Screen.MonitorHeight * 2);
-            
         }
-
+        
         private Table InitPauseMenu()
         {
     
@@ -124,7 +132,7 @@ namespace YetAnotherSnake.Scenes
            
             _uiHelper.CreateBtn(_pauseTable, "Continue", button =>
             {
-                Core.StartCoroutine(Coroutines.MoveToY(_rootTable, Screen.MonitorHeight));
+                Core.StartCoroutine(UIAnimations.MoveToY(_rootTable, Screen.MonitorHeight));
                     
                 gridEntity.UpdateInterval = 1;
                 MyGame.GameInstance.AudioManager.ResumeMusic();
@@ -133,7 +141,7 @@ namespace YetAnotherSnake.Scenes
             _pauseTable.Row();
             _uiHelper.CreateBtn(_pauseTable, "Settings", button =>
             {
-                Core.StartCoroutine(Coroutines.MoveToY(_rootTable, -Screen.MonitorHeight*2));
+                Core.StartCoroutine(UIAnimations.MoveToY(_rootTable, -Screen.MonitorHeight*2));
 
             });
             _pauseTable.Row();
@@ -141,7 +149,7 @@ namespace YetAnotherSnake.Scenes
             {
                 MyGame.GameInstance.Pause = false;
                 
-                Core.StartCoroutine(Coroutines.MoveToY(_rootTable, Screen.MonitorHeight));
+                Core.StartCoroutine(UIAnimations.MoveToY(_rootTable, Screen.MonitorHeight));
                 _snakeController.Die();
                 gridEntity.UpdateInterval = 1;
                 
@@ -209,12 +217,12 @@ namespace YetAnotherSnake.Scenes
             _uiHelper.CreateBtn(table, "Apply", button =>
             {
                 MyGame.GameInstance.SaveSystem.SaveChanges();
-                Core.StartCoroutine(Coroutines.MoveToX(_rootTable, 0));
+                Core.StartCoroutine(UIAnimations.MoveToX(_rootTable, 0));
             });
             table.Row();
             _uiHelper.CreateBtn(table, "Back", button =>
             {
-                Core.StartCoroutine(Coroutines.MoveToX(_rootTable, 0));
+                Core.StartCoroutine(UIAnimations.MoveToX(_rootTable, 0));
             });
             table.Row();
             table.Pack();
@@ -229,7 +237,7 @@ namespace YetAnotherSnake.Scenes
             base.Update();
             if (pauseKey.IsPressed && _snakeController.IsAlive)
             {
-                Core.StartCoroutine(Coroutines.MoveToY(_rootTable, -Screen.MonitorHeight));
+                Core.StartCoroutine(UIAnimations.MoveToY(_rootTable, -Screen.MonitorHeight));
                 MyGame.GameInstance.Pause = true;
                 gridEntity.UpdateInterval = 9999;
                 MyGame.GameInstance.AudioManager.PauseMusic();
