@@ -4,7 +4,7 @@ using Microsoft.Xna.Framework;
 using Nez;
 using Nez.UI;
 
-namespace YetAnotherSnake
+namespace YetAnotherSnake.UI
 {
     /// <summary>
     /// Specific UI animations based on coroutines

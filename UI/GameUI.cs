@@ -57,14 +57,14 @@ namespace YetAnotherSnake
         /// <param name="defaultState">Default state of check</param>
         /// <param name="onChanged">On state changed handler</param>
         /// <returns>Element</returns>
-        public CheckBox CreateCheckBox(Table t, string label, bool defaultState, Action<bool> onChanged)
+        public CheckBox CreateCheckBox(Table t, string label, bool defaultState, Action<bool> onChanged = null)
         {
             var checkBox = new CheckBox(label, Skin.CreateDefaultSkin());
             checkBox.GetLabel().GetStyle().Font = _skin.Skin.Get<LabelStyle>("label").Font;
             checkBox.GetLabel().SetFontScale(0.75f);
             checkBox.IsChecked = defaultState;
             checkBox.OnChanged += onChanged;
-            onChanged.Invoke(defaultState);
+            onChanged?.Invoke(defaultState);
             t.Add(checkBox);
 
             return checkBox;

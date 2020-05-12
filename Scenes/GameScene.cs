@@ -9,6 +9,7 @@ using Nez.Sprites;
 using Nez.Systems;
 using Nez.UI;
 using YetAnotherSnake.Components;
+using YetAnotherSnake.UI;
 
 namespace YetAnotherSnake.Scenes
 {
@@ -26,14 +27,14 @@ namespace YetAnotherSnake.Scenes
         /// <summary>
         /// Background grid object
         /// </summary>
-        private Entity gridEntity;
+        private Entity _gridEntity;
 
         private Snake _snakeController;
         
         /// <summary>
         /// Pause key listener
         /// </summary>
-        private VirtualButton pauseKey;
+        private VirtualButton _pauseKey;
         
         /// <summary>
         /// UI tables
@@ -51,8 +52,8 @@ namespace YetAnotherSnake.Scenes
             Camera.AddComponent(new CameraBounds(new Vector2(-1280, -720),new Vector2(1280, 720)));
             
             //Set up listener for Escape and Enter key
-            pauseKey = new VirtualButton();
-            pauseKey.AddKeyboardKey(Keys.Escape).AddKeyboardKey(Keys.Enter);
+            _pauseKey = new VirtualButton();
+            _pauseKey.AddKeyboardKey(Keys.Escape).AddKeyboardKey(Keys.Enter);
             
             //Enabling post-processing
             AddPostProcessor(MyGame.GameInstance.VignettePostProcessor);
@@ -64,14 +65,14 @@ namespace YetAnotherSnake.Scenes
             base.OnStart();
             
             //Creating background grid
-            gridEntity  = CreateEntity("grid");
-            gridEntity.AddComponent(new SpringGrid(new Rectangle(-1280, -720, 2560, 1440), new Vector2(30))
+            _gridEntity  = CreateEntity("grid");
+            _gridEntity.AddComponent(new SpringGrid(new Rectangle(-1280, -720, 2560, 1440), new Vector2(30))
             {
                 GridMinorThickness = 0f,
                 GridMajorThickness = 8,
                 GridMajorColor = new Color(61,9,107)
             });
-            gridEntity.GetComponent<SpringGrid>().RenderLayer = 9999;
+            _gridEntity.GetComponent<SpringGrid>().RenderLayer = 9999;
             AddSceneComponent<FoodSpawner>();
 
             //Create text label for displaying score
@@ -88,7 +89,8 @@ namespace YetAnotherSnake.Scenes
             
             
         }
-
+        
+        
         private void CreateUI()
         {
             //Fix update layer for active UI elements (Nez bug fix)
@@ -132,7 +134,7 @@ namespace YetAnotherSnake.Scenes
             {
                 Core.StartCoroutine(UIAnimations.MoveToY(_rootTable, Screen.MonitorHeight));
                     
-                gridEntity.UpdateInterval = 1;
+                _gridEntity.UpdateInterval = 1;
                 MyGame.GameInstance.AudioManager.ResumeMusic();
                 MyGame.GameInstance.Pause = false;
             });
@@ -149,7 +151,7 @@ namespace YetAnotherSnake.Scenes
                 
                 Core.StartCoroutine(UIAnimations.MoveToY(_rootTable, Screen.MonitorHeight));
                 _snakeController.Die();
-                gridEntity.UpdateInterval = 1;
+                _gridEntity.UpdateInterval = 1;
                 
             });
             table.Pack();
@@ -180,31 +182,31 @@ namespace YetAnotherSnake.Scenes
             _uiHelper.CreateVerticalIndent(table, 100);
             table.Row();
             
-            _uiHelper.CreateCheckBox(table, "FullScreen", MyGame.GameInstance.SaveSystem.SaveFile.IsFullScreen,b =>
+            var cFullScreen = _uiHelper.CreateCheckBox(table, "FullScreen", MyGame.GameInstance.SaveSystem.SaveFile.IsFullScreen,b =>
             {
-                if (b)
+                /*if (b)
                     Screen.SetSize(Screen.MonitorWidth, Screen.MonitorHeight);
                 else
                 {
                     Screen.SetSize((int) (Screen.MonitorWidth*0.75f), (int) (Screen.MonitorHeight*0.75f));
                 }
                 MyGame.GameInstance.SaveSystem.SaveFile.IsFullScreen = b;
-                Screen.IsFullscreen = b;
+                Screen.IsFullscreen = b;*/
                 
             });
             table.Row();
             
-            _uiHelper.CreateCheckBox(table, "Enable vignette", MyGame.GameInstance.SaveSystem.SaveFile.IsVignette, b =>
+            var cVignette = _uiHelper.CreateCheckBox(table, "Enable vignette", MyGame.GameInstance.SaveSystem.SaveFile.IsVignette, b =>
             {
-                MyGame.GameInstance.SaveSystem.SaveFile.IsVignette = b;
-                MyGame.GameInstance.VignettePostProcessor.Enabled = b;
+                /*MyGame.GameInstance.SaveSystem.SaveFile.IsVignette = b;
+                MyGame.GameInstance.VignettePostProcessor.Enabled = b;*/
             });
             table.Row();
             
-            _uiHelper.CreateCheckBox(table, "Enable bloom", MyGame.GameInstance.SaveSystem.SaveFile.IsBloom, b =>
+            var cBloom = _uiHelper.CreateCheckBox(table, "Enable bloom", MyGame.GameInstance.SaveSystem.SaveFile.IsBloom, b =>
             {
-                MyGame.GameInstance.SaveSystem.SaveFile.IsBloom = b;
-                MyGame.GameInstance.BloomPostProcessor.Enabled = b;
+                /*MyGame.GameInstance.SaveSystem.SaveFile.IsBloom = b;
+                MyGame.GameInstance.BloomPostProcessor.Enabled = b;*/
             });
             table.Row();
 
@@ -215,12 +217,33 @@ namespace YetAnotherSnake.Scenes
             _uiHelper.CreateBtn(table, "Apply", button =>
             {
                 MyGame.GameInstance.SaveSystem.SaveChanges();
-                Core.StartCoroutine(UIAnimations.MoveToY(_rootTable, -Screen.MonitorHeight));
+                var b = cFullScreen.IsChecked;
+                if (b)
+                    Screen.SetSize(Screen.MonitorWidth, Screen.MonitorHeight);
+                else
+                {
+                    Screen.SetSize((int) (Screen.MonitorWidth * 0.75f), (int) (Screen.MonitorHeight * 0.75f));
+                }
+
+                MyGame.GameInstance.SaveSystem.SaveFile.IsFullScreen = b;
+                Screen.IsFullscreen = b;
+
+                b = cVignette.IsChecked;
+                MyGame.GameInstance.SaveSystem.SaveFile.IsVignette = b;
+                MyGame.GameInstance.VignettePostProcessor.Enabled = b;
+
+                b = cBloom.IsChecked;
+                MyGame.GameInstance.SaveSystem.SaveFile.IsBloom = b;
+                MyGame.GameInstance.BloomPostProcessor.Enabled = b;
+                //Core.StartCoroutine(UIAnimations.MoveToY(_rootTable, -Screen.MonitorHeight));
                 
             });
             table.Row();
             _uiHelper.CreateBtn(table, "Back", button =>
             {
+                cBloom.IsChecked = MyGame.GameInstance.SaveSystem.SaveFile.IsBloom;
+                cVignette.IsChecked = MyGame.GameInstance.SaveSystem.SaveFile.IsVignette;
+                cFullScreen.IsChecked = MyGame.GameInstance.SaveSystem.SaveFile.IsFullScreen;
                 Core.StartCoroutine(UIAnimations.MoveToY(_rootTable, -Screen.MonitorHeight));
             });
             table.Row();
@@ -233,11 +256,11 @@ namespace YetAnotherSnake.Scenes
         public override void Update()
         {
             base.Update();
-            if (pauseKey.IsPressed && _snakeController.IsAlive)
+            if (_pauseKey.IsPressed && _snakeController.IsAlive)
             {
                 Core.StartCoroutine(UIAnimations.MoveToY(_rootTable, -Screen.MonitorHeight));
                 MyGame.GameInstance.Pause = true;
-                gridEntity.UpdateInterval = 9999;
+                _gridEntity.UpdateInterval = 9999;
                 MyGame.GameInstance.AudioManager.PauseMusic();
             }
 

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <SourceFile>E:/Universitet/YetAnotherSnake/YetAnotherSnake/YetAnotherSnake/Content/Sprites/circle.png</SourceFile>
+  <SourceFile>Y:/YetAnotherSnake/YetAnotherSnake/Content/Sprites/circle.png</SourceFile>
   <SourceTime>2020-03-29T14:38:58.1425425+03:00</SourceTime>
-  <DestFile>E:/Universitet/YetAnotherSnake/YetAnotherSnake/YetAnotherSnake/Content/bin/DesktopGL/Content/Sprites/circle.xnb</DestFile>
-  <DestTime>2020-03-29T14:58:01.6345179+03:00</DestTime>
+  <DestFile>Y:/YetAnotherSnake/YetAnotherSnake/Content/bin/DesktopGL/Content/Sprites/circle.xnb</DestFile>
+  <DestTime>2020-05-12T07:13:42.117135+03:00</DestTime>
   <Importer>TextureImporter</Importer>
   <ImporterTime>2018-08-05T14:17:44+03:00</ImporterTime>
   <Processor>TextureProcessor</Processor>
