@@ -14,6 +14,7 @@ namespace YetAnotherSnake.Components
 {
     public class Snake: SceneComponent, IUpdatable
     {
+
         /// <summary>
         /// Snake move step
         /// </summary>
@@ -87,7 +88,6 @@ namespace YetAnotherSnake.Components
         /// <param name="step">Move step</param>
         public Snake(int startSnakeSize, Vector2 startPosition, Vector2 startDirection, float step = 0.05f)
         {
-
             _startDirection = startDirection;
             _step = step;
             
@@ -106,8 +106,6 @@ namespace YetAnotherSnake.Components
             _space.AddKeyboardKey(Keys.Space);
             
             IsAlive = true;
-
-
         }
 
         public override void OnEnabled()

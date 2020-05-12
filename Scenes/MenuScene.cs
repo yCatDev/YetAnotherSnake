@@ -174,10 +174,12 @@ namespace YetAnotherSnake.Scenes
 
             _uiHelper.CreateBtn(table, "Play", button =>
             {
+                MyGame.GameInstance.GameClient.InitClient(MyGame.GameInstance.GameServer.Address, 8888);
                 Core.StartSceneTransition(new FadeTransition(() => new GameScene()));
                 RemovePostProcessor(MyGame.GameInstance.BloomPostProcessor);
                 RemovePostProcessor(MyGame.GameInstance.VignettePostProcessor);
             });
+            
             table.Row();
             _uiHelper.CreateBtn(table, "Play with friends", button =>
             {

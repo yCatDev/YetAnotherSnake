@@ -21,6 +21,8 @@ namespace YetAnotherSnake.Multiplayer
         private bool _serverOn = true;
 
         public ServerIDManager idManager;
+        public List<HandleClient> Clients => _handlers;
+        
         public string Address => _address;
         public int ConnectedCount => _connectionCount;
 
@@ -133,8 +135,15 @@ namespace YetAnotherSnake.Multiplayer
         
         private string GetDataFromClient()
         {
-            _networkStream.Read(_bytesFrom, 0, _bytesFrom.Length);
-            return Encoding.ASCII.GetString(_bytesFrom);
+            try
+            {
+                _networkStream.Read(_bytesFrom, 0, _bytesFrom.Length);
+                return Encoding.ASCII.GetString(_bytesFrom);
+            }
+            catch
+            {
+                return "end!";
+            }
         }
         
         private void SendDataToClient(string data)

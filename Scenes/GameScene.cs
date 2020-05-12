@@ -42,6 +42,8 @@ namespace YetAnotherSnake.Scenes
         private Table _pauseTable, _rootTable, _settingsTable;
 
         private GameUIHelper _uiHelper;
+
+        private float width, height;
         
         
         public override void Initialize()
@@ -49,7 +51,9 @@ namespace YetAnotherSnake.Scenes
             base.Initialize();
             ClearColor = Color.Black;
             SetDesignResolution(Screen.MonitorWidth,Screen.MonitorHeight,SceneResolutionPolicy.ShowAll);
-            Camera.AddComponent(new CameraBounds(new Vector2(-1280, -720),new Vector2(1280, 720)));
+            width = 1280 * MyGame.GameInstance.GameServer.ConnectedCount;
+            height = 720 * MyGame.GameInstance.GameServer.ConnectedCount;
+            Camera.AddComponent(new CameraBounds(new Vector2(-width, -height),new Vector2(width, height)));
             
             //Set up listener for Escape and Enter key
             _pauseKey = new VirtualButton();
@@ -66,7 +70,7 @@ namespace YetAnotherSnake.Scenes
             
             //Creating background grid
             _gridEntity  = CreateEntity("grid");
-            _gridEntity.AddComponent(new SpringGrid(new Rectangle(-1280, -720, 2560, 1440), new Vector2(30))
+            _gridEntity.AddComponent(new SpringGrid(new Rectangle((int) -width, (int) -height, (int) (width+1280), (int) (height+720)), new Vector2(30))
             {
                 GridMinorThickness = 0f,
                 GridMajorThickness = 8,
@@ -78,16 +82,18 @@ namespace YetAnotherSnake.Scenes
             //Create text label for displaying score
             var score = CreateEntity("scoreText");
             score.AddComponent<TextComponent>().AddComponent<ScoreDisplay>();
-            
-            
-            //Create main snake component
-            _snake = CreateEntity("SnakeHead");
-            _snakeController = AddSceneComponent(new Snake(SnakeSize, _snake.Position,new Vector2(10, 10)));
-            
-           CreateUI();
 
-            
-            
+
+
+            for (int i = 0; i < MyGame.GameInstance.GameServer.ConnectedCount; i++)
+            {
+                var id = MyGame.GameInstance.GameServer.Clients[i].id;
+                
+                _snake = CreateEntity("SnakeHead"+id);
+                _snakeController = AddSceneComponent(new Snake(SnakeSize, _snake.Position, new Vector2(10, 10)));
+            }
+
+            CreateUI();
         }
         
         
