@@ -35,7 +35,7 @@ namespace YetAnotherSnake.Components
         private int _startSnakeSize;
         
         /// <summary>
-        /// Move marker that helps to move
+        /// MoveMarker that helps to move
         /// </summary>
         private Entity _marker;
         /// <summary>
@@ -93,9 +93,12 @@ namespace YetAnotherSnake.Components
             
             _leftArrow = new VirtualButton();
             _leftArrow.AddKeyboardKey(Keys.Left);
+            _leftArrow.AddKeyboardKey(Keys.A);
             
             _rightArrow = new VirtualButton();
             _rightArrow.AddKeyboardKey(Keys.Right);
+            _rightArrow.AddKeyboardKey(Keys.D);
+            
             _startSnakeSize = startSnakeSize;
             _snakeParts = new List<Entity>(1000);
             
