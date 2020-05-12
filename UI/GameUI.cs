@@ -35,14 +35,14 @@ namespace YetAnotherSnake
         /// <param name="label">Text</param>
         /// <param name="onClick">On button click event handler</param>
         /// <returns>Element</returns>
-        public TextButton CreateBtn(Table t, string label, Action<Button> onClick)
+        public TextButton CreateBtn(Table t, string label, Action<TextButton> onClick)
         {
             var button = new TextButton(label, _skin.Skin.Get<TextButtonStyle>("regular-button"));
             button.GetLabel().SetStyle(_skin.Skin.Get<LabelStyle>("label"));
             button.OnClicked += btn =>
             {
                 btn.ResetMouseHover();
-                onClick(btn);
+                onClick(button);
             };
             t.Add( button ).SetMinWidth( 450 ).SetMinHeight( 100 );
             

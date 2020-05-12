@@ -1,6 +1,9 @@
-﻿using Nez;
+﻿using System;
+using Microsoft.Xna.Framework;
+using Nez;
 using YetAnotherSnake.Scenes;
 using Microsoft.Xna.Framework.Graphics;
+using YetAnotherSnake.Multiplayer;
 
 namespace YetAnotherSnake
 {
@@ -18,6 +21,9 @@ namespace YetAnotherSnake
         /// Save file
         /// </summary>
         public  SaveSystem SaveSystem;
+        
+        public GameServer GameServer;
+        public GameClient GameClient;
         
         /// <summary>
         /// Vignette
@@ -45,8 +51,32 @@ namespace YetAnotherSnake
             VignettePostProcessor = new VignettePostProcessor(1) {Power = 0.75f};
             BloomPostProcessor = new BloomPostProcessor(3);
 
+            GameServer = new GameServer();
+            GameClient = new GameClient();
+
+            Exiting += OnExit;
+            
             //Loading empty scene, for animated loading of next scene 
             Scene = new BlankScene();
         }
+
+        private void OnExit(object? sender, EventArgs e)
+        {
+            DisposeAll();
+        }
+
+        public void Quit()
+        {
+            DisposeAll();
+            Environment.Exit(0);
+        }
+
+        private void DisposeAll()
+        {
+            AudioManager.Dispose();
+            GameClient.Dispose();
+            GameServer.Dispose();
+        }
+        
     }
 }

@@ -76,15 +76,19 @@ namespace YetAnotherSnake.Scenes
             _uiHelper.CreateTitleLabel(table, "Create room");
             _uiHelper.CreateVerticalIndent(table, 200);
             table.Row();
-            _uiHelper.CreateRegularLabel(table, $"Server address: " +
-                                                $"{Dns.GetHostEntry(Dns.GetHostName()).AddressList.FirstOrDefault(x => x.AddressFamily == AddressFamily.InterNetwork)}");
-            table.Row();
+            _uiHelper.CreateRegularLabel(table, $"Server address: {MyGame.GameInstance.GameServer.Address}");
+                                                table.Row();
             _uiHelper.CreateRegularLabel(table, $"Server port {"8888"}");
             table.Row();
-            _uiHelper.CreateRegularLabel(table, $"Ready players: {"0"}");
+            var connectedLabel = _uiHelper.CreateRegularLabel(table, $"Ready players: {MyGame.GameInstance.GameServer.ConnectedCount}");
             _uiHelper.CreateVerticalIndent(table, 300);
             table.Row();
 
+            MyGame.GameInstance.GameServer.ConnectEvent += () =>
+            {
+                connectedLabel.SetText($"Ready players: {MyGame.GameInstance.GameServer.ConnectedCount}");
+            };
+            
             _uiHelper.CreateBtn(table, "Start game", (b) => { });
             table.Row();
             _uiHelper.CreateBtn(table, "Cancel", (b) =>
@@ -103,7 +107,7 @@ namespace YetAnotherSnake.Scenes
             table.Row();
             _uiHelper.CreateRegularLabel(table, "Enter server address");
             table.Row();
-            _uiHelper.CreateInputField(table, "0.0.0.0");
+            var address = _uiHelper.CreateInputField(table, MyGame.GameInstance.GameServer.Address);
             table.Row();
             _uiHelper.CreateRegularLabel(table, "Enter server port");
             table.Row();
@@ -112,10 +116,24 @@ namespace YetAnotherSnake.Scenes
             
             _uiHelper.CreateVerticalIndent(table, 100);
             table.Row();
-            _uiHelper.CreateRegularLabel(table, $"Ready {"Yes/No"}");
+            var connectedLabel = _uiHelper.CreateRegularLabel(table, $"Ready: {"No"}");
             table.Row();
 
-            _uiHelper.CreateBtn(table, "Ready/Cancel", (b) => { });
+            _uiHelper.CreateBtn(table, "Ready/Cancel", (b) =>
+            {
+                if (!MyGame.GameInstance.GameClient.Connected)
+                {
+                    MyGame.GameInstance.GameClient.InitClient(address.GetText(), 8888);
+                    b.SetText("Cancel");
+                    connectedLabel.SetText($"Ready: Yes");
+                }
+                else
+                {
+                    MyGame.GameInstance.GameClient.Disconnect();
+                    b.SetText("Ready");
+                    connectedLabel.SetText($"Ready: No");
+                }
+            });
             table.Row();
             _uiHelper.CreateBtn(table, "Back", (b) => {Core.StartCoroutine(UIAnimations.MoveToX(_rootTable, 0)); });
             table.Row();
@@ -174,8 +192,7 @@ namespace YetAnotherSnake.Scenes
             table.Row();
             _uiHelper.CreateBtn(table, "Exit", button =>
             {
-                MyGame.GameInstance.AudioManager.Dispose();
-                Environment.Exit(0);
+                MyGame.GameInstance.Quit();
             });
             table.Row();
             table.Pack();
