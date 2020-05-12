@@ -216,7 +216,7 @@ namespace YetAnotherSnake.Scenes
             
             _uiHelper.CreateBtn(table, "Apply", button =>
             {
-                MyGame.GameInstance.SaveSystem.SaveChanges();
+                
                 var b = cFullScreen.IsChecked;
                 if (b)
                     Screen.SetSize(Screen.MonitorWidth, Screen.MonitorHeight);
@@ -236,6 +236,7 @@ namespace YetAnotherSnake.Scenes
                 MyGame.GameInstance.SaveSystem.SaveFile.IsBloom = b;
                 MyGame.GameInstance.BloomPostProcessor.Enabled = b;
                 //Core.StartCoroutine(UIAnimations.MoveToY(_rootTable, -Screen.MonitorHeight));
+                MyGame.GameInstance.SaveSystem.SaveChanges();
                 
             });
             table.Row();

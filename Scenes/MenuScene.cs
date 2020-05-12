@@ -1,4 +1,7 @@
 ﻿using System;
+using System.Linq;
+using System.Net;
+using System.Net.Sockets;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Nez;
@@ -12,7 +15,8 @@ namespace YetAnotherSnake.Scenes
     public class MenuScene : Scene
     {
         private GameUIHelper _uiHelper;
-        private Table _rootTable, _tableMain, _tableSettings, _tableHowToPlay;
+        private Table _rootTable, _tableMain, _tableSettings, _tableHowToPlay, _tableMultipayer, _tableMultipayerServer,
+            _tableMultipayerClient;
 
         public override void Initialize()
         {
@@ -50,14 +54,95 @@ namespace YetAnotherSnake.Scenes
             _tableMain = InitMainMenu();
             _tableHowToPlay = InitHowToPlayMenu();
             _tableSettings = InitSettingsMenu();
+            
+            _tableMultipayer = InitMultiplayerMenu();
+            _tableMultipayerClient = InitMultiplayerClientMenu();
+            _tableMultipayerServer = InitMultiplayerServerMenu();
 
             _rootTable.Pack();
 
             _tableMain.SetPosition(Screen.MonitorWidth / 2f, Screen.MonitorHeight / 2f);
             _tableHowToPlay.SetPosition(-Screen.MonitorWidth / 2f, Screen.MonitorHeight / 2f);
             _tableSettings.SetPosition(Screen.MonitorWidth * 1.5f, Screen.MonitorHeight / 2f);
+            _tableMultipayer.SetPosition(Screen.MonitorWidth / 2f, Screen.MonitorHeight*1.5f);
+            _tableMultipayerServer.SetPosition(-Screen.MonitorWidth /2f, Screen.MonitorHeight*1.5f);
+            _tableMultipayerClient.SetPosition(Screen.MonitorWidth *1.5f, Screen.MonitorHeight*1.5f);
         }
 
+        private Table InitMultiplayerServerMenu()
+        {
+            var table = _rootTable.AddElement(new Table());
+
+            _uiHelper.CreateTitleLabel(table, "Create room");
+            _uiHelper.CreateVerticalIndent(table, 200);
+            table.Row();
+            _uiHelper.CreateRegularLabel(table, $"Server address: " +
+                                                $"{Dns.GetHostEntry(Dns.GetHostName()).AddressList.FirstOrDefault(x => x.AddressFamily == AddressFamily.InterNetwork)}");
+            table.Row();
+            _uiHelper.CreateRegularLabel(table, $"Server port {"8888"}");
+            table.Row();
+            _uiHelper.CreateRegularLabel(table, $"Ready players: {"0"}");
+            _uiHelper.CreateVerticalIndent(table, 300);
+            table.Row();
+
+            _uiHelper.CreateBtn(table, "Start game", (b) => { });
+            table.Row();
+            _uiHelper.CreateBtn(table, "Cancel", (b) =>
+                { Core.StartCoroutine(UIAnimations.MoveToX(_rootTable, 0));  });
+            table.Row();
+            
+            return table;
+        }
+
+        private Table InitMultiplayerClientMenu()
+        {
+            var table = _rootTable.AddElement(new Table());
+
+            _uiHelper.CreateTitleLabel(table, "Connect to room");
+            _uiHelper.CreateVerticalIndent(table, 100);
+            table.Row();
+            _uiHelper.CreateRegularLabel(table, "Enter server address");
+            table.Row();
+            _uiHelper.CreateInputField(table, "0.0.0.0");
+            table.Row();
+            _uiHelper.CreateRegularLabel(table, "Enter server port");
+            table.Row();
+            _uiHelper.CreateInputField(table, "8888");
+            table.Row();
+            
+            _uiHelper.CreateVerticalIndent(table, 100);
+            table.Row();
+            _uiHelper.CreateRegularLabel(table, $"Ready {"Yes/No"}");
+            table.Row();
+
+            _uiHelper.CreateBtn(table, "Ready/Cancel", (b) => { });
+            table.Row();
+            _uiHelper.CreateBtn(table, "Back", (b) => {Core.StartCoroutine(UIAnimations.MoveToX(_rootTable, 0)); });
+            table.Row();
+            
+            return table;
+        }
+
+        private Table InitMultiplayerMenu()
+        {
+            var table = _rootTable.AddElement(new Table());
+
+            _uiHelper.CreateTitleLabel(table, "Multiplayer mode");
+            _uiHelper.CreateVerticalIndent(table, 400);
+            table.Row();
+            _uiHelper.CreateBtn(table, "Create room", (b) =>
+                { Core.StartCoroutine(UIAnimations.MoveToX(_rootTable, Screen.MonitorWidth)); });
+            table.Row();
+            _uiHelper.CreateBtn(table, "Connect to room", (b) => 
+                { Core.StartCoroutine(UIAnimations.MoveToX(_rootTable, -Screen.MonitorWidth));});
+            table.Row();
+            _uiHelper.CreateBtn(table, "Back", (b) =>
+                { Core.StartCoroutine(UIAnimations.MoveToY(_rootTable, 0));});
+            table.Row();
+            
+            return table;
+        }
+        
         private Table InitMainMenu()
         {
             var table = _rootTable.AddElement(new Table());
@@ -74,6 +159,11 @@ namespace YetAnotherSnake.Scenes
                 Core.StartSceneTransition(new FadeTransition(() => new GameScene()));
                 RemovePostProcessor(MyGame.GameInstance.BloomPostProcessor);
                 RemovePostProcessor(MyGame.GameInstance.VignettePostProcessor);
+            });
+            table.Row();
+            _uiHelper.CreateBtn(table, "Play with friends", button =>
+            {
+                Core.StartCoroutine(UIAnimations.MoveToY(_rootTable, -Screen.MonitorHeight));
             });
             table.Row();
             _uiHelper.CreateBtn(table, "Settings",
@@ -179,8 +269,6 @@ namespace YetAnotherSnake.Scenes
 
             _uiHelper.CreateBtn(table, "Apply", button =>
             {
-                MyGame.GameInstance.SaveSystem.SaveChanges();
-                
                 var b = cFullScreen.IsChecked;
                 if (b)
                     Screen.SetSize(Screen.MonitorWidth, Screen.MonitorHeight);
@@ -200,6 +288,7 @@ namespace YetAnotherSnake.Scenes
                 MyGame.GameInstance.SaveSystem.SaveFile.IsBloom = b;
                 MyGame.GameInstance.BloomPostProcessor.Enabled = b;
                 //Core.StartCoroutine(UIAnimations.MoveToX(_rootTable, 0));
+                MyGame.GameInstance.SaveSystem.SaveChanges();
             });
             table.Row();
             _uiHelper.CreateBtn(table, "Back", button =>

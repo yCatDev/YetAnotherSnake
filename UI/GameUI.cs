@@ -44,9 +44,29 @@ namespace YetAnotherSnake
                 btn.ResetMouseHover();
                 onClick(btn);
             };
-            t.Add( button ).SetMinWidth( 400 ).SetMinHeight( 100 );
+            t.Add( button ).SetMinWidth( 450 ).SetMinHeight( 100 );
             
             return button;
+        }
+        
+        /// <summary>
+        /// Create input field on table
+        /// </summary>
+        /// <param name="t">TargetTable</param>
+        /// <param name="placeholder">Placeholder text</param>
+        /// <param name="onInput">On input event handler</param>
+        /// <returns>Element</returns>
+        public TextField CreateInputField(Table t, string placeholder, Action<TextField,string> onInput = null)
+        {
+            var input = new TextField(placeholder, _skin.Skin.Get<TextFieldStyle>("inputfield"));
+            //input.SetStyle(_skin.Skin.Get<TextFieldStyle>("inputfield"));
+            input.OnTextChanged += (field, s) =>
+            {
+                onInput?.Invoke(field, s);
+            };
+            t.Add( input ).SetMinWidth( 450 ).SetMinHeight( 100 );
+            input.SetAlignment(Align.Center);
+            return input;
         }
 
         /// <summary>

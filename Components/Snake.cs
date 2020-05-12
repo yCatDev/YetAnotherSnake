@@ -151,8 +151,6 @@ namespace YetAnotherSnake.Components
 
         public override void Update()
         {
-            
-            
             if (IsAlive)
             {
                 if (MyGame.GameInstance.Pause)

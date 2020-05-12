@@ -35,6 +35,18 @@ namespace YetAnotherSnake
                 Font = contentManager.LoadBitmapFont(Content.DefaultTitleFont)
             });
 
+            var inputCursor = new PrimitiveDrawable(Color.Black);
+            inputCursor.MinHeight = 100;
+            inputCursor.MinWidth = 10;
+            Skin.Add("inputfield", new TextFieldStyle()
+            {
+                Font = contentManager.LoadBitmapFont(Content.DefaultTitleFont),
+                FontColor = Color.Black,
+                Cursor = inputCursor,
+                FocusedBackground = new PrimitiveDrawable(Color.Gray),
+                Background = new PrimitiveDrawable(Color.White)
+            });
+            
             Skin.Add("regular-button", TextButtonStyle.Create(Color.Black, new Color(61, 9, 85), new Color(61, 9, 107)));
             
             
