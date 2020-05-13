@@ -19,8 +19,17 @@ namespace YetAnotherSnake.Scenes
         private Table _rootTable, _tableMain, _tableSettings, _tableHowToPlay, _tableMultipayer, _tableMultipayerServer,
             _tableMultipayerClient;
 
+        public static MenuScene Instance { get; set; }
+
+
+        public MenuScene()
+        {
+            Instance = this;
+        }
+        
         public override void Initialize()
         {
+            
             base.Initialize();
             ClearColor = Color.Black;
 
@@ -90,7 +99,15 @@ namespace YetAnotherSnake.Scenes
                 connectedLabel.SetText($"Ready players: {MyGame.GameInstance.GameServer.ConnectedCount}");
             };
             
-            _uiHelper.CreateBtn(table, "Start game", (b) => { });
+            _uiHelper.CreateBtn(table, "Start game", (b) =>
+            {
+                MyGame.GameInstance.GameClient.InitClient(MyGame.GameInstance.GameServer.Address, 8888);
+                Thread.Sleep(100);
+                MyGame.GameInstance.GameServer.StartGame();
+                /*Core.StartSceneTransition(new FadeTransition(() => new GameScene()));
+                RemovePostProcessor(MyGame.GameInstance.BloomPostProcessor);
+                RemovePostProcessor(MyGame.GameInstance.VignettePostProcessor);*/
+            });
             table.Row();
             _uiHelper.CreateBtn(table, "Cancel", (b) =>
                 { Core.StartCoroutine(UIAnimations.MoveToX(_rootTable, 0));  });
@@ -178,9 +195,9 @@ namespace YetAnotherSnake.Scenes
                 MyGame.GameInstance.GameClient.InitClient(MyGame.GameInstance.GameServer.Address, 8888);
                 Thread.Sleep(100);
                 MyGame.GameInstance.GameServer.StartGame();
-                Core.StartSceneTransition(new FadeTransition(() => new GameScene()));
+                /*Core.StartSceneTransition(new FadeTransition(() => new GameScene()));
                 RemovePostProcessor(MyGame.GameInstance.BloomPostProcessor);
-                RemovePostProcessor(MyGame.GameInstance.VignettePostProcessor);
+                RemovePostProcessor(MyGame.GameInstance.VignettePostProcessor);*/
             });
             
             table.Row();

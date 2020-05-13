@@ -26,7 +26,9 @@ namespace YetAnotherSnake.Scenes
         /// </summary>
         private Entity _gridEntity;
 
-        private static Dictionary<byte, Snake> _snakes;
+        public static GameScene Instance;
+        
+        private static Dictionary<int, Snake> _snakes;
         
         /// <summary>
         /// Pause key listener
@@ -41,27 +43,37 @@ namespace YetAnotherSnake.Scenes
         private GameUIHelper _uiHelper;
 
         private float width, height;
+
         
         
+        public GameScene()
+        {
+            
+        }
         
+
         public override void Initialize()
         {
             base.Initialize();
             ClearColor = Color.Black;
             SetDesignResolution(Screen.MonitorWidth,Screen.MonitorHeight,SceneResolutionPolicy.ShowAll);
-            width = 1280 * MyGame.GameInstance.GameServer.ConnectedCount;
-            height = 720 * MyGame.GameInstance.GameServer.ConnectedCount;
+            Instance = this;
+            
+            Console.WriteLine($"Connected {MyGame.GameInstance.GameClient.SnakeIds.Length} clients");
+            width = 1280 * MyGame.GameInstance.GameClient.SnakeIds.Length;
+            height = 720 * MyGame.GameInstance.GameClient.SnakeIds.Length;
             Camera.AddComponent(new CameraBounds(new Vector2(-width, -height),new Vector2(width, height)));
             
             //Set up listener for Escape and Enter key
             _pauseKey = new VirtualButton();
             _pauseKey.AddKeyboardKey(Keys.Escape).AddKeyboardKey(Keys.Enter);
-            
-            _snakes = new Dictionary<byte, Snake>(1);
+
+            _snakes = new Dictionary<int, Snake>(1);
             
             //Enabling post-processing
             AddPostProcessor(MyGame.GameInstance.VignettePostProcessor);
             AddPostProcessor(MyGame.GameInstance.BloomPostProcessor).Settings = BloomSettings.PresetSettings[6];
+            
         }
 
         public override void OnStart()
@@ -83,26 +95,22 @@ namespace YetAnotherSnake.Scenes
             var score = CreateEntity("scoreText");
             score.AddComponent<TextComponent>().AddComponent<ScoreDisplay>();
 
-
-
-            for (int i = 0; i < MyGame.GameInstance.GameServer.ConnectedCount; i++)
+            foreach (var id in MyGame.GameInstance.GameClient.SnakeIds)
             {
-                var id = MyGame.GameInstance.GameServer.Clients[i].id;
-                
-                var snake = CreateEntity("SnakeHead"+id);
-                _snakes.Add(id,AddSceneComponent(new Snake(SnakeSize, snake.Position, 
+                var snake = CreateEntity("SnakeHead" + id);
+                _snakes.Add(id, AddSceneComponent(new Snake(id==MyGame.GameInstance.GameClient.Id,SnakeSize, snake.Position,
                     new Vector2(10, 10))));
             }
-
+            
             CreateUI();
         }
 
-        public static void ProcessData(byte id, GamePacket data)
+        public void ProcessData(int id, GamePacket data)
         {
-            if (!data.StartGame) return;
-
+            //if (!data.StartGame) return;
             _snakes[id].MoveLeft = data.LeftKeyDown;
             _snakes[id].MoveRight = data.RightKeyDown;
+            //MyGame.GameInstance.GameServer.SyncData(id,data);
         }
         
         #region UI

@@ -79,6 +79,8 @@ namespace YetAnotherSnake.Components
         /// </summary>
         public Entity SnakeHead;
 
+
+        private bool _isReally;
         public bool MoveLeft;
         public bool MoveRight;
 
@@ -89,12 +91,12 @@ namespace YetAnotherSnake.Components
         /// <param name="startPosition">Start position</param>
         /// <param name="startDirection">Start direction</param>
         /// <param name="step">Move step</param>
-        public Snake(int startSnakeSize, Vector2 startPosition, Vector2 startDirection, float step = 0.05f)
+        public Snake(bool real, int startSnakeSize, Vector2 startPosition, Vector2 startDirection, float step = 0.05f)
         {
             _startDirection = startDirection;
             _step = step;
             
-         
+            _isReally = real;
             
             _startSnakeSize = startSnakeSize;
             _snakeParts = new List<Entity>(1000);
@@ -136,10 +138,13 @@ namespace YetAnotherSnake.Components
             SnakeHead.AddComponent(new GridModifier()).AddComponent<CameraShake>();
             _marker = Scene.CreateEntity("marker",  SnakeHead.Position + _startDirection);
             _marker.Parent = SnakeHead.Transform;
-            
-            Scene.Camera.Entity.AddComponent(new FollowCamera(SnakeHead));
-            _cameraBounds = Scene.Camera.Entity.GetComponent<CameraBounds>();
-            _score = Scene.FindEntity("scoreText").GetComponent<ScoreDisplay>();
+
+            if (_isReally)
+            {
+                Scene.Camera.Entity.AddComponent(new FollowCamera(SnakeHead));
+                _cameraBounds = Scene.Camera.Entity.GetComponent<CameraBounds>();
+                _score = Scene.FindEntity("scoreText").GetComponent<ScoreDisplay>();
+            }
         }
 
         public override void Update()

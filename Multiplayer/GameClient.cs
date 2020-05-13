@@ -4,6 +4,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.Xna.Framework.Input;
 using Nez;
+using YetAnotherSnake.Scenes;
 
 namespace YetAnotherSnake.Multiplayer
 {
@@ -12,18 +13,19 @@ namespace YetAnotherSnake.Multiplayer
         private TcpClient _clientSocket;
         private NetworkStream _serverStream;
         private Thread _thread;
-        private byte _id;
+        private int _id;
 
         public bool Connected = false, GameStarted;
 
         private VirtualButton _rightArrow;
         private VirtualButton _leftArrow;
+        private bool _leftArrowWasPressed = false, _rightArrowWasPressed = false;
         private Task<int> _reading; 
         
         public delegate void OnClient();
 
         public event OnClient onClient;
-
+        public int[] SnakeIds;
 
         public GameClient()
         {
@@ -38,8 +40,10 @@ namespace YetAnotherSnake.Multiplayer
             _rightArrow.AddKeyboardKey(Keys.D);
             
             _thread = new Thread(Process);
-            _thread.Start();
+            
         }
+
+        public int Id => _id;
 
         private void Process()
         {
@@ -48,22 +52,23 @@ namespace YetAnotherSnake.Multiplayer
                 if (!Connected) continue;
                 if (GameStarted)
                 {
+                    
                     if (_leftArrow.IsDown)
                     {
+                        _leftArrowWasPressed = true;
                         SendData(new GamePacket()
                         {
-                            Disconnect = false,
-                            StartGame = GameStarted,
+                            ServiceData = false,
                             LeftKeyDown = true
                         });
                     }
-
-                    if (_leftArrow.IsReleased)
+                    
+                    if (_leftArrow.IsReleased && _leftArrowWasPressed)
                     {
+                        _leftArrowWasPressed = false;
                         SendData(new GamePacket()
                         {
-                            Disconnect = false,
-                            StartGame = GameStarted,
+                            ServiceData = false,
                             LeftKeyDown = false
                         });
                     }
@@ -71,8 +76,6 @@ namespace YetAnotherSnake.Multiplayer
                     if (_rightArrow.IsDown)
                         SendData(new GamePacket()
                         {
-                            Disconnect = false,
-                            StartGame = GameStarted,
                             RightKeyDown = true
                         });
 
@@ -80,8 +83,6 @@ namespace YetAnotherSnake.Multiplayer
                     {
                         SendData(new GamePacket()
                         {
-                            Disconnect = false,
-                            StartGame = GameStarted,
                             RightKeyDown = false
                         });
                     }
@@ -93,16 +94,20 @@ namespace YetAnotherSnake.Multiplayer
                 _reading = _serverStream.ReadAsync(inStream, 0, inStream.Length);
                 var data = GamePacket.FromBytes(inStream);
 
-                if (data.Id != 0)
-                    _id = data.Id;
-
-                //Console.WriteLine("sd");
-                //Console.WriteLine(data.StartGame);
-
-                if (data.StartGame)
+                if (data.ServiceData && data.StartGame)
+                {
                     GameStarted = true;
-
+                    _id = data.Id;
+                    MenuScene.Instance.RemovePostProcessor(MyGame.GameInstance.BloomPostProcessor);
+                    MenuScene.Instance.RemovePostProcessor(MyGame.GameInstance.VignettePostProcessor);
+                    Core.StartSceneTransition(new FadeTransition(() 
+                        => new GameScene()));
+                    SnakeIds = data.idsToCreate;
+                }
                 
+                if (!data.ServiceData && GameScene.Instance!=null)
+                    GameScene.Instance.ProcessData(_id, data);
+
             }
         }
 
@@ -113,9 +118,7 @@ namespace YetAnotherSnake.Multiplayer
             _clientSocket.Connect(address, port);
             _serverStream = _clientSocket.GetStream();
             Connected = true;
-
-           
-
+            _thread.Start();
             onClient?.Invoke();
         }
 
@@ -124,6 +127,7 @@ namespace YetAnotherSnake.Multiplayer
             _reading.Wait();
             SendData(new GamePacket()
             {
+                ServiceData = true,
                 Disconnect = true
             });
             Dispose();

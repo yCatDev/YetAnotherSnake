@@ -5,6 +5,7 @@ using System.Net;
 using System.Net.Sockets;
 using System.Text;
 using System.Threading;
+using System.Threading.Tasks;
 using YetAnotherSnake.Components;
 using YetAnotherSnake.Scenes;
 
@@ -21,6 +22,8 @@ namespace YetAnotherSnake.Multiplayer
 
         private Thread _serverThread;
         private bool _serverOn = true;
+        
+        public bool isWorking = false;
 
         public ServerIDManager idManager;
         public List<HandleClient> Clients => _handlers;
@@ -44,6 +47,7 @@ namespace YetAnotherSnake.Multiplayer
             _serverSocket.Start();
             Console.WriteLine("Server start listening");
 
+            
             _handlers = new List<HandleClient>();
             _serverThread = new Thread(ServerUpdate);
             _serverThread.Start();
@@ -73,7 +77,7 @@ namespace YetAnotherSnake.Multiplayer
             _handlers.Clear();
         }
 
-        public void Disconnect(byte id)
+        public void Disconnect(int id)
         {
             _connectionCount--;
             _handlers.Remove(_handlers.FirstOrDefault(x => x.id == id));
@@ -82,13 +86,30 @@ namespace YetAnotherSnake.Multiplayer
 
         public void StartGame()
         {
+            isWorking = true;
+            var ids = new int[_connectionCount];
+            for (var j = 0; j < _connectionCount; j++)
+                ids[j] = _handlers[j].id;
+            
             for (var i = 0; i < _handlers.Count; i++)
             {
                 Console.WriteLine($"{_handlers[i].id} start");
+               
                 _handlers[i].SendDataToClient(new GamePacket()
                 {
+                    ServiceData = true,
+                    idsToCreate = ids,
+                    Id = _handlers[i].id,
                     StartGame = true
                 });
+            }
+        }
+
+        public void SyncData(int id, GamePacket packet)
+        {
+            for (var i = 0; i < _handlers.Count; i++)
+            {
+                _handlers[i].SendDataToClient(packet);
             }
         }
         
@@ -96,25 +117,24 @@ namespace YetAnotherSnake.Multiplayer
 
     public class ServerIDManager
     {
-        private byte _number = 99;
-        public byte GenerateNext() => ++_number;
+        private int _number = 0;
+        public int GenerateNext() => ++_number;
     }
 
 
     public class HandleClient : IDisposable
     {
         private TcpClient _clientSocket;
-        private Thread _thread;
+        private Task _thread;
         private NetworkStream _networkStream;
         private byte[] _bytesFrom = new byte[10025];
-        public byte id = 0;
+        public int id = 0;
         private bool _working = true;
 
-        public HandleClient(TcpClient client, byte id)
+        public HandleClient(TcpClient client, int id)
         {
             _clientSocket = client;
-            _thread = new Thread(Process);
-            _thread.Start();
+            _thread = Task.Run(Process);
             SendDataToClient(new GamePacket()
             {
                 Id = id
@@ -126,24 +146,19 @@ namespace YetAnotherSnake.Multiplayer
         {
             while (_working)
             {
-                try
-                {
+                
                     var data = GetDataFromClient();
-
+                    if (data == null) continue;
                     if (data.Disconnect && !data.StartGame)
                     {
                         Console.WriteLine($"Disconnecting {id}");
                         DisconnectClient();
                     }
                     
-                    GameScene.ProcessData(id, data);
-                    
-                    
-                }
-                catch (Exception ex)
-                {
-                    Console.WriteLine(" >> " + ex.ToString());
-                }
+                    if (!data.ServiceData)
+                        MyGame.GameInstance.GameServer.SyncData(id, data);
+
+               
             }
         }
 
@@ -155,6 +170,8 @@ namespace YetAnotherSnake.Multiplayer
 
         private GamePacket GetDataFromClient()
         {
+            if (@_networkStream.DataAvailable) return null;
+            
             _networkStream.Read(_bytesFrom, 0, _bytesFrom.Length);
             return GamePacket.FromBytes(_bytesFrom);
         }
@@ -171,7 +188,7 @@ namespace YetAnotherSnake.Multiplayer
         public void Dispose()
         {
             _working = false;
-            _thread.Interrupt();
+            //_thread.Interrupt();
             _clientSocket?.Dispose();
         }
     }
