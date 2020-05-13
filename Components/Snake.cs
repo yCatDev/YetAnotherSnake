@@ -23,7 +23,7 @@ namespace YetAnotherSnake.Components
         /// <summary>
         /// Keys for input
         /// </summary>
-        private VirtualButton _leftArrow, _rightArrow, _space;
+        private VirtualButton _leftArrow, _rightArrow;
         
         /// <summary>
         /// Snake body list
@@ -78,7 +78,10 @@ namespace YetAnotherSnake.Components
         /// Make snake entity
         /// </summary>
         public Entity SnakeHead;
-        
+
+        public bool MoveLeft;
+        public bool MoveRight;
+
         /// <summary>
         /// Create new snake
         /// </summary>
@@ -91,19 +94,11 @@ namespace YetAnotherSnake.Components
             _startDirection = startDirection;
             _step = step;
             
-            _leftArrow = new VirtualButton();
-            _leftArrow.AddKeyboardKey(Keys.Left);
-            _leftArrow.AddKeyboardKey(Keys.A);
-            
-            _rightArrow = new VirtualButton();
-            _rightArrow.AddKeyboardKey(Keys.Right);
-            _rightArrow.AddKeyboardKey(Keys.D);
+         
             
             _startSnakeSize = startSnakeSize;
             _snakeParts = new List<Entity>(1000);
             
-            _space = new VirtualButton();
-            _space.AddKeyboardKey(Keys.Space);
             
             IsAlive = true;
         }
@@ -156,10 +151,12 @@ namespace YetAnotherSnake.Components
                 
                 //Moving snake head
                 SnakeHead.Position = Utils.Move(SnakeHead.Position, _marker.Position, _step * 10);
-                if (_leftArrow.IsDown)
+                
+                if (MoveLeft)
                     _marker.Position = Utils.RotateAboutOrigin(_marker.Position, _marker.Parent.Position, -0.1f);
-                if (_rightArrow.IsDown)
+                if (MoveRight)
                     _marker.Position = Utils.RotateAboutOrigin(_marker.Position, _marker.Parent.Position, 0.1f);
+                
                 SnakeHead.Position = Utils.Move(SnakeHead.Position, _marker.Position, _step);
                 
                 for (int i = _snakeParts.Count - 1; i > 0; i--)
@@ -226,10 +223,10 @@ namespace YetAnotherSnake.Components
         /// </summary>
         public void Die()
         {
-            
+            return;
             IsAlive = false;
             _score.CheckHiScore();
-            
+            MyGame.GameInstance.GameClient.Disconnect();
             //Create death-vectors
             _deathVectors = new List<Vector2>(_snakeParts.Count);
             for (int i = 0; i < _snakeParts.Count; i++)

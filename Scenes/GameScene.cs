@@ -9,6 +9,7 @@ using Nez.Sprites;
 using Nez.Systems;
 using Nez.UI;
 using YetAnotherSnake.Components;
+using YetAnotherSnake.Multiplayer;
 using YetAnotherSnake.UI;
 
 namespace YetAnotherSnake.Scenes
@@ -21,15 +22,11 @@ namespace YetAnotherSnake.Scenes
         private const int SnakeSize = 40;
         
         /// <summary>
-        /// Main snake object
-        /// </summary>
-        private Entity _snake;
-        /// <summary>
         /// Background grid object
         /// </summary>
         private Entity _gridEntity;
 
-        private Snake _snakeController;
+        private static Dictionary<byte, Snake> _snakes;
         
         /// <summary>
         /// Pause key listener
@@ -46,6 +43,7 @@ namespace YetAnotherSnake.Scenes
         private float width, height;
         
         
+        
         public override void Initialize()
         {
             base.Initialize();
@@ -58,6 +56,8 @@ namespace YetAnotherSnake.Scenes
             //Set up listener for Escape and Enter key
             _pauseKey = new VirtualButton();
             _pauseKey.AddKeyboardKey(Keys.Escape).AddKeyboardKey(Keys.Enter);
+            
+            _snakes = new Dictionary<byte, Snake>(1);
             
             //Enabling post-processing
             AddPostProcessor(MyGame.GameInstance.VignettePostProcessor);
@@ -89,13 +89,23 @@ namespace YetAnotherSnake.Scenes
             {
                 var id = MyGame.GameInstance.GameServer.Clients[i].id;
                 
-                _snake = CreateEntity("SnakeHead"+id);
-                _snakeController = AddSceneComponent(new Snake(SnakeSize, _snake.Position, new Vector2(10, 10)));
+                var snake = CreateEntity("SnakeHead"+id);
+                _snakes.Add(id,AddSceneComponent(new Snake(SnakeSize, snake.Position, 
+                    new Vector2(10, 10))));
             }
 
             CreateUI();
         }
+
+        public static void ProcessData(byte id, GamePacket data)
+        {
+            if (!data.StartGame) return;
+
+            _snakes[id].MoveLeft = data.LeftKeyDown;
+            _snakes[id].MoveRight = data.RightKeyDown;
+        }
         
+        #region UI
         
         private void CreateUI()
         {
@@ -156,7 +166,7 @@ namespace YetAnotherSnake.Scenes
                 MyGame.GameInstance.Pause = false;
                 
                 Core.StartCoroutine(UIAnimations.MoveToY(_rootTable, Screen.MonitorHeight));
-                _snakeController.Die();
+                //_snakeController.Die();
                 _gridEntity.UpdateInterval = 1;
                 
             });
@@ -258,18 +268,19 @@ namespace YetAnotherSnake.Scenes
 
             return table;
         }
-         
+
+         #endregion
 
         public override void Update()
         {
             base.Update();
-            if (_pauseKey.IsPressed && _snakeController.IsAlive)
+            /*if (_pauseKey.IsPressed && _snakeController.IsAlive)
             {
                 Core.StartCoroutine(UIAnimations.MoveToY(_rootTable, -Screen.MonitorHeight));
                 MyGame.GameInstance.Pause = true;
                 _gridEntity.UpdateInterval = 9999;
                 MyGame.GameInstance.AudioManager.PauseMusic();
-            }
+            }*/
 
         
         }

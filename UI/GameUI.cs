@@ -43,6 +43,8 @@ namespace YetAnotherSnake
             {
                 btn.ResetMouseHover();
                 onClick(button);
+               
+                
             };
             t.Add( button ).SetMinWidth( 450 ).SetMinHeight( 100 );
             

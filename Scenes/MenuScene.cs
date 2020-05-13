@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Net;
 using System.Net.Sockets;
+using System.Threading;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Nez;
@@ -175,6 +176,8 @@ namespace YetAnotherSnake.Scenes
             _uiHelper.CreateBtn(table, "Play", button =>
             {
                 MyGame.GameInstance.GameClient.InitClient(MyGame.GameInstance.GameServer.Address, 8888);
+                Thread.Sleep(100);
+                MyGame.GameInstance.GameServer.StartGame();
                 Core.StartSceneTransition(new FadeTransition(() => new GameScene()));
                 RemovePostProcessor(MyGame.GameInstance.BloomPostProcessor);
                 RemovePostProcessor(MyGame.GameInstance.VignettePostProcessor);
