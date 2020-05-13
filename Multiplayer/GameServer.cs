@@ -146,19 +146,20 @@ namespace YetAnotherSnake.Multiplayer
         {
             while (_working)
             {
-                
-                    var data = GetDataFromClient();
+                var data = GetDataFromClient();
                     if (data == null) continue;
                     if (data.Disconnect && !data.StartGame)
                     {
                         Console.WriteLine($"Disconnecting {id}");
                         DisconnectClient();
                     }
+
+                    if (data.Test)
+                        Console.WriteLine("Test");
                     
+                    Console.WriteLine("Got package");
                     if (!data.ServiceData)
                         MyGame.GameInstance.GameServer.SyncData(id, data);
-
-               
             }
         }
 
@@ -170,7 +171,7 @@ namespace YetAnotherSnake.Multiplayer
 
         private GamePacket GetDataFromClient()
         {
-            if (@_networkStream.DataAvailable) return null;
+            if (_networkStream.DataAvailable) return null;
             
             _networkStream.Read(_bytesFrom, 0, _bytesFrom.Length);
             return GamePacket.FromBytes(_bytesFrom);

@@ -16,7 +16,7 @@ namespace YetAnotherSnake.Multiplayer
 
         public bool StartGame = false;
 
-
+        public bool Test = false;
         
         public bool ServiceData = false;
         public bool LeftKeyDown;

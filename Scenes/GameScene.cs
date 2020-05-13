@@ -73,7 +73,7 @@ namespace YetAnotherSnake.Scenes
             //Enabling post-processing
             AddPostProcessor(MyGame.GameInstance.VignettePostProcessor);
             AddPostProcessor(MyGame.GameInstance.BloomPostProcessor).Settings = BloomSettings.PresetSettings[6];
-            
+            MyGame.GameInstance.GameClient.GameStarted = true;
         }
 
         public override void OnStart()
@@ -108,8 +108,12 @@ namespace YetAnotherSnake.Scenes
         public void ProcessData(int id, GamePacket data)
         {
             //if (!data.StartGame) return;
-            _snakes[id].MoveLeft = data.LeftKeyDown;
-            _snakes[id].MoveRight = data.RightKeyDown;
+            if (_snakes.ContainsKey(id))
+            {
+                _snakes[id].MoveLeft = data.LeftKeyDown;
+                _snakes[id].MoveRight = data.RightKeyDown;
+            }
+
             //MyGame.GameInstance.GameServer.SyncData(id,data);
         }
         
