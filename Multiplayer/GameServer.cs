@@ -97,9 +97,12 @@ namespace YetAnotherSnake.Multiplayer
             var possibleHeight = 720 * ids.Length;
 
             var sp = new List<(float, float)>();
+            var fp = new List<(float, float)>();
+            
             for (int i = 0; i < ids.Length; i++)
             {
                 sp.Add((Random.Range(-possibleWidth, possibleWidth), Random.Range(-possibleHeight, possibleHeight)));
+                fp.Add((Random.Range(-possibleWidth, possibleWidth), Random.Range(-possibleHeight, possibleHeight)));
             }
             
             for (var i = 0; i < _handlers.Count; i++)
@@ -112,7 +115,8 @@ namespace YetAnotherSnake.Multiplayer
                     idsToCreate = ids,
                     Id = _handlers[i].id,
                     StartGame = true,
-                    SnakePosition = sp.ToArray()
+                    SnakePositions = sp.ToArray(),
+                    FoodPositions = fp.ToArray()
                 });
             }
         }
@@ -121,6 +125,7 @@ namespace YetAnotherSnake.Multiplayer
         {
             for (var i = 0; i < _handlers.Count; i++)
             {
+                
                 _handlers[i].SendDataToClient(packet);
             }
         }
@@ -169,7 +174,7 @@ namespace YetAnotherSnake.Multiplayer
                     if (data.Test)
                         Console.WriteLine("Test");
                     
-                    Console.WriteLine("Got package");
+                    //Console.WriteLine("Got package");
                     if (!data.ServiceData)
                         MyGame.GameInstance.GameServer.SyncData(id, data);
             }
@@ -192,6 +197,7 @@ namespace YetAnotherSnake.Multiplayer
         public void SendDataToClient(GamePacket packet)
         {
             _networkStream = _clientSocket.GetStream();
+            
             var sendBytes = GamePacket.GetBytes(packet);
             _networkStream.Write(sendBytes, 0, sendBytes.Length);
             _networkStream.Flush();

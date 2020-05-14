@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.Xna.Framework.Input;
 using Nez;
 using YetAnotherSnake.Scenes;
+using Random = Nez.Random;
 using Timer = System.Timers.Timer;
 
 namespace YetAnotherSnake.Multiplayer
@@ -33,6 +34,8 @@ namespace YetAnotherSnake.Multiplayer
         public event OnClient onClient;
         public int[] SnakeIds;
 
+        public GamePacket Packet;
+        
         public GameClient()
         {
             _id = (byte) Nez.Random.Range(100, 255);
@@ -162,6 +165,8 @@ namespace YetAnotherSnake.Multiplayer
             //_reading.Start();
             //_writing.Start();
 
+            Packet = new GamePacket();
+            
             _timer = new Timer {Interval = 10, AutoReset = true};
             _timer.Elapsed += (sender, args) =>
             {
@@ -171,7 +176,7 @@ namespace YetAnotherSnake.Multiplayer
                     var inStream = new byte[10025];
                     _serverStream.Read(inStream, 0, inStream.Length);
                     var data = GamePacket.FromBytes(inStream);
-
+                    //if (data.Test) Console.WriteLine("Test packet recived");
                     if (data.ServiceData && data.StartGame)
                     {
                         //GameStarted = true;
@@ -179,18 +184,15 @@ namespace YetAnotherSnake.Multiplayer
                         MenuScene.Instance.RemovePostProcessor(MyGame.GameInstance.BloomPostProcessor);
                         MenuScene.Instance.RemovePostProcessor(MyGame.GameInstance.VignettePostProcessor);
                         
-                        SnakePositions = data.SnakePosition;
+                        SnakePositions = data.SnakePositions;
+                        FoodPositions = data.FoodPositions;
                         SnakeIds = data.idsToCreate;
                         
                         Core.StartSceneTransition(new FadeTransition(()
                             => new GameScene()));
-                        
-                        
-                        
-                        
-                        //GameScene.Instance.Start();
                     }
-
+                    
+                    
                     if (!data.ServiceData && GameScene.Instance != null)
                         GameScene.Instance.ProcessData(_id, data);
                 }
@@ -200,27 +202,55 @@ namespace YetAnotherSnake.Multiplayer
                 if (GameStarted)
                 {
 
-                    /*if (_escape.IsDown)
+                    /*if (_leftArrow.IsDown)
                     {
-                        Console.WriteLine("Disconnecting");
+                        _leftArrowWasPressed = true;
                         SendData(new GamePacket()
                         {
-                            ServiceData = true,
-                            Disconnect = true
+                            LeftKeyDown = true
                         });
-                    }*/
-
-                    SendData(new GamePacket()
+                    }
+                    
+                    if (!_leftArrow.IsPressed && _leftArrowWasPressed)
                     {
-                        LeftKeyDown = _leftArrow.IsDown,
-                        RightKeyDown = _rightArrow.IsDown
-                    });
+                        _leftArrowWasPressed = false;
+                        SendData(new GamePacket()
+                        {
+                            LeftKeyDown = false
+                        });
+                    }
+
+                    if (_rightArrow.IsDown)
+                    {
+                        _rightArrowWasPressed = true;
+                        SendData(new GamePacket()
+                        {
+                            RightKeyDown = true
+                        });
+                    }
+                    
+                    if (!_rightArrow.IsPressed && _rightArrowWasPressed)
+                    {
+                        _leftArrowWasPressed = false;
+                        SendData(new GamePacket()
+                        {
+                            RightKeyDown = false
+                        });
+                    }
+                    */
+                    Packet.LeftKeyDown = _leftArrow.IsDown;
+                    Packet.RightKeyDown = _rightArrow.IsDown;
+                    
+                        SendData(Packet);
+                    
                 }
             };
             _timer.Start();
             
             onClient?.Invoke();
         }
+
+        public (float, float)[] FoodPositions;
 
         public (float, float)[] SnakePositions;
 
@@ -236,6 +266,16 @@ namespace YetAnotherSnake.Multiplayer
             onClient?.Invoke();
         }
 
+        public void SpawnFood()
+        {
+            var possibleWidth = 1280 * SnakeIds.Length;
+            var possibleHeight = 720 * SnakeIds.Length;
+            Packet.SpawnFood = true;
+            Packet.NextFoodPosition = (Random.Range(-possibleWidth, possibleWidth),
+                Random.Range(-possibleHeight, possibleHeight));
+            //SendData(packet);
+        }
+        
         public void SendData(GamePacket data)
         {
             _serverStream = _clientSocket.GetStream();

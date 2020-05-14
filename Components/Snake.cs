@@ -201,6 +201,7 @@ namespace YetAnotherSnake.Components
                         IncSnake(5);
                         _score.IncScore();
                         MyGame.GameInstance.AudioManager.PickUpSound.Play();
+                        MyGame.GameInstance.GameClient.SpawnFood();
                         c.Destroy();
                     }
                 }

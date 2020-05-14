@@ -47,7 +47,8 @@ namespace YetAnotherSnake.Scenes
         private float width, height;
 
         private bool _started = false;
-        
+
+        public FoodSpawner FoodSpawner;
 
         public override void Initialize()
         {
@@ -66,6 +67,7 @@ namespace YetAnotherSnake.Scenes
             _pauseKey.AddKeyboardKey(Keys.Escape).AddKeyboardKey(Keys.Enter);
 
             _snakes = new Dictionary<int, Snake>(1);
+            FoodSpawner = AddSceneComponent<FoodSpawner>();
             
             //Enabling post-processing
             AddPostProcessor(MyGame.GameInstance.VignettePostProcessor);
@@ -86,7 +88,7 @@ namespace YetAnotherSnake.Scenes
                 GridMajorColor = new Color(61,9,107)
             });
             _gridEntity.GetComponent<SpringGrid>().RenderLayer = 9999;
-            AddSceneComponent<FoodSpawner>();
+            
 
             //Create text label for displaying score
             var score = CreateEntity("scoreText");
@@ -102,6 +104,9 @@ namespace YetAnotherSnake.Scenes
                 _snakes.Add(id, AddSceneComponent(new Snake(id == MyGame.GameInstance.GameClient.Id, SnakeSize,
                     snake.Position,
                     new Vector2(10, 10))));
+
+                var p = MyGame.GameInstance.GameClient.FoodPositions[i];
+                FoodSpawner.CreateFood(new Vector2(p.Item1, p.Item2));
             }
 
             CreateUI();
@@ -111,17 +116,28 @@ namespace YetAnotherSnake.Scenes
         {
             _started = true;
         }
+
+        private GamePacket _lastPacket;
         
         public void ProcessData(int id, GamePacket data)
         {
+            if (data == _lastPacket) return;
             //if (!data.StartGame) return;
             if (_snakes.ContainsKey(id))
             {
                 _snakes[id].MoveLeft = data.LeftKeyDown;
                 _snakes[id].MoveRight = data.RightKeyDown;
+
+
+                if (data.SpawnFood)
+                {
+                    Console.WriteLine("Food spawned");
+                    FoodSpawner.CreateFood(new Vector2(data.NextFoodPosition.Item1, data.NextFoodPosition.Item2));
+                    MyGame.GameInstance.GameClient.Packet.SpawnFood = false;
+                }
             }
 
-            
+            _lastPacket = data;
             //MyGame.GameInstance.GameServer.SyncData(id,data);
         }
         

@@ -7,6 +7,8 @@ using Microsoft.Xna.Framework;
 
 namespace YetAnotherSnake.Multiplayer
 {
+    
+    
     [Serializable]
     public class GamePacket
     {
@@ -23,8 +25,12 @@ namespace YetAnotherSnake.Multiplayer
         public bool LeftKeyDown;
         public bool RightKeyDown;
         
-        public (float, float)[] SnakePosition;
-        public (float, float)[] FoodPosition;
+        public (float, float)[] SnakePositions;
+        public (float, float)[] FoodPositions;
+
+        public bool SpawnFood = false;
+        public (float, float) NextFoodPosition;
+        
         
 
         // Convert an object to a byte array
