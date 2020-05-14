@@ -132,7 +132,7 @@ namespace YetAnotherSnake.Scenes
                 if (MyGame.GameInstance.GameClient.Id!=id)
                     Snakes[id].SnakeHead.Position =
                         new Vector2(data.SnakeHeadPosition.Item1, data.SnakeHeadPosition.Item2);
-                Console.WriteLine($"Recived packet from {id} to {MyGame.GameInstance.GameClient.Id}");
+                //Console.WriteLine($"Recived packet from {id} to {MyGame.GameInstance.GameClient.Id}");
 
                 if (data.SpawnFood)
                 {

@@ -37,7 +37,7 @@ namespace YetAnotherSnake.Multiplayer
         
         public GameClient()
         {
-            _id = (byte) Nez.Random.Range(100, 255);
+            //_id = (byte) Nez.Random.Range(100, 255);
             
             _escape = new VirtualButton();
             _escape.AddKeyboardKey(Keys.Escape);

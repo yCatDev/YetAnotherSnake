@@ -97,6 +97,9 @@ namespace YetAnotherSnake.Components
             _step = step;
             
             _isReally = real;
+
+            if (_isReally)
+                Console.WriteLine($"Snake from {MyGame.GameInstance.GameClient.Id} real");
             
             _startSnakeSize = startSnakeSize;
             _snakeParts = new List<Entity>(1000);
