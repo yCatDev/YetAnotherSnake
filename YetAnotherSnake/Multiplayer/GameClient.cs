@@ -93,11 +93,15 @@ namespace YetAnotherSnake.Multiplayer
 
                 if (GameStarted)
                 {
-                    Packet.Id = _id;
-                    Packet.SnakeHeadPosition = (GameScene.Instance.Snakes[_id].SnakeHead.Position.X,
-                        GameScene.Instance.Snakes[_id].SnakeHead.Position.Y);
-                    
-                    
+                    if (!MyGame.GameInstance.GameServer.isWorking)
+                    {
+                        Packet.Id = _id;
+
+                        Packet.SnakeHeadPosition = (GameScene.Instance.Snakes[_id].SnakeHead.Position.X,
+                            GameScene.Instance.Snakes[_id].SnakeHead.Position.Y);
+
+                    }
+
                     SendData(Packet);                    
                 }
             };
@@ -106,13 +110,7 @@ namespace YetAnotherSnake.Multiplayer
             onClient?.Invoke();
         }
 
-        private void Move()
-        {
-            SendData(new GamePacket()
-            {
-                MoveLeft = 
-            });
-        }
+     
         
         public (float, float)[] FoodPositions;
 
