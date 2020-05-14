@@ -24,6 +24,9 @@ namespace YetAnotherSnake.Multiplayer
         public bool ServiceData = false;
         public (float, float) SnakeHeadPosition;
         
+        public bool MoveLeft = false;
+        public bool MoveRight = false;
+
         public (float, float)[] SnakePositions;
         public (float, float)[] FoodPositions;
 
