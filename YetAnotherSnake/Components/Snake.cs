@@ -101,6 +101,13 @@ namespace YetAnotherSnake.Components
             _startSnakeSize = startSnakeSize;
             _snakeParts = new List<Entity>(1000);
             
+            _leftArrow = new VirtualButton();
+            _leftArrow.AddKeyboardKey(Keys.Left);
+            _leftArrow.AddKeyboardKey(Keys.A);
+
+            _rightArrow = new VirtualButton();
+            _rightArrow.AddKeyboardKey(Keys.Right);
+            _rightArrow.AddKeyboardKey(Keys.D);
             
             IsAlive = true;
         }
@@ -154,17 +161,19 @@ namespace YetAnotherSnake.Components
             {
                 if (MyGame.GameInstance.Pause)
                     return;
-                
-                //Moving snake head
-                SnakeHead.Position = Utils.Move(SnakeHead.Position, _marker.Position, _step * 10);
-                
-                if (MoveLeft)
+
+                if (_leftArrow.IsDown)
                     _marker.Position = Utils.RotateAboutOrigin(_marker.Position, _marker.Parent.Position, -0.1f);
-                if (MoveRight)
+                if (_rightArrow.IsDown)
                     _marker.Position = Utils.RotateAboutOrigin(_marker.Position, _marker.Parent.Position, 0.1f);
                 
-                SnakeHead.Position = Utils.Move(SnakeHead.Position, _marker.Position, _step);
-                
+                //Moving snake head
+                if (_isReally)
+                {
+                    SnakeHead.Position = Utils.Move(SnakeHead.Position, _marker.Position, _step * 10);
+                    SnakeHead.Position = Utils.Move(SnakeHead.Position, _marker.Position, _step);
+                }
+
                 for (int i = _snakeParts.Count - 1; i > 0; i--)
                 {
                     
@@ -200,7 +209,7 @@ namespace YetAnotherSnake.Components
                     {
                         SnakeHead.GetComponent<GridModifier>().Impulse( 200);
                         IncSnake(5);
-                        _score.IncScore();
+                        //_score.IncScore();
                         MyGame.GameInstance.AudioManager.PickUpSound.Play();
                         MyGame.GameInstance.GameClient.SpawnFood();
                         c.Destroy();

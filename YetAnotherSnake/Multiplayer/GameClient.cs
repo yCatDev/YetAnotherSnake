@@ -40,13 +40,7 @@ namespace YetAnotherSnake.Multiplayer
         {
             _id = (byte) Nez.Random.Range(100, 255);
             
-            _leftArrow = new VirtualButton();
-            _leftArrow.AddKeyboardKey(Keys.Left);
-            _leftArrow.AddKeyboardKey(Keys.A);
-
-            _rightArrow = new VirtualButton();
-            _rightArrow.AddKeyboardKey(Keys.Right);
-            _rightArrow.AddKeyboardKey(Keys.D);
+          
 
             _escape = new VirtualButton();
             _escape.AddKeyboardKey(Keys.Escape);
@@ -163,8 +157,8 @@ namespace YetAnotherSnake.Multiplayer
                 if (GameStarted)
                 {
                     Packet.Id = _id;
-                    Packet.LeftKeyDown = _leftArrow.IsDown;
-                    Packet.RightKeyDown = _rightArrow.IsDown;
+                    Packet.SnakeHeadPosition = (GameScene.Instance.Snakes[_id].SnakeHead.Position.X,
+                        GameScene.Instance.Snakes[_id].SnakeHead.Position.Y);
                     
                         
                     SendData(Packet);                    

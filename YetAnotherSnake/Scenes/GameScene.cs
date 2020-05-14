@@ -27,8 +27,8 @@ namespace YetAnotherSnake.Scenes
         private Entity _gridEntity;
 
         public static GameScene Instance;
-        
-        private static Dictionary<int, Snake> _snakes;
+
+        public Dictionary<int, Snake> Snakes { get; private set; }
 
         public (float, float)[] SnakePositions;
         
@@ -66,7 +66,7 @@ namespace YetAnotherSnake.Scenes
             _pauseKey = new VirtualButton();
             _pauseKey.AddKeyboardKey(Keys.Escape).AddKeyboardKey(Keys.Enter);
 
-            _snakes = new Dictionary<int, Snake>(1);
+            Snakes = new Dictionary<int, Snake>(1);
             FoodSpawner = AddSceneComponent<FoodSpawner>();
             
             //Enabling post-processing
@@ -101,7 +101,7 @@ namespace YetAnotherSnake.Scenes
                 
                 var snake = CreateEntity("SnakeHead" + id);
                 snake.Position = new Vector2(MyGame.GameInstance.GameClient.SnakePositions[i].Item1, MyGame.GameInstance.GameClient.SnakePositions[i].Item2);
-                _snakes.Add(id, AddSceneComponent(new Snake(id == MyGame.GameInstance.GameClient.Id, SnakeSize,
+                Snakes.Add(id, AddSceneComponent(new Snake(id == MyGame.GameInstance.GameClient.Id, SnakeSize,
                     snake.Position,
                     new Vector2(10, 10))));
 
@@ -124,10 +124,11 @@ namespace YetAnotherSnake.Scenes
             if (data == _lastPacket) return;
             Console.WriteLine($"Recived data from {id}");
             //if (!data.StartGame) return;
-            if (_snakes.ContainsKey(id))
+            if (Snakes.ContainsKey(id))
             {
-                _snakes[id].MoveLeft = data.LeftKeyDown;
-                _snakes[id].MoveRight = data.RightKeyDown;
+                if (MyGame.GameInstance.GameClient.Id!=id)
+                    Snakes[id].SnakeHead.Position =
+                        new Vector2(data.SnakeHeadPosition.Item1, data.SnakeHeadPosition.Item2);
 
 
                 if (data.SpawnFood)
