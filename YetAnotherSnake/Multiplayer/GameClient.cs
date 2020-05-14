@@ -14,7 +14,6 @@ namespace YetAnotherSnake.Multiplayer
     {
         private TcpClient _clientSocket;
         private NetworkStream _serverStream;
-        private Thread _reading, _writing;
         private int _id;
 
         public bool Connected = false, GameStarted;
@@ -40,75 +39,13 @@ namespace YetAnotherSnake.Multiplayer
         {
             _id = (byte) Nez.Random.Range(100, 255);
             
-          
-
             _escape = new VirtualButton();
             _escape.AddKeyboardKey(Keys.Escape);
             
-            _reading = new Thread(ServerRead);
-            _writing = new Thread(ServerWrite);
         }
 
         public int Id => _id;
-
-
-        private void ServerRead()
-        {
-            while (true)
-            {
-                if (_serverStream.DataAvailable)
-                {
-
-                    var inStream = new byte[10025];
-                    _serverStream.Read(inStream, 0, inStream.Length);
-                    var data = GamePacket.FromBytes(inStream);
-
-                    if (data.ServiceData && data.StartGame)
-                    {
-                        //GameStarted = true;
-                        _id = data.Id;
-                        MenuScene.Instance.RemovePostProcessor(MyGame.GameInstance.BloomPostProcessor);
-                        MenuScene.Instance.RemovePostProcessor(MyGame.GameInstance.VignettePostProcessor);
-                        Core.StartSceneTransition(new FadeTransition(()
-                            => new GameScene()));
-                        SnakeIds = data.idsToCreate;
-                    }
-
-                    if (!data.ServiceData && GameScene.Instance != null)
-                        GameScene.Instance.ProcessData(_id, data);
-                }
-            }
-        }
         
-        private void ServerWrite()
-        {
-            while (true)
-            {
-                //Console.WriteLine($"{Connected} {GameStarted}");
-                if (!Connected) continue;
-
-                if (GameStarted)
-                {
-
-                    if (_escape.IsDown)
-                    {
-                        Console.WriteLine("Disconnecting");
-                        SendData(new GamePacket()
-                        {
-                            ServiceData = true,
-                            Disconnect = true
-                        });
-                    }
-                    SendData(new GamePacket()
-                    {
-                        Test = true
-                    });
-                    
-                }
-            }
-        }
-
-
         public void InitClient(string address, int port)
         {
             _clientSocket = new TcpClient();

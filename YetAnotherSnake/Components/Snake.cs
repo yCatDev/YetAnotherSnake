@@ -162,14 +162,15 @@ namespace YetAnotherSnake.Components
                 if (MyGame.GameInstance.Pause)
                     return;
 
-                if (_leftArrow.IsDown)
-                    _marker.Position = Utils.RotateAboutOrigin(_marker.Position, _marker.Parent.Position, -0.1f);
-                if (_rightArrow.IsDown)
-                    _marker.Position = Utils.RotateAboutOrigin(_marker.Position, _marker.Parent.Position, 0.1f);
-                
-                //Moving snake head
                 if (_isReally)
                 {
+                    if (_leftArrow.IsDown)
+                        _marker.Position = Utils.RotateAboutOrigin(_marker.Position, _marker.Parent.Position, -0.1f);
+                    if (_rightArrow.IsDown)
+                        _marker.Position = Utils.RotateAboutOrigin(_marker.Position, _marker.Parent.Position, 0.1f);
+
+                    //Moving snake head
+
                     SnakeHead.Position = Utils.Move(SnakeHead.Position, _marker.Position, _step * 10);
                     SnakeHead.Position = Utils.Move(SnakeHead.Position, _marker.Position, _step);
                 }
@@ -197,7 +198,7 @@ namespace YetAnotherSnake.Components
                 {
                     var c = result.Collider.Entity;
                     
-                    //"Gameover" if touch yourself
+                    //"Gameover" if touch self
                     if (c.Name.Contains("Snake"))
                     {
                         SnakeHead.GetComponent<GridModifier>().Impulse( 500);

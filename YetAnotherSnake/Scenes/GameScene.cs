@@ -100,10 +100,13 @@ namespace YetAnotherSnake.Scenes
                 var id = MyGame.GameInstance.GameClient.SnakeIds[i];
                 
                 var snake = CreateEntity("SnakeHead" + id);
-                snake.Position = new Vector2(MyGame.GameInstance.GameClient.SnakePositions[i].Item1, MyGame.GameInstance.GameClient.SnakePositions[i].Item2);
-                Snakes.Add(id, AddSceneComponent(new Snake(id == MyGame.GameInstance.GameClient.Id, SnakeSize,
+
+                var s = AddSceneComponent(new Snake(id == MyGame.GameInstance.GameClient.Id, SnakeSize,
                     snake.Position,
-                    new Vector2(10, 10))));
+                    new Vector2(10, 10)));
+                s.SnakeHead.Position = new Vector2(MyGame.GameInstance.GameClient.SnakePositions[i].Item1,
+                    MyGame.GameInstance.GameClient.SnakePositions[i].Item2);
+                Snakes.Add(id, s);
 
                 var p = MyGame.GameInstance.GameClient.FoodPositions[i];
                 FoodSpawner.CreateFood(new Vector2(p.Item1, p.Item2));
@@ -122,14 +125,14 @@ namespace YetAnotherSnake.Scenes
         public void ProcessData(int id, GamePacket data)
         {
             if (data == _lastPacket) return;
-            Console.WriteLine($"Recived data from {id}");
+            //Console.WriteLine($"Recived data from {id}");
             //if (!data.StartGame) return;
             if (Snakes.ContainsKey(id))
             {
                 if (MyGame.GameInstance.GameClient.Id!=id)
                     Snakes[id].SnakeHead.Position =
                         new Vector2(data.SnakeHeadPosition.Item1, data.SnakeHeadPosition.Item2);
-
+                Console.WriteLine($"Recived packet from {id} to {MyGame.GameInstance.GameClient.Id}");
 
                 if (data.SpawnFood)
                 {
