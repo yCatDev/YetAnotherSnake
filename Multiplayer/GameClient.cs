@@ -18,6 +18,8 @@ namespace YetAnotherSnake.Multiplayer
 
         public bool Connected = false, GameStarted;
 
+        public float PossibleWidth, PossibleHeight;
+        
         private VirtualButton _rightArrow;
         private VirtualButton _leftArrow;
         private VirtualButton _escape;
@@ -176,9 +178,17 @@ namespace YetAnotherSnake.Multiplayer
                         _id = data.Id;
                         MenuScene.Instance.RemovePostProcessor(MyGame.GameInstance.BloomPostProcessor);
                         MenuScene.Instance.RemovePostProcessor(MyGame.GameInstance.VignettePostProcessor);
+                        
+                        SnakePositions = data.SnakePosition;
+                        SnakeIds = data.idsToCreate;
+                        
                         Core.StartSceneTransition(new FadeTransition(()
                             => new GameScene()));
-                        SnakeIds = data.idsToCreate;
+                        
+                        
+                        
+                        
+                        //GameScene.Instance.Start();
                     }
 
                     if (!data.ServiceData && GameScene.Instance != null)
@@ -211,6 +221,8 @@ namespace YetAnotherSnake.Multiplayer
             
             onClient?.Invoke();
         }
+
+        public (float, float)[] SnakePositions;
 
         public void Disconnect()
         {

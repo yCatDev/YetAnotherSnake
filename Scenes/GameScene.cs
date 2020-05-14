@@ -29,6 +29,8 @@ namespace YetAnotherSnake.Scenes
         public static GameScene Instance;
         
         private static Dictionary<int, Snake> _snakes;
+
+        public (float, float)[] SnakePositions;
         
         /// <summary>
         /// Pause key listener
@@ -44,12 +46,7 @@ namespace YetAnotherSnake.Scenes
 
         private float width, height;
 
-        
-        
-        public GameScene()
-        {
-            
-        }
+        private bool _started = false;
         
 
         public override void Initialize()
@@ -94,17 +91,27 @@ namespace YetAnotherSnake.Scenes
             //Create text label for displaying score
             var score = CreateEntity("scoreText");
             score.AddComponent<TextComponent>().AddComponent<ScoreDisplay>();
-
-            foreach (var id in MyGame.GameInstance.GameClient.SnakeIds)
+            
+            
+            for (var i = 0; i < MyGame.GameInstance.GameClient.SnakeIds.Length; i++)
             {
+                var id = MyGame.GameInstance.GameClient.SnakeIds[i];
+                
                 var snake = CreateEntity("SnakeHead" + id);
-                _snakes.Add(id, AddSceneComponent(new Snake(id==MyGame.GameInstance.GameClient.Id,SnakeSize, snake.Position,
+                snake.Position = new Vector2(MyGame.GameInstance.GameClient.SnakePositions[i].Item1, MyGame.GameInstance.GameClient.SnakePositions[i].Item2);
+                _snakes.Add(id, AddSceneComponent(new Snake(id == MyGame.GameInstance.GameClient.Id, SnakeSize,
+                    snake.Position,
                     new Vector2(10, 10))));
             }
-            
+
             CreateUI();
         }
 
+        public void Start()
+        {
+            _started = true;
+        }
+        
         public void ProcessData(int id, GamePacket data)
         {
             //if (!data.StartGame) return;
@@ -114,6 +121,7 @@ namespace YetAnotherSnake.Scenes
                 _snakes[id].MoveRight = data.RightKeyDown;
             }
 
+            
             //MyGame.GameInstance.GameServer.SyncData(id,data);
         }
         

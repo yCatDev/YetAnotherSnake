@@ -3,6 +3,7 @@ using System.IO;
 using System.IO.Compression;
 using System.Runtime.InteropServices;
 using System.Runtime.Serialization.Formatters.Binary;
+using Microsoft.Xna.Framework;
 
 namespace YetAnotherSnake.Multiplayer
 {
@@ -21,6 +22,9 @@ namespace YetAnotherSnake.Multiplayer
         public bool ServiceData = false;
         public bool LeftKeyDown;
         public bool RightKeyDown;
+        
+        public (float, float)[] SnakePosition;
+        public (float, float)[] FoodPosition;
         
 
         // Convert an object to a byte array

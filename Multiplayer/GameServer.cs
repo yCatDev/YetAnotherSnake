@@ -6,8 +6,10 @@ using System.Net.Sockets;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using Microsoft.Xna.Framework;
 using YetAnotherSnake.Components;
 using YetAnotherSnake.Scenes;
+using Random = Nez.Random;
 
 namespace YetAnotherSnake.Multiplayer
 {
@@ -91,6 +93,15 @@ namespace YetAnotherSnake.Multiplayer
             for (var j = 0; j < _connectionCount; j++)
                 ids[j] = _handlers[j].id;
             
+            var possibleWidth = 1280 * ids.Length;
+            var possibleHeight = 720 * ids.Length;
+
+            var sp = new List<(float, float)>();
+            for (int i = 0; i < ids.Length; i++)
+            {
+                sp.Add((Random.Range(-possibleWidth, possibleWidth), Random.Range(-possibleHeight, possibleHeight)));
+            }
+            
             for (var i = 0; i < _handlers.Count; i++)
             {
                 Console.WriteLine($"{_handlers[i].id} start");
@@ -100,7 +111,8 @@ namespace YetAnotherSnake.Multiplayer
                     ServiceData = true,
                     idsToCreate = ids,
                     Id = _handlers[i].id,
-                    StartGame = true
+                    StartGame = true,
+                    SnakePosition = sp.ToArray()
                 });
             }
         }
