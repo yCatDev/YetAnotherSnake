@@ -58,8 +58,8 @@ namespace YetAnotherSnake.Scenes
             Instance = this;
             
             Console.WriteLine($"Connected {MyGame.GameInstance.GameClient.SnakeIds.Length} clients");
-            width = 1280 * MyGame.GameInstance.GameClient.SnakeIds.Length;
-            height = 720 * MyGame.GameInstance.GameClient.SnakeIds.Length;
+            width = 1280;
+            height = 720;
             Camera.AddComponent(new CameraBounds(new Vector2(-width, -height),new Vector2(width, height)));
             
             //Set up listener for Escape and Enter key

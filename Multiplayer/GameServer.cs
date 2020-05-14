@@ -92,9 +92,9 @@ namespace YetAnotherSnake.Multiplayer
             var ids = new int[_connectionCount];
             for (var j = 0; j < _connectionCount; j++)
                 ids[j] = _handlers[j].id;
-            
-            var possibleWidth = 1280 * ids.Length;
-            var possibleHeight = 720 * ids.Length;
+
+            var possibleWidth = 1280;
+            var possibleHeight = 720;
 
             var sp = new List<(float, float)>();
             var fp = new List<(float, float)>();

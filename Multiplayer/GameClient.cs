@@ -109,46 +109,7 @@ namespace YetAnotherSnake.Multiplayer
                     {
                         Test = true
                     });
-
-                    //GameStarted = false;
-                    /*SendData(new GamePacket()
-                    {
-                        Test = true,
-                        LeftKeyDown = _leftArrow.IsDown,
-                        RightKeyDown = _rightArrow.IsDown
-                    });*/
-
-                    /*var recivedData = new GamePacket();
-
-                    Console.WriteLine($"{_leftArrow.IsDown}");
                     
-                    if (_leftArrow.IsDown)
-                    {
-                        _leftArrowWasPressed = true;
-                        recivedData.LeftKeyDown = true;
-                        SendData(recivedData);
-                    }
-                     
-                    if (_leftArrow.IsReleased && _leftArrowWasPressed)
-                    {
-                        _leftArrowWasPressed = false;
-                        recivedData.LeftKeyDown = false;
-                        SendData(recivedData);
-                    }
-
-                    if (_rightArrow.IsDown)
-                    {
-                        _rightArrowWasPressed = true;
-                        recivedData.RightKeyDown = true;
-                        SendData(recivedData);
-                    }
-
-                    if (_rightArrow.IsReleased && _rightArrowWasPressed)
-                    {
-                        _rightArrowWasPressed = false;
-                        recivedData.RightKeyDown = false;
-                        SendData(recivedData);
-                    }*/
                 }
             }
         }
@@ -202,47 +163,11 @@ namespace YetAnotherSnake.Multiplayer
                 if (GameStarted)
                 {
 
-                    /*if (_leftArrow.IsDown)
-                    {
-                        _leftArrowWasPressed = true;
-                        SendData(new GamePacket()
-                        {
-                            LeftKeyDown = true
-                        });
-                    }
-                    
-                    if (!_leftArrow.IsPressed && _leftArrowWasPressed)
-                    {
-                        _leftArrowWasPressed = false;
-                        SendData(new GamePacket()
-                        {
-                            LeftKeyDown = false
-                        });
-                    }
-
-                    if (_rightArrow.IsDown)
-                    {
-                        _rightArrowWasPressed = true;
-                        SendData(new GamePacket()
-                        {
-                            RightKeyDown = true
-                        });
-                    }
-                    
-                    if (!_rightArrow.IsPressed && _rightArrowWasPressed)
-                    {
-                        _leftArrowWasPressed = false;
-                        SendData(new GamePacket()
-                        {
-                            RightKeyDown = false
-                        });
-                    }
-                    */
                     Packet.LeftKeyDown = _leftArrow.IsDown;
                     Packet.RightKeyDown = _rightArrow.IsDown;
                     
-                        SendData(Packet);
-                    
+                        
+                    SendData(Packet);                    
                 }
             };
             _timer.Start();
@@ -268,8 +193,8 @@ namespace YetAnotherSnake.Multiplayer
 
         public void SpawnFood()
         {
-            var possibleWidth = 1280 * SnakeIds.Length;
-            var possibleHeight = 720 * SnakeIds.Length;
+            var possibleWidth = 1280;
+            var possibleHeight = 720;
             Packet.SpawnFood = true;
             Packet.NextFoodPosition = (Random.Range(-possibleWidth, possibleWidth),
                 Random.Range(-possibleHeight, possibleHeight));

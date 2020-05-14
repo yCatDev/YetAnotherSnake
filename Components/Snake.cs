@@ -139,10 +139,11 @@ namespace YetAnotherSnake.Components
             _marker = Scene.CreateEntity("marker",  SnakeHead.Position + _startDirection);
             _marker.Parent = SnakeHead.Transform;
 
+            _cameraBounds = Scene.Camera.Entity.GetComponent<CameraBounds>();
             if (_isReally)
             {
                 Scene.Camera.Entity.AddComponent(new FollowCamera(SnakeHead));
-                _cameraBounds = Scene.Camera.Entity.GetComponent<CameraBounds>();
+                
                 _score = Scene.FindEntity("scoreText").GetComponent<ScoreDisplay>();
             }
         }
