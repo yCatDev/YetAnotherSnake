@@ -1,0 +1,26 @@
+{
+  "version": 2,
+  "dgSpecHash": "7O0eyvbbIExK+xfFp7UXpe8Z7UP3+1rqavY/4sXONeRYJhfGQ0PsZt03Kmh1H/T6iaLF7z2ySyYS54D/Vvu6KQ==",
+  "success": true,
+  "projectFilePath": "Y:\\YetAnotherSnake\\YetAnotherSnake\\YetAnotherSnake.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\ycatd\\.nuget\\packages\\microsoft.netcore.platforms\\3.0.0\\microsoft.netcore.platforms.3.0.0.nupkg.sha512",
+    "C:\\Users\\ycatd\\.nuget\\packages\\microsoft.win32.systemevents\\4.6.0\\microsoft.win32.systemevents.4.6.0.nupkg.sha512",
+    "C:\\Users\\ycatd\\.nuget\\packages\\monogame.content.builder\\3.7.0.9\\monogame.content.builder.3.7.0.9.nupkg.sha512",
+    "C:\\Users\\ycatd\\.nuget\\packages\\monogame.framework.desktopgl.core\\3.8.0.13\\monogame.framework.desktopgl.core.3.8.0.13.nupkg.sha512",
+    "C:\\Users\\ycatd\\.nuget\\packages\\monogame.framework.portable\\3.7.1.189\\monogame.framework.portable.3.7.1.189.nupkg.sha512",
+    "C:\\Users\\ycatd\\.nuget\\packages\\system.drawing.common\\4.6.0\\system.drawing.common.4.6.0.nupkg.sha512"
+  ],
+  "logs": [
+    {
+      "code": "NU1701",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Package 'MonoGame.Framework.Portable 3.7.1.189' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8' instead of the project target framework '.NETCoreApp,Version=v3.1'. This package may not be fully compatible with your project.",
+      "libraryId": "MonoGame.Framework.Portable",
+      "targetGraphs": [
+        ".NETCoreApp,Version=v3.1"
+      ]
+    }
+  ]
+}

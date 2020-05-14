@@ -1,0 +1,60 @@
+﻿{
+  "version": "1.0.0",
+  "restore": {
+    "projectUniqueName": "Y:\\YetAnotherSnake\\YetAnotherSnake\\YetAnotherSnake.csproj",
+    "projectName": "YetAnotherSnake",
+    "projectPath": "Y:\\YetAnotherSnake\\YetAnotherSnake\\YetAnotherSnake.csproj",
+    "outputPath": "Y:\\YetAnotherSnake\\YetAnotherSnake\\obj\\",
+    "projectStyle": "PackageReference",
+    "originalTargetFrameworks": [
+      "netcoreapp3.1"
+    ],
+    "sources": {
+      "https://api.nuget.org/v3/index.json": {}
+    },
+    "frameworks": {
+      "netcoreapp3.1": {
+        "projectReferences": {
+          "Y:\\YetAnotherSnake\\Nez\\Nez.Portable\\Nez.csproj": {
+            "projectPath": "Y:\\YetAnotherSnake\\Nez\\Nez.Portable\\Nez.csproj"
+          }
+        }
+      }
+    },
+    "warningProperties": {
+      "warnAsError": [
+        "NU1605"
+      ]
+    }
+  },
+  "frameworks": {
+    "netcoreapp3.1": {
+      "dependencies": {
+        "MonoGame.Content.Builder": {
+          "target": "Package",
+          "version": "[3.7.0.9, )"
+        },
+        "MonoGame.Framework.DesktopGL.Core": {
+          "target": "Package",
+          "version": "[3.8.0.13, )"
+        }
+      },
+      "imports": [
+        "net461",
+        "net462",
+        "net47",
+        "net471",
+        "net472",
+        "net48"
+      ],
+      "assetTargetFallback": true,
+      "warn": true,
+      "frameworkReferences": {
+        "Microsoft.NETCore.App": {
+          "privateAssets": "all"
+        }
+      },
+      "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.201\\RuntimeIdentifierGraph.json"
+    }
+  }
+}

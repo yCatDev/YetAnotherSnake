@@ -1,0 +1,371 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="BranchesTreeState">
+    <expand>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="8c3d319f-f824-433f-8414-570341c89373" name="Default Changelist" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/YetAnotherSnake" />
+  </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/Nez/Nez.Portable/Utils/BitSet.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/EC5D8DF9-3472-442C-9F9D-18E9177D0A3C/5d/a27e413f/Vector2.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/EC5D8DF9-3472-442C-9F9D-18E9177D0A3C/08/7e1ca374/SdlGamePlatform.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Nez/Nez.Portable/Utils/Collections/FastList.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Nez/Nez.Portable/Utils/Extensions/Vector2Ext.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Nez/Nez.Portable/Utils/Extensions/SpriteBatchExt.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Nez/Nez.Portable/Utils/Extensions/ComponentExt.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Nez/Nez.Portable/Utils/Coroutines/CoroutineManager.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Nez/Nez.Portable/Utils/Coroutines/Coroutine.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Nez/Nez.Portable/Utils/Analysis/TimeRuler.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Nez/Nez.Portable/Utils/Timers/TimerManager.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/YetAnotherSnake/Content/uiskin.json" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/YetAnotherSnake/Content/Content.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/9866B98A-9EF4-4ED2-AE88-85257EFA417D/26/TCPListener.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/9866B98A-9EF4-4ED2-AE88-85257EFA417D/1F/Socket.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Nez/Nez.Portable/Core.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/YetAnotherSnake/Multiplayer/GameClient.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/YetAnotherSnake/Scenes/GameScene.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/YetAnotherSnake/Scenes/BlankScene.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/YetAnotherSnake/Scenes/MenuScene.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/YetAnotherSnake/UI/GameSkin.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/9866B98A-9EF4-4ED2-AE88-85257EFA417D/25/TCPClient.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/YetAnotherSnake/UI/UIAnimations.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/YetAnotherSnake/UI/GameUI.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/C33AFD71-6EE0-4892-B8AD-69B81D88AE1C/13B/Thread.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/EC5D8DF9-3472-442C-9F9D-18E9177D0A3C/6c/39eaba81/Game.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/YetAnotherSnake/AudioManager.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/YetAnotherSnake/Utils.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/YetAnotherSnake/Game.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/YetAnotherSnake/Multiplayer/GameServer.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/YetAnotherSnake/Multiplayer/GamePacket.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/YetAnotherSnake/Program.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/YetAnotherSnake/SaveFile.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/9866B98A-9EF4-4ED2-AE88-85257EFA417D/1B/NetworkStream.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/C33AFD71-6EE0-4892-B8AD-69B81D88AE1C/1E0/ExceptionDispatchInfo.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/C33AFD71-6EE0-4892-B8AD-69B81D88AE1C/13A/Thread.CoreCLR.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/C33AFD71-6EE0-4892-B8AD-69B81D88AE1C/14E/ExecutionContext.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/C33AFD71-6EE0-4892-B8AD-69B81D88AE1C/388/DebugProvider.Windows.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Nez/Nez.Portable/Utils/Tweens/Easing/Lerps.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/YetAnotherSnake/Components/MenuGrid.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/YetAnotherSnake/Components/SnakeFood.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/YetAnotherSnake/Components/GridModifier.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/YetAnotherSnake/Components/ScoreDisplay.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/YetAnotherSnake/Components/Snake.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/YetAnotherSnake/Components/FoodSpawner.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/YetAnotherSnake/Components/CameraBounds.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/YetAnotherSnake/obj/project.assets.json" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Nez/Nez.Portable/Utils/Time.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Nez/Nez.Portable/Utils/Screen.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/C33AFD71-6EE0-4892-B8AD-69B81D88AE1C/D3/ThrowHelper.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Nez/Nez.Portable/Utils/MonoGameCompat.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/C33AFD71-6EE0-4892-B8AD-69B81D88AE1C/16B/Task.cs" root0="SKIP_HIGHLIGHTING" />
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/Nez/Nez.Portable/ECS/Components/Renderables/SpringGrid.cs" />
+        <option value="$PROJECT_DIR$/Nez/Nez.Portable/Graphics/Graphics.cs" />
+        <option value="$PROJECT_DIR$/Nez/Nez.Portable/Graphics/Batcher/Batcher.cs" />
+        <option value="$PROJECT_DIR$/Nez/Nez.Portable/RenderTarget2D.cs" />
+        <option value="$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/EC5D8DF9-3472-442C-9F9D-18E9177D0A3C/f4/fc319fe9/RenderTarget2D.cs" />
+        <option value="$PROJECT_DIR$/Nez/Nez.Portable/Graphics/Textures/RenderTexture.cs" />
+        <option value="$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/EC5D8DF9-3472-442C-9F9D-18E9177D0A3C/8c/a3d313ef/GraphicsDevice.cs" />
+        <option value="$PROJECT_DIR$/Nez/Nez.Portable/Graphics/PostProcessing/PostProcessors/BloomSettings.cs" />
+        <option value="$PROJECT_DIR$/Nez/Nez.Portable/Graphics/Textures/RenderTarget.cs" />
+        <option value="$PROJECT_DIR$/YetAnotherSnake/FixedList.cs" />
+        <option value="$PROJECT_DIR$/Nez/Nez.Portable/ECS/Scene.cs" />
+        <option value="$PROJECT_DIR$/YetAnotherSnake/Content/Fonts/title.spritefont" />
+        <option value="$PROJECT_DIR$/YetAnotherSnake/Content/uiskin.json" />
+        <option value="$PROJECT_DIR$/YetAnotherSnake/DialogBox.cs" />
+        <option value="$PROJECT_DIR$/Nez/Nez.ImGui/Inspectors/SceneGraphPanes/EntityPane.cs" />
+        <option value="$PROJECT_DIR$/Nez/Nez.Portable/Utils/Coroutines/Coroutine.cs" />
+        <option value="$PROJECT_DIR$/YetAnotherSnake/Content/GameSkin.cs" />
+        <option value="$PROJECT_DIR$/Nez/Nez.Portable/UI/Widgets/ProgressBar.cs" />
+        <option value="$PROJECT_DIR$/Nez/Nez.Portable/Utils/Screen.cs" />
+        <option value="$PROJECT_DIR$/Nez/Nez.Portable/Graphics/PostProcessing/PostProcessors/BloomPostProcessor.cs" />
+        <option value="$PROJECT_DIR$/Nez/Nez.Portable/UI/Widgets/Button.cs" />
+        <option value="$PROJECT_DIR$/Nez/Nez.Portable/Utils/Coroutines/CoroutineManager.cs" />
+        <option value="$PROJECT_DIR$/Nez/Nez.Portable/Core.cs" />
+        <option value="E:/HyperCasual/CutGame/CutGame/Assets/CutScript/Scripts/ScreenLineRenderer.cs" />
+        <option value="$PROJECT_DIR$/YetAnotherSnake/AudioManager.cs" />
+        <option value="$PROJECT_DIR$/YetAnotherSnake/SaveFile.cs" />
+        <option value="$PROJECT_DIR$/YetAnotherSnake/Components/CameraBounds.cs" />
+        <option value="$PROJECT_DIR$/YetAnotherSnake/Components/GridModifier.cs" />
+        <option value="$PROJECT_DIR$/YetAnotherSnake/Components/MenuGrid.cs" />
+        <option value="$PROJECT_DIR$/YetAnotherSnake/Components/ScoreDisplay.cs" />
+        <option value="$PROJECT_DIR$/YetAnotherSnake/Components/SnakeFood.cs" />
+        <option value="$PROJECT_DIR$/YetAnotherSnake/Coroutines.cs" />
+        <option value="$PROJECT_DIR$/YetAnotherSnake/Content/Content.cs" />
+        <option value="$PROJECT_DIR$/Nez/Nez.Portable/Nez.csproj" />
+        <option value="$PROJECT_DIR$/YetAnotherSnake/YetAnotherSnake.csproj" />
+        <option value="$PROJECT_DIR$/YetAnotherSnake/Program.cs" />
+        <option value="$PROJECT_DIR$/YetAnotherSnake/UI/UIAnimations.cs" />
+        <option value="$PROJECT_DIR$/YetAnotherSnake/UI/GameSkin.cs" />
+        <option value="$PROJECT_DIR$/YetAnotherSnake/Game.cs" />
+        <option value="$PROJECT_DIR$/Nez/Nez.Portable/UI/Widgets/TextButton.cs" />
+        <option value="$PROJECT_DIR$/YetAnotherSnake/UI/GameUI.cs" />
+        <option value="$PROJECT_DIR$/YetAnotherSnake/Utils.cs" />
+        <option value="$PROJECT_DIR$/YetAnotherSnake/Scenes/MenuScene.cs" />
+        <option value="$PROJECT_DIR$/YetAnotherSnake/Scenes/BlankScene.cs" />
+        <option value="$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/EC5D8DF9-3472-442C-9F9D-18E9177D0A3C/5d/a27e413f/Vector2.cs" />
+        <option value="$PROJECT_DIR$/YetAnotherSnake/Components/FoodSpawner.cs" />
+        <option value="$PROJECT_DIR$/YetAnotherSnake/Multiplayer/GamePacket.cs" />
+        <option value="$PROJECT_DIR$/YetAnotherSnake/Components/Snake.cs" />
+        <option value="$PROJECT_DIR$/YetAnotherSnake/Scenes/GameScene.cs" />
+        <option value="$PROJECT_DIR$/YetAnotherSnake/Multiplayer/GameClient.cs" />
+        <option value="$PROJECT_DIR$/YetAnotherSnake/Multiplayer/GameServer.cs" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectId" id="1ZkmaDlGoCkAN9gFH4hXxxnaoUv" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Mappings" />
+  </component>
+  <component name="RunManager">
+    <configuration name="YetAnotherSnake" type="DotNetProject" factoryName=".NET Project">
+      <option name="EXE_PATH" value="" />
+      <option name="PROGRAM_PARAMETERS" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="PASS_PARENT_ENVS" value="1" />
+      <option name="USE_EXTERNAL_CONSOLE" value="0" />
+      <option name="USE_MONO" value="0" />
+      <option name="RUNTIME_ARGUMENTS" value="" />
+      <option name="PROJECT_PATH" value="$PROJECT_DIR$/YetAnotherSnake/YetAnotherSnake.csproj" />
+      <option name="PROJECT_EXE_PATH_TRACKING" value="1" />
+      <option name="PROJECT_ARGUMENTS_TRACKING" value="1" />
+      <option name="PROJECT_WORKING_DIRECTORY_TRACKING" value="1" />
+      <option name="PROJECT_KIND" value="DotNetCore" />
+      <option name="PROJECT_TFM" value="" />
+      <method v="2">
+        <option name="Build" />
+      </method>
+    </configuration>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="8c3d319f-f824-433f-8414-570341c89373" name="Default Changelist" comment="" />
+      <created>1585391528057</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1585391528057</updated>
+      <workItem from="1585391530272" duration="101533000" />
+      <workItem from="1585986432837" duration="51335000" />
+      <workItem from="1586065256258" duration="12840000" />
+      <workItem from="1586566697797" duration="16394000" />
+      <workItem from="1586618617128" duration="3404000" />
+      <workItem from="1587259011612" duration="707000" />
+      <workItem from="1587323215821" duration="3771000" />
+      <workItem from="1589256721978" duration="94665000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="2" />
+  </component>
+  <component name="UnityProjectConfiguration" hasMinimizedUI="false" />
+  <component name="UnityUnitTestConfiguration" currentTestLauncher="NUnit" />
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+    <ignored-roots>
+      <path value="$PROJECT_DIR$/YetAnotherSnake" />
+    </ignored-roots>
+    <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="414" y="174" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1585558576435">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="414" y="174" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1585558576435" />
+    <state x="865" y="293" key="#xdebugger.XInspectDialog" timestamp="1589389349512">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state x="865" y="293" key="#xdebugger.XInspectDialog/0.0.1920.1080@0.0.1920.1080" timestamp="1589389349512" />
+    <state width="1877" height="295" key="GridCell.Tab.0.bottom" timestamp="1589443480544">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state width="1877" height="195" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1587389666299" />
+    <state width="1877" height="295" key="GridCell.Tab.0.bottom/0.0.1920.1080@0.0.1920.1080" timestamp="1589443480544" />
+    <state width="1877" height="295" key="GridCell.Tab.0.center" timestamp="1589443480544">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state width="1877" height="195" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1587389666299" />
+    <state width="1877" height="295" key="GridCell.Tab.0.center/0.0.1920.1080@0.0.1920.1080" timestamp="1589443480544" />
+    <state width="1877" height="295" key="GridCell.Tab.0.left" timestamp="1589443480544">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state width="1877" height="195" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1587389666299" />
+    <state width="1877" height="295" key="GridCell.Tab.0.left/0.0.1920.1080@0.0.1920.1080" timestamp="1589443480544" />
+    <state width="1877" height="295" key="GridCell.Tab.0.right" timestamp="1589443480544">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state width="1877" height="195" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1587389666299" />
+    <state width="1877" height="295" key="GridCell.Tab.0.right/0.0.1920.1080@0.0.1920.1080" timestamp="1589443480544" />
+    <state width="1877" height="363" key="GridCell.Tab.1.bottom" timestamp="1589438847668">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state width="1877" height="348" key="GridCell.Tab.1.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1586051705134" />
+    <state width="1877" height="363" key="GridCell.Tab.1.bottom/0.0.1920.1080@0.0.1920.1080" timestamp="1589438847668" />
+    <state width="1877" height="363" key="GridCell.Tab.1.center" timestamp="1589438847668">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state width="1877" height="348" key="GridCell.Tab.1.center/0.0.1920.1040@0.0.1920.1040" timestamp="1586051705134" />
+    <state width="1877" height="363" key="GridCell.Tab.1.center/0.0.1920.1080@0.0.1920.1080" timestamp="1589438847668" />
+    <state width="1877" height="363" key="GridCell.Tab.1.left" timestamp="1589438847668">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state width="1877" height="348" key="GridCell.Tab.1.left/0.0.1920.1040@0.0.1920.1040" timestamp="1586051705134" />
+    <state width="1877" height="363" key="GridCell.Tab.1.left/0.0.1920.1080@0.0.1920.1080" timestamp="1589438847668" />
+    <state width="1877" height="363" key="GridCell.Tab.1.right" timestamp="1589438847668">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state width="1877" height="348" key="GridCell.Tab.1.right/0.0.1920.1040@0.0.1920.1040" timestamp="1586051705134" />
+    <state width="1877" height="363" key="GridCell.Tab.1.right/0.0.1920.1080@0.0.1920.1080" timestamp="1589438847668" />
+    <state width="1877" height="363" key="GridCell.Tab.2.bottom" timestamp="1589438847668">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state width="1877" height="348" key="GridCell.Tab.2.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1586051705134" />
+    <state width="1877" height="363" key="GridCell.Tab.2.bottom/0.0.1920.1080@0.0.1920.1080" timestamp="1589438847668" />
+    <state width="1877" height="363" key="GridCell.Tab.2.center" timestamp="1589438847668">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state width="1877" height="348" key="GridCell.Tab.2.center/0.0.1920.1040@0.0.1920.1040" timestamp="1586051705134" />
+    <state width="1877" height="363" key="GridCell.Tab.2.center/0.0.1920.1080@0.0.1920.1080" timestamp="1589438847668" />
+    <state width="1877" height="363" key="GridCell.Tab.2.left" timestamp="1589438847668">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state width="1877" height="348" key="GridCell.Tab.2.left/0.0.1920.1040@0.0.1920.1040" timestamp="1586051705134" />
+    <state width="1877" height="363" key="GridCell.Tab.2.left/0.0.1920.1080@0.0.1920.1080" timestamp="1589438847668" />
+    <state width="1877" height="363" key="GridCell.Tab.2.right" timestamp="1589438847668">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state width="1877" height="348" key="GridCell.Tab.2.right/0.0.1920.1040@0.0.1920.1040" timestamp="1586051705134" />
+    <state width="1877" height="363" key="GridCell.Tab.2.right/0.0.1920.1080@0.0.1920.1080" timestamp="1589438847668" />
+    <state width="1877" height="363" key="GridCell.Tab.3.bottom" timestamp="1589438847668">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state width="1877" height="348" key="GridCell.Tab.3.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1586051705134" />
+    <state width="1877" height="363" key="GridCell.Tab.3.bottom/0.0.1920.1080@0.0.1920.1080" timestamp="1589438847668" />
+    <state width="1877" height="363" key="GridCell.Tab.3.center" timestamp="1589438847668">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state width="1877" height="348" key="GridCell.Tab.3.center/0.0.1920.1040@0.0.1920.1040" timestamp="1586051705134" />
+    <state width="1877" height="363" key="GridCell.Tab.3.center/0.0.1920.1080@0.0.1920.1080" timestamp="1589438847668" />
+    <state width="1877" height="363" key="GridCell.Tab.3.left" timestamp="1589438847668">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state width="1877" height="348" key="GridCell.Tab.3.left/0.0.1920.1040@0.0.1920.1040" timestamp="1586051705134" />
+    <state width="1877" height="363" key="GridCell.Tab.3.left/0.0.1920.1080@0.0.1920.1080" timestamp="1589438847668" />
+    <state width="1877" height="363" key="GridCell.Tab.3.right" timestamp="1589438847668">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state width="1877" height="348" key="GridCell.Tab.3.right/0.0.1920.1040@0.0.1920.1040" timestamp="1586051705134" />
+    <state width="1877" height="363" key="GridCell.Tab.3.right/0.0.1920.1080@0.0.1920.1080" timestamp="1589438847668" />
+    <state width="1877" height="363" key="GridCell.Tab.4.bottom" timestamp="1589438847668">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state width="1877" height="348" key="GridCell.Tab.4.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1586051705134" />
+    <state width="1877" height="363" key="GridCell.Tab.4.bottom/0.0.1920.1080@0.0.1920.1080" timestamp="1589438847668" />
+    <state width="1877" height="363" key="GridCell.Tab.4.center" timestamp="1589438847668">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state width="1877" height="348" key="GridCell.Tab.4.center/0.0.1920.1040@0.0.1920.1040" timestamp="1586051705134" />
+    <state width="1877" height="363" key="GridCell.Tab.4.center/0.0.1920.1080@0.0.1920.1080" timestamp="1589438847668" />
+    <state width="1877" height="363" key="GridCell.Tab.4.left" timestamp="1589438847668">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state width="1877" height="348" key="GridCell.Tab.4.left/0.0.1920.1040@0.0.1920.1040" timestamp="1586051705134" />
+    <state width="1877" height="363" key="GridCell.Tab.4.left/0.0.1920.1080@0.0.1920.1080" timestamp="1589438847668" />
+    <state width="1877" height="363" key="GridCell.Tab.4.right" timestamp="1589438847668">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state width="1877" height="348" key="GridCell.Tab.4.right/0.0.1920.1040@0.0.1920.1040" timestamp="1586051705134" />
+    <state width="1877" height="363" key="GridCell.Tab.4.right/0.0.1920.1080@0.0.1920.1080" timestamp="1589438847668" />
+    <state x="552" y="251" key="Rider.ProjectTemplateDialog.Size" timestamp="1585393560131">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="552" y="251" key="Rider.ProjectTemplateDialog.Size/0.0.1920.1040@0.0.1920.1040" timestamp="1585393560131" />
+    <state x="794" y="228" key="RiderGenerateDialog" timestamp="1589290088629">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state x="794" y="220" key="RiderGenerateDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1585556141266" />
+    <state x="794" y="228" key="RiderGenerateDialog/0.0.1920.1080@0.0.1920.1080" timestamp="1589290088629" />
+    <state x="461" y="168" key="SettingsEditor" timestamp="1589444885585">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state x="461" y="162" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1586037827901" />
+    <state x="461" y="168" key="SettingsEditor/0.0.1920.1080@0.0.1920.1080" timestamp="1589444885585" />
+    <state x="92" y="92" width="1736" height="896" key="VCS.FileHistoryDialog" timestamp="1589389998396">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state x="92" y="92" width="1736" height="896" key="VCS.FileHistoryDialog/0.0.1920.1080@0.0.1920.1080" timestamp="1589389998396" />
+    <state x="514" y="269" key="com.intellij.xdebugger.impl.breakpoints.ui.BreakpointsDialogFactory$2" timestamp="1589372743643">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state x="514" y="269" key="com.intellij.xdebugger.impl.breakpoints.ui.BreakpointsDialogFactory$2/0.0.1920.1080@0.0.1920.1080" timestamp="1589372743643" />
+    <state x="638" y="262" width="647" height="557" key="find.popup" timestamp="1589377179822">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state x="638" y="252" width="647" height="536" key="find.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1586570650396" />
+    <state x="638" y="262" width="647" height="557" key="find.popup/0.0.1920.1080@0.0.1920.1080" timestamp="1589377179822" />
+    <state x="616" y="249" key="run.anything.popup" timestamp="1589393009687">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state x="616" y="240" key="run.anything.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1586571186777" />
+    <state x="616" y="249" key="run.anything.popup/0.0.1920.1080@0.0.1920.1080" timestamp="1589393009687" />
+    <state x="623" y="234" width="672" height="705" key="search.everywhere.popup" timestamp="1589442013258">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1586578798284" />
+    <state x="623" y="234" width="672" height="705" key="search.everywhere.popup/0.0.1920.1080@0.0.1920.1080" timestamp="1589442013258" />
+  </component>
+</project>
