@@ -129,9 +129,12 @@ namespace YetAnotherSnake.Scenes
             //if (!data.StartGame) return;
             if (Snakes.ContainsKey(id))
             {
-                if (MyGame.GameInstance.GameClient.Id!=id)
-                    Snakes[id].SnakeHead.Position =
-                        new Vector2(data.SnakeHeadPosition.Item1, data.SnakeHeadPosition.Item2);
+                if (MyGame.GameInstance.GameClient.Id != id)
+                {
+                    Snakes[id].SnakeHead.Position = Utils.Move(Snakes[id].SnakeHead.Position,
+                        new Vector2(data.SnakeHeadPosition.Item1, data.SnakeHeadPosition.Item2), 10f);
+                    Console.WriteLine($"{data.SnakeHeadPosition.Item1} {data.SnakeHeadPosition.Item2}");
+                }
                 //Console.WriteLine($"Recived packet from {id} to {MyGame.GameInstance.GameClient.Id}");
 
                 if (data.SpawnFood)
