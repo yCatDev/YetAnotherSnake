@@ -117,9 +117,9 @@ namespace YetAnotherSnake.Scenes
                 Snakes.Add(id, s);
 
             }
-
-            CreateUI();
             _isReady = true;
+            CreateUI();
+            
         }
 
         public void Start()
@@ -181,13 +181,14 @@ namespace YetAnotherSnake.Scenes
             _uiHelper.CreateBtn(table, "Settings", button =>
             {
                 Core.StartCoroutine(UIAnimations.MoveToY(_rootTable, -Screen.MonitorHeight*2));
-
             });
             table.Row();
             _uiHelper.CreateBtn(table, "Exit", button =>
             {
                 MyGame.GameInstance.GameClient.SetPaused(false);
+                Thread.Sleep(100);
                 _snakeController.Die();
+                
             });
             table.Pack();
 
@@ -314,10 +315,10 @@ namespace YetAnotherSnake.Scenes
         public void UnPause()
         {
             Core.StartCoroutine(UIAnimations.MoveToY(_rootTable, Screen.MonitorHeight));
-                    
+            MyGame.GameInstance.Pause = false;        
             _gridEntity.UpdateInterval = 1;
             MyGame.GameInstance.AudioManager.ResumeMusic();
-            MyGame.GameInstance.Pause = false;
+            
         }
 
         public void SetSnakePosition(int id,NetworkVector receivedSnakeMarkerPosition, float delta)

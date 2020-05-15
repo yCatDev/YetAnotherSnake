@@ -232,7 +232,7 @@ namespace YetAnotherSnake.Components
                 //If snake head is out of camera view - "Gameover"
                 if (_cameraBounds.OutOfBounds(SnakeHead.Position)) 
                  Die();
-                if (_ready)
+                
                 MyGame.GameInstance.GameClient.SendSnakePosition(SnakeHead.Position);
             }
             else
@@ -254,7 +254,7 @@ namespace YetAnotherSnake.Components
         /// </summary>
         public void Die()
         {
-            return;
+            //return;
             IsAlive = false;
             
           
