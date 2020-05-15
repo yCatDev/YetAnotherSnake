@@ -47,6 +47,7 @@ namespace YetAnotherSnake.Scenes
 
         private bool _started = false;
 
+        private Snake _snakeController;
         public FoodSpawner FoodSpawner;
 
         public override void Initialize()
@@ -108,11 +109,13 @@ namespace YetAnotherSnake.Scenes
                     item.Value.ToVector2(),
                     direction*12
                     ));
+                
+                if (id == MyGame.GameInstance.GameClient.Id)
+                    _snakeController = s;
+                
                 s.SnakeHead.Position = item.Value.ToVector2();
                 Snakes.Add(id, s);
 
-                //var p = MyGame.GameInstance.GameClient.FoodPositions[i];
-                //FoodSpawner.CreateFood(new Vector2(p.Item1, p.Item2));
             }
 
             CreateUI();
@@ -127,36 +130,7 @@ namespace YetAnotherSnake.Scenes
         private GamePacket _lastPacket;
         private bool _isReady = false;
 
-        /*
-        public void ProcessData(int id, GamePacket data)
-        {
-            if (data == _lastPacket) return;
-            if (!_isReady) return;
-            //Console.WriteLine($"Recived data from {id}");
-            //if (!data.StartGame) return;
-            if (Snakes.ContainsKey(id))
-            {
-                if (MyGame.GameInstance.GameClient.Id != id)
-                {
-                    Snakes[id].SnakeHead.Position = Utils.Move(Snakes[id].SnakeHead.Position,
-                        new Vector2(data.SnakeHeadPosition.Item1, data.SnakeHeadPosition.Item2), 10f);
-                    
-                }
-                //Console.WriteLine($"ID ({id}): {data.SnakeHeadPosition.Item1} {data.SnakeHeadPosition.Item2}");
-                //Console.WriteLine($"Recived packet from {id} to {MyGame.GameInstance.GameClient.Id}");
-
-                if (data.SpawnFood)
-                {
-                    Console.WriteLine("Food spawned");
-                    FoodSpawner.CreateFood(new Vector2(data.NextFoodPosition.Item1, data.NextFoodPosition.Item2));
-                    MyGame.GameInstance.GameClient.Packet.SpawnFood = false;
-                }
-            }
-
-            _lastPacket = data;
-            //MyGame.GameInstance.GameServer.SyncData(id,data);
-        }
-        */
+        
         
         #region UI
         
@@ -201,11 +175,7 @@ namespace YetAnotherSnake.Scenes
            
             _uiHelper.CreateBtn(table, "Continue", button =>
             {
-                Core.StartCoroutine(UIAnimations.MoveToY(_rootTable, Screen.MonitorHeight));
-                    
-                _gridEntity.UpdateInterval = 1;
-                MyGame.GameInstance.AudioManager.ResumeMusic();
-                MyGame.GameInstance.Pause = false;
+                MyGame.GameInstance.GameClient.SetPaused(false);
             });
             table.Row();
             _uiHelper.CreateBtn(table, "Settings", button =>
@@ -216,12 +186,8 @@ namespace YetAnotherSnake.Scenes
             table.Row();
             _uiHelper.CreateBtn(table, "Exit", button =>
             {
-                MyGame.GameInstance.Pause = false;
-                
-                Core.StartCoroutine(UIAnimations.MoveToY(_rootTable, Screen.MonitorHeight));
-                //_snakeController.Die();
-                _gridEntity.UpdateInterval = 1;
-                
+                MyGame.GameInstance.GameClient.SetPaused(false);
+                _snakeController.Die();
             });
             table.Pack();
 
@@ -329,16 +295,31 @@ namespace YetAnotherSnake.Scenes
         public override void Update()
         {
             base.Update();
-            /*if (_pauseKey.IsPressed && _snakeController.IsAlive)
+            if (_pauseKey.IsPressed && _snakeController.IsAlive)
             {
-                Core.StartCoroutine(UIAnimations.MoveToY(_rootTable, -Screen.MonitorHeight));
-                MyGame.GameInstance.Pause = true;
-                _gridEntity.UpdateInterval = 9999;
-                MyGame.GameInstance.AudioManager.PauseMusic();
-            }*/
-
-        
+               MyGame.GameInstance.GameClient.SetPaused(true);
+            }
         }
+
+      
+        
+        public void Pause()
+        {
+            Core.StartCoroutine(UIAnimations.MoveToY(_rootTable, -Screen.MonitorHeight));
+            MyGame.GameInstance.Pause = true;
+            _gridEntity.UpdateInterval = 9999;
+            MyGame.GameInstance.AudioManager.PauseMusic();
+        }
+
+        public void UnPause()
+        {
+            Core.StartCoroutine(UIAnimations.MoveToY(_rootTable, Screen.MonitorHeight));
+                    
+            _gridEntity.UpdateInterval = 1;
+            MyGame.GameInstance.AudioManager.ResumeMusic();
+            MyGame.GameInstance.Pause = false;
+        }
+        
     }
     
 }

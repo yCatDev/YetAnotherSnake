@@ -50,6 +50,7 @@ namespace YetAnotherSnake.Multiplayer
             
             _readPacket.OnStartGameReceived += OnGameStartReceived;
             _readPacket.OnSpawnFoodReceived += ReadPacketOnOnSpawnFoodReceived;
+            _readPacket.OnPauseReceived += ReadPacketOnOnPauseReceived;
             
             _writeTimer = new Timer {Interval = 50, AutoReset = true};
             _writeTimer.Elapsed += (sender, args) => SendDataToServer();
@@ -59,6 +60,14 @@ namespace YetAnotherSnake.Multiplayer
             _readTask.Start();
             
             OnClient?.Invoke();
+        }
+
+        private void ReadPacketOnOnPauseReceived(PauseGamePacket received)
+        {
+            if (received.PauseState)
+                GameScene.Instance.Pause();
+            else
+                GameScene.Instance.UnPause();
         }
 
         private void ReadPacketOnOnSpawnFoodReceived(SpawnFoodPacket received)
@@ -109,16 +118,15 @@ namespace YetAnotherSnake.Multiplayer
             MenuScene.Instance.RemovePostProcessor(MyGame.GameInstance.VignettePostProcessor);
 
             Snakes = packet.SnakePositions;
-            
-            
-            Core.StartSceneTransition(new FadeTransition(()
-                =>
+
+
+            Core.StartSceneTransition(new FadeTransition(() =>
             {
                 var target = new GameScene();
                 SpawnFood();
                 return target;
             }));
-            
+
         }
 
       
@@ -141,12 +149,21 @@ namespace YetAnotherSnake.Multiplayer
         public void SpawnFood()
         {
             var foodPos = MyGame.CreateRandomPositionInWindowSpace().ToNetworkVector();
+            Console.WriteLine($"Spawn food from {Id}");
             _writePacket.AddPacket(Protocol.SpawnFood, new SpawnFoodPacket()
             {
                 NextFoodPosition = foodPos
             });
         }
         
+        public void SetPaused(bool paused)
+        {
+            Console.WriteLine($"Client {Id} set pause to {paused}");
+            _writePacket.AddPacket(Protocol.Pause, new PauseGamePacket()
+            {
+                PauseState = paused
+            });
+        }
         
         
 

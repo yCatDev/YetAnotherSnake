@@ -13,7 +13,7 @@ namespace YetAnotherSnake.Multiplayer
     [Serializable]
     public enum Protocol
     {
-        None = 0, Start = 1, Disconnect = 2, MoveSnake = 3, SpawnFood = 4,
+        None = 0, Start = 1, Disconnect = 2, MoveSnake = 3, SpawnFood = 4, Pause = 5,
     }
     
     [Serializable]
@@ -28,11 +28,13 @@ namespace YetAnotherSnake.Multiplayer
 
         public delegate void MoveSnakeReceived(MoveSnakePacket received);
         public delegate void SpawnFoodReceived(SpawnFoodPacket received);
+        public delegate void PauseReceived(PauseGamePacket received);
 
         public event StartGameReceived OnStartGameReceived;
         public event DisconnectGameReceived OnDisconnectGameReceived;
         public event MoveSnakeReceived OnMoveSnakeReceived;
         public event SpawnFoodReceived OnSpawnFoodReceived;
+        public event PauseReceived OnPauseReceived;
         
         
         public void AddPacket<T>(Protocol protocol, T packet) where T : IPacket
@@ -57,6 +59,9 @@ namespace YetAnotherSnake.Multiplayer
                     break;
                 case Protocol.SpawnFood:
                     OnSpawnFoodReceived?.Invoke((SpawnFoodPacket) pair.Value);
+                    break;
+                case Protocol.Pause:
+                    OnPauseReceived?.Invoke((PauseGamePacket) pair.Value);
                     break;
                 default:
                     throw new ArgumentOutOfRangeException();
@@ -201,8 +206,15 @@ namespace YetAnotherSnake.Multiplayer
     {
         public int ClientId { get; set; }
         public NetworkVector NextFoodPosition;
-        
     }
+
+    [Serializable]
+    public class PauseGamePacket : IPacket
+    {
+        public int ClientId { get; set; }
+        public bool PauseState;
+    }
+    
     
     [Serializable]
     public class NetworkVector
