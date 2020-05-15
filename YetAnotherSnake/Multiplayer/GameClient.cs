@@ -47,7 +47,7 @@ namespace YetAnotherSnake.Multiplayer
             clock.Start();
             while (!ct.IsCompleted)
             {
-                if (clock.ElapsedMilliseconds>1000)
+                if (clock.ElapsedMilliseconds>500)
                     return false;
             }
             clock.Stop();
@@ -100,9 +100,8 @@ namespace YetAnotherSnake.Multiplayer
         private void ReceivePacketFromServer()
         {
             
-            while (true)
+            while (Connected)
             {
-                if (!Connected) continue;
                 if (!_serverStream.DataAvailable) continue;
 
                 var inStream = new byte[10025];
@@ -219,7 +218,7 @@ namespace YetAnotherSnake.Multiplayer
         public void Dispose()
         {
             Connected = false;
-            _writeTimer.Dispose();
+            _writeTimer?.Dispose();
             _clientSocket?.Dispose();
             _serverStream?.Dispose();
         }

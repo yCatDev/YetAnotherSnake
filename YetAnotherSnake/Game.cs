@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Runtime.InteropServices;
 using Microsoft.Xna.Framework;
 using Nez;
 using YetAnotherSnake.Scenes;
@@ -52,11 +53,14 @@ namespace YetAnotherSnake
             VignettePostProcessor = new VignettePostProcessor(1) {Power = 0.75f};
             BloomPostProcessor = new BloomPostProcessor(3);
 
+
+            //Instance.Deactivated += (sender, args) => DisposeAll(); 
+            //Instance.Disposed += (sender, e) => DisposeAll();
+            EnableOrDisableCloseButton(false);
             GameServer = new GameServer();
             GameClient = new GameClient();
 
-            Exiting += OnExit;
-            
+            //AppDomain.CurrentDomain.ProcessExit += (sender, args) => Quit(); 
             //Loading empty scene, for animated loading of next scene 
             Scene = new BlankScene();
         }
@@ -87,5 +91,20 @@ namespace YetAnotherSnake
             GameServer.Dispose();
         }
         
+        [DllImport("user32.dll")]
+        static extern bool EnableMenuItem(IntPtr hMenu, uint uIDEnableItem, uint uEnable);
+        [DllImport("user32.dll")]
+        static extern IntPtr GetSystemMenu(IntPtr hWnd, bool bRevert);
+        internal const UInt32 SC_CLOSE = 0xF060;
+        internal const UInt32 MF_ENABLED = 0x00000000;
+        internal const UInt32 MF_GRAYED = 0x00000001;
+        internal const UInt32 MF_DISABLED = 0x00000002;
+        internal const uint MF_BYCOMMAND = 0x00000000;
+     
+        public void EnableOrDisableCloseButton(bool Enabled)
+        {
+            IntPtr hSystemMenu = GetSystemMenu(this.Window.Handle, false);
+            EnableMenuItem(hSystemMenu, SC_CLOSE, (uint)(MF_ENABLED | (Enabled ? MF_ENABLED : MF_GRAYED)));
+        }
     }
 }
