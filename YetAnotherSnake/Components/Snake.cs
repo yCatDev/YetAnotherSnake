@@ -183,7 +183,7 @@ namespace YetAnotherSnake.Components
                 //Moving snake head
                 SnakeHead.Position = Utils.Move(SnakeHead.Position, Marker.Position, _step * 10);
                 SnakeHead.Position = Utils.Move(SnakeHead.Position, Marker.Position, _step);
-                MyGame.GameInstance.GameClient.SendSnakePosition(Marker.LocalPosition);
+                MyGame.GameInstance.GameClient.SendSnakePosition(SnakeHead.Position);
 
                 for (int i = _snakeParts.Count - 1; i > 0; i--)
                 {
@@ -349,7 +349,7 @@ namespace YetAnotherSnake.Components
 
         public void SetMarkerPosition(Vector2 position)
         {
-            Marker.LocalPosition = position;
+            SnakeHead.Position = position;
         }
     }
 }
