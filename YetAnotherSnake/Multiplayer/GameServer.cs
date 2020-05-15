@@ -143,33 +143,46 @@ namespace YetAnotherSnake.Multiplayer
         
         private GamePacket _writePacket;
         private Timer _sendTimer;
-        private Task _readTask;
-        private byte[] _bytesFrom;
+        private Thread _readTask;
+        private byte[] _bytesFrom = new byte[10025];
         
         public HandleClient(TcpClient client, int id)
         {
             _clientSocket = client;
-
+            _networkStream = _clientSocket.GetStream();
+            
             _writePacket = new GamePacket();
-            _readTask = Task.Run(ReceiveDataFromClient);
+            _readTask = new Thread(ReceiveDataFromClient);
+            _readTask.Start();
             _sendTimer = new Timer()
             {
                 AutoReset = true,
                 Interval = 50
             };
             _sendTimer.Elapsed += (s, e) => SendDataToClient();
+            _sendTimer.Start();
             
             this.Id = id;
         }
 
         private void ReceiveDataFromClient()
         {
-            if (!_networkStream.DataAvailable) return;
-            
-            _networkStream.Read(_bytesFrom, 0, _bytesFrom.Length);
-            var readPacket = GamePacket.FromBytes(_bytesFrom);
-            if (readPacket.Contains(Protocol.Disconnect)) DisconnectClient();
-            MyGame.GameInstance.GameServer.SyncData(readPacket);
+            //var i = 0;
+            while (true)
+            {
+                //Console.WriteLine(++i);
+                if (!_networkStream.DataAvailable) continue;
+
+                _networkStream.Read(_bytesFrom, 0, _bytesFrom.Length);
+                var readPacket = GamePacket.FromBytes(_bytesFrom);
+                if (readPacket.Contains(Protocol.Disconnect))
+                {
+                    DisconnectClient();
+                    return;
+                }
+
+                MyGame.GameInstance.GameServer.SyncData(readPacket);
+            }
         }
 
         
@@ -188,6 +201,7 @@ namespace YetAnotherSnake.Multiplayer
         
         private void DisconnectClient()
         {
+            
             MyGame.GameInstance.GameServer.Disconnect(Id);
             Dispose();
         }
@@ -206,7 +220,7 @@ namespace YetAnotherSnake.Multiplayer
             //_working = false;
             //_thread.Interrupt();
             _sendTimer.Dispose();
-            _readTask.Dispose();
+            //_readTask.Dispose();
             _clientSocket?.Dispose();
         }
     }

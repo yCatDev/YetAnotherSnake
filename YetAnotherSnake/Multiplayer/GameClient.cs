@@ -27,7 +27,7 @@ namespace YetAnotherSnake.Multiplayer
         
         
         private Timer _writeTimer;
-        private Task _readTask;
+        private Thread _readTask;
         
         public event ClientChanged OnClient;
 
@@ -54,7 +54,8 @@ namespace YetAnotherSnake.Multiplayer
             _writeTimer.Elapsed += (sender, args) => SendDataToServer();
             _writeTimer.Start();
 
-            _readTask = Task.Run(ReceivePacketFromServer);
+            _readTask = new Thread(ReceivePacketFromServer);
+            _readTask.Start();
             
             OnClient?.Invoke();
         }
@@ -76,7 +77,7 @@ namespace YetAnotherSnake.Multiplayer
         }
         private void SendDataToServer()
         {
-            if (!GameStarted) return;
+            //if (!GameStarted) return;
             if (!Connected) return;
             if (_writePacket.IsEmpty()) return;
             
@@ -107,6 +108,7 @@ namespace YetAnotherSnake.Multiplayer
         public void Disconnect()
         {
            // _reading.Wait();
+           Console.WriteLine($"Disconnect {Id}");
            _writePacket.AddPacket(Protocol.Disconnect, new DisconnectGamePacket()
            {
               ClientId = Id
