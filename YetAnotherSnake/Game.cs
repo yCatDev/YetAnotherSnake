@@ -34,6 +34,11 @@ namespace YetAnotherSnake
         public  BloomPostProcessor BloomPostProcessor;
         public bool Pause = false;
         
+        public TimeSpan TargetFrameRate {
+            get => TargetElapsedTime;
+            set => TargetElapsedTime = value;
+        }
+        
         protected override void Initialize()
         {
             base.Initialize();
@@ -59,7 +64,10 @@ namespace YetAnotherSnake
             EnableOrDisableCloseButton(false);
             GameServer = new GameServer();
             GameClient = new GameClient();
-
+            Console.WriteLine(TargetElapsedTime.TotalMilliseconds);
+           // TargetElapsedTime = TimeSpan.FromSeconds(1d / 30d);
+            IsFixedTimeStep = true;
+            //Console.WriteLine(TargetElapsedTime.TotalMilliseconds);
             //AppDomain.CurrentDomain.ProcessExit += (sender, args) => Quit(); 
             //Loading empty scene, for animated loading of next scene 
             Scene = new BlankScene();

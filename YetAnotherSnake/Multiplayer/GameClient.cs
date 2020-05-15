@@ -139,7 +139,8 @@ namespace YetAnotherSnake.Multiplayer
             MenuScene.Instance.RemovePostProcessor(MyGame.GameInstance.VignettePostProcessor);
 
             Snakes = packet.SnakePositions;
-
+            if (packet.TargetFrameRate > MyGame.GameInstance.TargetFrameRate.TotalMilliseconds)
+                MyGame.GameInstance.TargetFrameRate = TimeSpan.FromMilliseconds(packet.TargetFrameRate);
 
             Core.StartSceneTransition(new FadeTransition(() =>
             {

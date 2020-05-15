@@ -182,6 +182,7 @@ namespace YetAnotherSnake.Multiplayer
         public int ClientId {get; set;}
         public int GeneratedId;
         public Dictionary<int, NetworkVector> SnakePositions;
+        public float TargetFrameRate;
 
         public StartGamePacket()
         {

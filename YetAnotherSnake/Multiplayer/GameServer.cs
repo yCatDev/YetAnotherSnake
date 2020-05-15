@@ -107,7 +107,8 @@ namespace YetAnotherSnake.Multiplayer
                 packet.AddPacket(Protocol.Start, new StartGamePacket()
                 {
                     GeneratedId = _handlers[i].Id,
-                    SnakePositions = snakes
+                    SnakePositions = snakes,
+                    TargetFrameRate = (float) MyGame.GameInstance.TargetFrameRate.TotalMilliseconds
                 });
                 
                 _handlers[i].SendDataToClient(packet);
