@@ -179,7 +179,7 @@ namespace YetAnotherSnake.Multiplayer
                 {
                     DisconnectClient();
                     return;
-                }
+                }else if (readPacket.Contains(Protocol.Start)) continue;
 
                 MyGame.GameInstance.GameServer.SyncData(readPacket);
             }

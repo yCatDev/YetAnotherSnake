@@ -62,10 +62,11 @@ namespace YetAnotherSnake.Multiplayer
 
         private void ReceivePacketFromServer()
         {
+            
             while (true)
             {
-                if (!Connected) return;
-                if (!_serverStream.DataAvailable) return;
+                if (!Connected) continue;
+                if (!_serverStream.DataAvailable) continue;
 
                 var inStream = new byte[10025];
                 _serverStream.Read(inStream, 0, inStream.Length);
