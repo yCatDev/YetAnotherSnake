@@ -67,7 +67,7 @@ namespace YetAnotherSnake.Scenes
             _pauseKey.AddKeyboardKey(Keys.Escape).AddKeyboardKey(Keys.Enter);
 
             Snakes = new Dictionary<int, Snake>(1);
-            FoodSpawner = AddSceneComponent<FoodSpawner>();
+            
             
             //Enabling post-processing
             AddPostProcessor(MyGame.GameInstance.VignettePostProcessor);
@@ -88,38 +88,38 @@ namespace YetAnotherSnake.Scenes
                 GridMajorColor = new Color(61,9,107)
             });
             _gridEntity.GetComponent<SpringGrid>().RenderLayer = 9999;
-            
+            FoodSpawner = AddSceneComponent<FoodSpawner>();
 
             //Create text label for displaying score
             var score = CreateEntity("scoreText");
             score.AddComponent<TextComponent>().AddComponent<ScoreDisplay>();
             
-            foreach (var item in MyGame.GameInstance.GameClient.Snakes)
+            foreach (var (key, value) in MyGame.GameInstance.GameClient.Snakes)
             {
-                var id = item.Key;
+                var id = key;
                 
                 var snake = CreateEntity("SnakeHead" + id);
                 //snake.Position = item.Value.ToVector2();
                 Console.WriteLine($"Snake id: {id}, client id: {MyGame.GameInstance.GameClient.Id}");
-                var direction = (Vector2.Zero - item.Value.ToVector2());
+                var direction = (Vector2.Zero - value.ToVector2());
                 direction.Normalize();
                 var s = AddSceneComponent(new Snake(
                     id == MyGame.GameInstance.GameClient.Id, 
                     SnakeSize,
-                    item.Value.ToVector2(),
+                    value.ToVector2(),
                     direction*12
                     ));
                 
                 if (id == MyGame.GameInstance.GameClient.Id)
                     _snakeController = s;
                 
-                s.SnakeHead.Position = item.Value.ToVector2();
+                s.SnakeHead.Position = value.ToVector2();
                 Snakes.Add(id, s);
 
             }
-            _isReady = true;
+            IsReady = true;
             CreateUI();
-            
+            MyGame.GameInstance.GameClient.SpawnFood();
         }
 
         public void Start()
@@ -128,7 +128,7 @@ namespace YetAnotherSnake.Scenes
         }
 
         private GamePacket _lastPacket;
-        private bool _isReady = false;
+        public bool IsReady = false;
 
         
         
@@ -323,7 +323,7 @@ namespace YetAnotherSnake.Scenes
 
         public void SetSnakePosition(int id,NetworkVector receivedSnakeMarkerPosition, float delta)
         {
-            if (!_isReady) return;
+            if (!IsReady) return;
             var target = Snakes[id];
             target.SetMarkerPosition(receivedSnakeMarkerPosition.ToVector2(), delta);
         }

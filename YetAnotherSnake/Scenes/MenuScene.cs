@@ -9,6 +9,7 @@ using Nez;
 using Nez.BitmapFonts;
 using Nez.UI;
 using YetAnotherSnake.Components;
+using YetAnotherSnake.Multiplayer;
 using YetAnotherSnake.UI;
 
 namespace YetAnotherSnake.Scenes
@@ -94,24 +95,30 @@ namespace YetAnotherSnake.Scenes
             _uiHelper.CreateVerticalIndent(table, 300);
             table.Row();
 
-            MyGame.GameInstance.GameServer.ConnectEvent += () =>
-            {
-                connectedLabel.SetText($"Ready players: {MyGame.GameInstance.GameServer.ConnectedCount}");
-            };
+           
             
-            _uiHelper.CreateBtn(table, "Start game", (b) =>
+            var startBtn = _uiHelper.CreateBtn(table, "Start game", (b) =>
             {
-                MyGame.GameInstance.GameClient.InitClient(MyGame.GameInstance.GameServer.Address, 8888);
-                Thread.Sleep(100);
-                MyGame.GameInstance.GameServer.StartGame();
-                /*Core.StartSceneTransition(new FadeTransition(() => new GameScene()));
-                RemovePostProcessor(MyGame.GameInstance.BloomPostProcessor);
-                RemovePostProcessor(MyGame.GameInstance.VignettePostProcessor);*/
+                if (!b.GetDisabled())
+                {
+                    MyGame.GameInstance.GameClient.InitClient(MyGame.GameInstance.GameServer.Address, 8888);
+                    Thread.Sleep(100);
+                    MyGame.GameInstance.GameServer.StartGame();
+                }
             });
+            startBtn.SetDisabled(true);
+            
             table.Row();
             _uiHelper.CreateBtn(table, "Cancel", (b) =>
                 { Core.StartCoroutine(UIAnimations.MoveToX(_rootTable, 0));  });
             table.Row();
+            
+            MyGame.GameInstance.GameServer.ConnectEvent += () =>
+            {
+                startBtn.SetDisabled(MyGame.GameInstance.GameServer.ConnectedCount <= 0);
+
+                connectedLabel.SetText($"Ready players: {MyGame.GameInstance.GameServer.ConnectedCount}");
+            };
             
             return table;
         }
@@ -137,13 +144,21 @@ namespace YetAnotherSnake.Scenes
             var connectedLabel = _uiHelper.CreateRegularLabel(table, $"Ready: {"No"}");
             table.Row();
 
-            _uiHelper.CreateBtn(table, "Ready/Cancel", (b) =>
+            _uiHelper.CreateBtn(table, "Ready", (b) =>
             {
                 if (!MyGame.GameInstance.GameClient.Connected)
                 {
-                    MyGame.GameInstance.GameClient.InitClient(address.GetText(), 8888);
-                    b.SetText("Cancel");
-                    connectedLabel.SetText($"Ready: Yes");
+                    if (GameClient.CheckAddress(address.GetText()))
+                    {
+                        if (address.GetText() != MyGame.GameInstance.GameServer.Address)
+                        {
+                            if (MyGame.GameInstance.GameClient.InitClient(address.GetText(), 8888))
+                            {
+                                b.SetText("Cancel");
+                                connectedLabel.SetText($"Ready: Yes");
+                            }else connectedLabel.SetText("Connection timeout, server not exists");
+                        }else connectedLabel.SetText("Can't connect to self");
+                    }else connectedLabel.SetText("Invalid address format");
                 }
                 else
                 {

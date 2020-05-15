@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Net.Sockets;
 using System.Threading;
 using System.Threading.Tasks;
@@ -37,10 +38,20 @@ namespace YetAnotherSnake.Multiplayer
 
         public int Id { get; private set; }
 
-        public void InitClient(string address, int port)
+        public bool InitClient(string address, int port)
         {
             _clientSocket = new TcpClient();
-            _clientSocket.Connect(address, port);
+            //_clientSocket.Connect(address, port);
+            var ct = _clientSocket.ConnectAsync(address, port);
+            Stopwatch clock = new Stopwatch();
+            clock.Start();
+            while (!ct.IsCompleted)
+            {
+                if (clock.ElapsedMilliseconds>1000)
+                    return false;
+            }
+            clock.Stop();
+
             _serverStream = _clientSocket.GetStream();
             
             Connected = true;
@@ -62,6 +73,7 @@ namespace YetAnotherSnake.Multiplayer
             _readTask.Start();
             
             OnClient?.Invoke();
+            return true;
         }
 
         private void ReadPacketOnOnMoveSnakeReceived(MoveSnakePacket received)
@@ -81,6 +93,7 @@ namespace YetAnotherSnake.Multiplayer
         private void ReadPacketOnOnSpawnFoodReceived(SpawnFoodPacket received)
         {
             //if (received.ClientId!=Id)
+            if (GameScene.Instance.IsReady)
                 GameScene.Instance.FoodSpawner.CreateFood(received.NextFoodPosition.ToVector2());
         }
 
@@ -132,7 +145,6 @@ namespace YetAnotherSnake.Multiplayer
             Core.StartSceneTransition(new FadeTransition(() =>
             {
                 var target = new GameScene();
-                SpawnFood();
                 return target;
             }));
 
@@ -182,8 +194,26 @@ namespace YetAnotherSnake.Multiplayer
                 PauseState = paused
             });
         }
-        
-        
+
+        public static bool CheckAddress(string address)
+        {
+            var mask = "###.###.#.###";
+            for (var i = 0; i < address.Length; i++)
+            {
+                var c = address[i];
+                if (mask[i] == '#')
+                {
+                    if (!char.IsNumber(c))
+                        return false;
+                }
+                else
+                {
+                    if (c!='.')
+                        return false;
+                }
+            }
+            return true;
+        }
 
 
         public void Dispose()
