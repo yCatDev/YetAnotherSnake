@@ -323,7 +323,6 @@ namespace YetAnotherSnake.Scenes
         public void SetSnakePosition(int id,NetworkVector receivedSnakeMarkerPosition, float delta)
         {
             var target = Snakes[id];
-            if (target.IsReally) return;
             target.SetMarkerPosition(receivedSnakeMarkerPosition.ToVector2(), delta);
         }
     }

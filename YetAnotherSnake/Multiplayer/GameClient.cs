@@ -66,7 +66,8 @@ namespace YetAnotherSnake.Multiplayer
 
         private void ReadPacketOnOnMoveSnakeReceived(MoveSnakePacket received)
         {
-            GameScene.Instance.SetSnakePosition(received.ClientId, received.SnakeMarkerPosition, received.SyncDelta);
+            if (received.ClientId!=Id)
+                GameScene.Instance.SetSnakePosition(received.ClientId, received.SnakeMarkerPosition, received.SyncDelta);
         }
 
         private void ReadPacketOnOnPauseReceived(PauseGamePacket received)
@@ -79,7 +80,7 @@ namespace YetAnotherSnake.Multiplayer
 
         private void ReadPacketOnOnSpawnFoodReceived(SpawnFoodPacket received)
         {
-            if (received.ClientId!=Id)
+            
                 GameScene.Instance.FoodSpawner.CreateFood(received.NextFoodPosition.ToVector2());
         }
 
