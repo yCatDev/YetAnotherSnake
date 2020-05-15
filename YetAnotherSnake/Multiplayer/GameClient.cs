@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Net.Sockets;
 using System.Threading;
 using System.Threading.Tasks;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 using Nez;
 using YetAnotherSnake.Scenes;
@@ -51,6 +52,7 @@ namespace YetAnotherSnake.Multiplayer
             _readPacket.OnStartGameReceived += OnGameStartReceived;
             _readPacket.OnSpawnFoodReceived += ReadPacketOnOnSpawnFoodReceived;
             _readPacket.OnPauseReceived += ReadPacketOnOnPauseReceived;
+            _readPacket.OnMoveSnakeReceived += ReadPacketOnOnMoveSnakeReceived;
             
             _writeTimer = new Timer {Interval = 50, AutoReset = true};
             _writeTimer.Elapsed += (sender, args) => SendDataToServer();
@@ -60,6 +62,11 @@ namespace YetAnotherSnake.Multiplayer
             _readTask.Start();
             
             OnClient?.Invoke();
+        }
+
+        private void ReadPacketOnOnMoveSnakeReceived(MoveSnakePacket received)
+        {
+            GameScene.Instance.SetSnakePosition(received.ClientId, received.SnakeMarkerPosition);
         }
 
         private void ReadPacketOnOnPauseReceived(PauseGamePacket received)
@@ -107,7 +114,7 @@ namespace YetAnotherSnake.Multiplayer
             var outStream = _writePacket.ToBytes();
             _serverStream.Write(outStream, 0, outStream.Length);
             _serverStream.Flush();
-            
+            //Console.WriteLine($"Send {_writePacket.Count} packages");
             _writePacket.Clear();
         }
         
@@ -129,7 +136,14 @@ namespace YetAnotherSnake.Multiplayer
 
         }
 
-      
+        public void SendSnakePosition(Vector2 position)
+        {
+            _writePacket.AddPacket(Protocol.MoveSnake, new MoveSnakePacket()
+            {
+                ClientId = Id,
+                SnakeMarkerPosition = position.ToNetworkVector()
+            });
+        }
 
         
 

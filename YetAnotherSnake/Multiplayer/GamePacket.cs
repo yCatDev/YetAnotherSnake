@@ -35,8 +35,9 @@ namespace YetAnotherSnake.Multiplayer
         public event MoveSnakeReceived OnMoveSnakeReceived;
         public event SpawnFoodReceived OnSpawnFoodReceived;
         public event PauseReceived OnPauseReceived;
-        
-        
+        public object Count => _packets.Count;
+
+
         public void AddPacket<T>(Protocol protocol, T packet) where T : IPacket
         {
             _packets.Add(new KeyValuePair<Protocol,IPacket>(protocol, packet));
@@ -198,7 +199,7 @@ namespace YetAnotherSnake.Multiplayer
     public class MoveSnakePacket : IPacket
     {
         public int ClientId { get; set; }
-        public NetworkVector SnakePosition;
+        public NetworkVector SnakeMarkerPosition;
     }
 
     [Serializable]

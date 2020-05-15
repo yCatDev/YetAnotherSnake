@@ -38,7 +38,7 @@ namespace YetAnotherSnake.Components
         /// <summary>
         /// MoveMarker that helps to move
         /// </summary>
-        private Entity _marker;
+        public Entity Marker;
         /// <summary>
         /// Direction in which snake is moving
         /// </summary>
@@ -80,7 +80,7 @@ namespace YetAnotherSnake.Components
         public Entity SnakeHead;
 
 
-        private bool _isReally;
+        public bool IsReally;
         public bool MoveLeft;
         public bool MoveRight;
         private Vector2 _startSnakePosition;
@@ -97,23 +97,26 @@ namespace YetAnotherSnake.Components
             _startDirection = startDirection;
             _step = step;
             
-            _isReally = real;
+            IsReally = real;
 
-            if (_isReally)
+            if (IsReally)
                 Console.WriteLine($"Snake from {MyGame.GameInstance.GameClient.Id} real");
             
             _startSnakeSize = startSnakeSize;
             _startSnakePosition = startPosition;
             _snakeParts = new List<Entity>(1000);
-            
-            _leftArrow = new VirtualButton();
-            _leftArrow.AddKeyboardKey(Keys.Left);
-            _leftArrow.AddKeyboardKey(Keys.A);
 
-            _rightArrow = new VirtualButton();
-            _rightArrow.AddKeyboardKey(Keys.Right);
-            _rightArrow.AddKeyboardKey(Keys.D);
-            
+            if (IsReally)
+            {
+                _leftArrow = new VirtualButton();
+                _leftArrow.AddKeyboardKey(Keys.Left);
+                _leftArrow.AddKeyboardKey(Keys.A);
+
+                _rightArrow = new VirtualButton();
+                _rightArrow.AddKeyboardKey(Keys.Right);
+                _rightArrow.AddKeyboardKey(Keys.D);
+            }
+
             IsAlive = true;
         }
 
@@ -148,11 +151,11 @@ namespace YetAnotherSnake.Components
             
             
             SnakeHead.AddComponent(new GridModifier()).AddComponent<CameraShake>();
-            _marker = Scene.CreateEntity("marker",  SnakeHead.Position + _startDirection);
-            _marker.Parent = SnakeHead.Transform;
+            Marker = Scene.CreateEntity("marker",  SnakeHead.Position + _startDirection);
+            Marker.Parent = SnakeHead.Transform;
 
             _cameraBounds = Scene.Camera.Entity.GetComponent<CameraBounds>();
-            if (_isReally)
+            if (IsReally)
             {
                 Scene.Camera.Entity.AddComponent(new FollowCamera(SnakeHead));
                 
@@ -167,18 +170,20 @@ namespace YetAnotherSnake.Components
                 if (MyGame.GameInstance.Pause)
                     return;
 
-                if (_isReally)
+                if (IsReally)
                 {
                     if (_leftArrow.IsDown)
-                        _marker.Position = Utils.RotateAboutOrigin(_marker.Position, _marker.Parent.Position, -0.1f);
+                        Marker.Position = Utils.RotateAboutOrigin(Marker.Position, Marker.Parent.Position, -0.1f);
                     if (_rightArrow.IsDown)
-                        _marker.Position = Utils.RotateAboutOrigin(_marker.Position, _marker.Parent.Position, 0.1f);
+                        Marker.Position = Utils.RotateAboutOrigin(Marker.Position, Marker.Parent.Position, 0.1f);
 
-                    //Moving snake head
-
-                    SnakeHead.Position = Utils.Move(SnakeHead.Position, _marker.Position, _step * 10);
-                    SnakeHead.Position = Utils.Move(SnakeHead.Position, _marker.Position, _step);
+                    
                 }
+                
+                //Moving snake head
+                SnakeHead.Position = Utils.Move(SnakeHead.Position, Marker.Position, _step * 10);
+                SnakeHead.Position = Utils.Move(SnakeHead.Position, Marker.Position, _step);
+                MyGame.GameInstance.GameClient.SendSnakePosition(Marker.Position);
 
                 for (int i = _snakeParts.Count - 1; i > 0; i--)
                 {
@@ -215,7 +220,7 @@ namespace YetAnotherSnake.Components
                     {
                         SnakeHead.GetComponent<GridModifier>().Impulse( 200);
                         IncSnake(5);
-                        if (_isReally)
+                        if (IsReally)
                         {
                             _score.IncScore();
                             MyGame.GameInstance.AudioManager.PickUpSound.Play();
@@ -280,7 +285,7 @@ namespace YetAnotherSnake.Components
                 _deathVectors.Add(dir);
             }
 
-            if (_isReally)
+            if (IsReally)
             {
                 MyGame.GameInstance.AudioManager.DeathSound.Play();
                 SnakeHead.AddComponent<CameraShake>().Shake(75, 1.5f);
@@ -342,6 +347,9 @@ namespace YetAnotherSnake.Components
         }
 
 
-      
+        public void SetMarkerPosition(Vector2 position)
+        {
+            Marker.Position = position;
+        }
     }
 }

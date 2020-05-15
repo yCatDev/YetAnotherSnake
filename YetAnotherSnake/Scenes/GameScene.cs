@@ -319,7 +319,13 @@ namespace YetAnotherSnake.Scenes
             MyGame.GameInstance.AudioManager.ResumeMusic();
             MyGame.GameInstance.Pause = false;
         }
-        
+
+        public void SetSnakePosition(int id,NetworkVector receivedSnakeMarkerPosition)
+        {
+            var target = Snakes[id];
+            if (target.IsReally) return;
+            target.SetMarkerPosition(receivedSnakeMarkerPosition.ToVector2());
+        }
     }
     
 }
