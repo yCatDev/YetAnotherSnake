@@ -80,7 +80,7 @@ namespace YetAnotherSnake.Components
         public Entity SnakeHead;
 
 
-        public bool IsReally;
+        public readonly bool IsReally;
         public bool MoveLeft;
         public bool MoveRight;
         private Vector2 _startSnakePosition;
@@ -180,11 +180,9 @@ namespace YetAnotherSnake.Components
                     //Moving snake head
                     SnakeHead.Position = Utils.Move(SnakeHead.Position, Marker.Position, _step * 10);
                     SnakeHead.Position = Utils.Move(SnakeHead.Position, Marker.Position, _step);
-                    MyGame.GameInstance.GameClient.SendSnakePosition(SnakeHead.Position);
-
+                    
                 }
                 
-
                 for (int i = _snakeParts.Count - 1; i > 0; i--)
                 {
                     
@@ -234,6 +232,8 @@ namespace YetAnotherSnake.Components
                 //If snake head is out of camera view - "Gameover"
                 if (_cameraBounds.OutOfBounds(SnakeHead.Position)) 
                  Die();
+                if (_ready)
+                MyGame.GameInstance.GameClient.SendSnakePosition(SnakeHead.Position);
             }
             else
             {
