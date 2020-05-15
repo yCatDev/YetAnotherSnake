@@ -91,16 +91,13 @@ namespace YetAnotherSnake.Multiplayer
         {
             isWorking = true;
 
-            var possibleWidth = 1280;
-            var possibleHeight = 720;
+           
 
             var snakes = new Dictionary<int, NetworkVector>();
 
             for (var i = 0; i < _connectionCount; i++)
             {
-                snakes.Add(_handlers[i].Id,
-                    new NetworkVector(Random.Range(-possibleWidth, possibleWidth),
-                        Random.Range(-possibleHeight, possibleHeight)));
+                snakes.Add(_handlers[i].Id, MyGame.CreateRandomPositionInWindowSpace().ToNetworkVector());
             }
             
             for (var i = 0; i < _handlers.Count; i++)

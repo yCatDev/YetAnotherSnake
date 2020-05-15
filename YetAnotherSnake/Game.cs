@@ -4,6 +4,7 @@ using Nez;
 using YetAnotherSnake.Scenes;
 using Microsoft.Xna.Framework.Graphics;
 using YetAnotherSnake.Multiplayer;
+using Random = Nez.Random;
 
 namespace YetAnotherSnake
 {
@@ -60,6 +61,14 @@ namespace YetAnotherSnake
             Scene = new BlankScene();
         }
 
+        public static Vector2 CreateRandomPositionInWindowSpace()
+        {
+            var possibleWidth = 1280;
+            var possibleHeight = 720;
+            return new Vector2(Random.Range(-possibleWidth, possibleWidth),
+                Random.Range(-possibleHeight, possibleHeight));
+        }
+        
         private void OnExit(object? sender, EventArgs e)
         {
             DisposeAll();

@@ -49,6 +49,7 @@ namespace YetAnotherSnake.Multiplayer
             _readPacket = new GamePacket();
             
             _readPacket.OnStartGameReceived += OnGameStartReceived;
+            _readPacket.OnSpawnFoodReceived += ReadPacketOnOnSpawnFoodReceived;
             
             _writeTimer = new Timer {Interval = 50, AutoReset = true};
             _writeTimer.Elapsed += (sender, args) => SendDataToServer();
@@ -58,6 +59,11 @@ namespace YetAnotherSnake.Multiplayer
             _readTask.Start();
             
             OnClient?.Invoke();
+        }
+
+        private void ReadPacketOnOnSpawnFoodReceived(SpawnFoodPacket received)
+        {
+            GameScene.Instance.FoodSpawner.CreateFood(received.NextFoodPosition.ToVector2());
         }
 
         private void ReceivePacketFromServer()
@@ -75,9 +81,9 @@ namespace YetAnotherSnake.Multiplayer
                     _readPacket.FromBytes(inStream);
                     _readPacket.ProcessAll();
                 }
-                catch
+                catch (Exception ex)
                 {
-                    Console.WriteLine("Error reading packet, skipping");
+                    Console.WriteLine($"Error reading packet, skipping \n-{ex.Message}\n-{ex.StackTrace}\n -END");
                 }
                 
             }
@@ -103,9 +109,16 @@ namespace YetAnotherSnake.Multiplayer
             MenuScene.Instance.RemovePostProcessor(MyGame.GameInstance.VignettePostProcessor);
 
             Snakes = packet.SnakePositions;
-
+            
+            
             Core.StartSceneTransition(new FadeTransition(()
-                => new GameScene()));
+                =>
+            {
+                var target = new GameScene();
+                SpawnFood();
+                return target;
+            }));
+            
         }
 
       
@@ -127,12 +140,11 @@ namespace YetAnotherSnake.Multiplayer
 
         public void SpawnFood()
         {
-            /*var possibleWidth = 1280;
-            var possibleHeight = 720;
-            Packet.SpawnFood = true;
-            Packet.NextFoodPosition = (Random.Range(-possibleWidth, possibleWidth),
-                Random.Range(-possibleHeight, possibleHeight));*/
-            //SendData(packet);
+            var foodPos = MyGame.CreateRandomPositionInWindowSpace().ToNetworkVector();
+            _writePacket.AddPacket(Protocol.SpawnFood, new SpawnFoodPacket()
+            {
+                NextFoodPosition = foodPos
+            });
         }
         
         

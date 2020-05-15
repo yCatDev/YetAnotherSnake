@@ -29,8 +29,7 @@ namespace YetAnotherSnake.Scenes
         public static GameScene Instance;
 
         public Dictionary<int, Snake> Snakes { get; private set; }
-
-        public (float, float)[] SnakePositions;
+        
         
         /// <summary>
         /// Pause key listener
@@ -325,6 +324,8 @@ namespace YetAnotherSnake.Scenes
 
          #endregion
 
+     
+         
         public override void Update()
         {
             base.Update();

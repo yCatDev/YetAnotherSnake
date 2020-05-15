@@ -10,6 +10,7 @@ using Microsoft.Xna.Framework;
 namespace YetAnotherSnake.Multiplayer
 {
 
+    [Serializable]
     public enum Protocol
     {
         None = 0, Start = 1, Disconnect = 2, MoveSnake = 3, SpawnFood = 4,
@@ -99,15 +100,15 @@ namespace YetAnotherSnake.Multiplayer
 
             binaryFormatter.Serialize(memoryStream, _packets);
 
-            var compressed = Compress(memoryStream.ToArray());
-            return compressed;
+            //var compressed = Compress(memoryStream.ToArray());
+            return memoryStream.ToArray();
         }
 
         public void FromBytes(byte[] arrBytes)
         {
             using var memoryStream = new MemoryStream();
             var binaryFormatter = new BinaryFormatter();               
-            var decompressed = Decompress(arrBytes);
+            var decompressed = arrBytes;
  
             memoryStream.Write(decompressed, 0, decompressed.Length);
             memoryStream.Seek(0, SeekOrigin.Begin);
