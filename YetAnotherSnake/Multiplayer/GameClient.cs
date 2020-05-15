@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Net.Sockets;
 using System.Threading;
 using System.Threading.Tasks;
@@ -14,38 +15,27 @@ namespace YetAnotherSnake.Multiplayer
     {
         private TcpClient _clientSocket;
         private NetworkStream _serverStream;
-        private int _id;
 
         public bool Connected = false, GameStarted;
 
         public float PossibleWidth, PossibleHeight;
         
-        private VirtualButton _rightArrow;
-        private VirtualButton _leftArrow;
-        private VirtualButton _escape;
-        private bool _leftArrowWasPressed = false, _rightArrowWasPressed = false;
         //private Task<int> _reading; 
         
-        public delegate void OnClient();
-
-        private Timer _timer;
+        public delegate void ClientChanged();
+        public Dictionary<int, NetworkVector> Snakes { get; private set; }
         
-        public event OnClient onClient;
-        public int[] SnakeIds;
-
-        public GamePacket Packet;
         
-        public GameClient()
-        {
-            //_id = (byte) Nez.Random.Range(100, 255);
-            
-            _escape = new VirtualButton();
-            _escape.AddKeyboardKey(Keys.Escape);
-            
-        }
-
-        public int Id => _id;
+        private Timer _writeTimer;
+        private Task _readTask;
         
+        public event ClientChanged OnClient;
+
+        private GamePacket _writePacket, _readPacket;
+        
+
+        public int Id { get; private set; }
+
         public void InitClient(string address, int port)
         {
             _clientSocket = new TcpClient();
@@ -54,103 +44,96 @@ namespace YetAnotherSnake.Multiplayer
             
             Connected = true;
             
-            //_reading.Start();
-            //_writing.Start();
 
-            Packet = new GamePacket();
+            _writePacket = new GamePacket();
+            _readPacket = new GamePacket();
             
-            _timer = new Timer {Interval = 10, AutoReset = true};
-            _timer.Elapsed += (sender, args) =>
-            {
-                if (_serverStream.DataAvailable)
-                {
-
-                    var inStream = new byte[10025];
-                    _serverStream.Read(inStream, 0, inStream.Length);
-                    var data = GamePacket.FromBytes(inStream);
-                    //if (data.Test) Console.WriteLine("Test packet recived");
-                    if (data.ServiceData && data.StartGame)
-                    {
-                        //GameStarted = true;
-                        _id = data.Id;
-                        MenuScene.Instance.RemovePostProcessor(MyGame.GameInstance.BloomPostProcessor);
-                        MenuScene.Instance.RemovePostProcessor(MyGame.GameInstance.VignettePostProcessor);
-                        
-                        SnakePositions = data.SnakePositions;
-                        FoodPositions = data.FoodPositions;
-                        SnakeIds = data.idsToCreate;
-                        
-                        Core.StartSceneTransition(new FadeTransition(()
-                            => new GameScene()));
-                    }
-                    
-                    
-                    if (!data.ServiceData && GameScene.Instance != null)
-                        GameScene.Instance.ProcessData(data.Id, data);
-                }
-                
-                if (!Connected) return;
-
-                if (GameStarted)
-                {
-                    if (!MyGame.GameInstance.GameServer.isWorking)
-                    {
-                        Packet.Id = _id;
-
-                        Packet.SnakeHeadPosition = (GameScene.Instance.Snakes[_id].SnakeHead.Position.X,
-                            GameScene.Instance.Snakes[_id].SnakeHead.Position.Y);
-
-                    }
-
-                    SendData(Packet);                    
-                }
-            };
-            _timer.Start();
+            _readPacket.OnStartGameReceived += OnGameStartReceived;
             
-            onClient?.Invoke();
+            _writeTimer = new Timer {Interval = 50, AutoReset = true};
+            _writeTimer.Elapsed += (sender, args) => SendDataToServer();
+            _writeTimer.Start();
+
+            _readTask = Task.Run(ReceivePacketFromServer);
+            
+            OnClient?.Invoke();
         }
 
-     
-        
-        public (float, float)[] FoodPositions;
+        private void ReceivePacketFromServer()
+        {
+            while (true)
+            {
+                if (!Connected) return;
+                if (!_serverStream.DataAvailable) return;
 
-        public (float, float)[] SnakePositions;
+                var inStream = new byte[10025];
+                _serverStream.Read(inStream, 0, inStream.Length);
+                _readPacket = GamePacket.FromBytes(inStream);
+
+
+                _readPacket.ProcessAll();
+            }
+        }
+        private void SendDataToServer()
+        {
+            if (!GameStarted) return;
+            if (!Connected) return;
+            if (_writePacket.IsEmpty()) return;
+            
+            _serverStream = _clientSocket.GetStream();
+            var outStream = _writePacket.ToBytes();
+            _serverStream.Write(outStream, 0, outStream.Length);
+            _serverStream.Flush();
+            
+            _writePacket.Clear();
+        }
+        
+        private void OnGameStartReceived(StartGamePacket packet)
+        {
+            Id = packet.ClientId;
+            MenuScene.Instance.RemovePostProcessor(MyGame.GameInstance.BloomPostProcessor);
+            MenuScene.Instance.RemovePostProcessor(MyGame.GameInstance.VignettePostProcessor);
+
+            Snakes = packet.SnakePositions;
+
+            Core.StartSceneTransition(new FadeTransition(()
+                => new GameScene()));
+        }
+
+      
+
+        
 
         public void Disconnect()
         {
            // _reading.Wait();
-            SendData(new GamePacket()
-            {
-                ServiceData = true,
-                Disconnect = true
-            });
-            Dispose();
-            onClient?.Invoke();
+           _writePacket.AddPacket(Protocol.Disconnect, new DisconnectGamePacket()
+           {
+              ClientId = Id
+           });
+           Thread.Sleep(100);
+           Dispose();
+           OnClient?.Invoke();
         }
 
         public void SpawnFood()
         {
-            var possibleWidth = 1280;
+            /*var possibleWidth = 1280;
             var possibleHeight = 720;
             Packet.SpawnFood = true;
             Packet.NextFoodPosition = (Random.Range(-possibleWidth, possibleWidth),
-                Random.Range(-possibleHeight, possibleHeight));
+                Random.Range(-possibleHeight, possibleHeight));*/
             //SendData(packet);
         }
         
-        public void SendData(GamePacket data)
-        {
-            _serverStream = _clientSocket.GetStream();
-            var outStream = GamePacket.GetBytes(data);
-            _serverStream.Write(outStream, 0, outStream.Length);
-            
-            _serverStream.Flush();
-        }
+        
+        
 
 
         public void Dispose()
         {
             Connected = false;
+            _writeTimer.Dispose();
             _clientSocket?.Dispose();
             _serverStream?.Dispose();
         }
