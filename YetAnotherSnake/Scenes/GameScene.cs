@@ -101,11 +101,14 @@ namespace YetAnotherSnake.Scenes
                 var snake = CreateEntity("SnakeHead" + id);
                 //snake.Position = item.Value.ToVector2();
                 Console.WriteLine($"Snake id: {id}, client id: {MyGame.GameInstance.GameClient.Id}");
+                var direction = (Vector2.Zero - item.Value.ToVector2());
+                direction.Normalize();
                 var s = AddSceneComponent(new Snake(
                     id == MyGame.GameInstance.GameClient.Id, 
                     SnakeSize,
                     item.Value.ToVector2(),
-                    new Vector2(10, 10)));
+                    direction*12
+                    ));
                 s.SnakeHead.Position = item.Value.ToVector2();
                 Snakes.Add(id, s);
 
