@@ -92,7 +92,7 @@ namespace YetAnotherSnake.Multiplayer
         
         private void OnGameStartReceived(StartGamePacket packet)
         {
-            Id = packet.ClientId;
+            Id = packet.GeneratedId;
             MenuScene.Instance.RemovePostProcessor(MyGame.GameInstance.BloomPostProcessor);
             MenuScene.Instance.RemovePostProcessor(MyGame.GameInstance.VignettePostProcessor);
 

@@ -247,7 +247,7 @@ namespace YetAnotherSnake.Components
         /// </summary>
         public void Die()
         {
-            //return;
+            return;
             IsAlive = false;
             
           

@@ -99,7 +99,7 @@ namespace YetAnotherSnake.Scenes
                 var id = item.Key;
                 
                 var snake = CreateEntity("SnakeHead" + id);
-
+                Console.WriteLine($"Snake id: {id}, client id: {MyGame.GameInstance.GameClient.Id}");
                 var s = AddSceneComponent(new Snake(id == MyGame.GameInstance.GameClient.Id, SnakeSize,
                     snake.Position,
                     new Vector2(10, 10)));
