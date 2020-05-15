@@ -106,15 +106,15 @@ namespace YetAnotherSnake.Multiplayer
 
             binaryFormatter.Serialize(memoryStream, _packets);
 
-            //var compressed = Compress(memoryStream.ToArray());
-            return memoryStream.ToArray();
+            var compressed = Compress(memoryStream.ToArray());
+            return compressed;
         }
 
         public void FromBytes(byte[] arrBytes)
         {
             using var memoryStream = new MemoryStream();
             var binaryFormatter = new BinaryFormatter();               
-            var decompressed = arrBytes;
+            var decompressed = Decompress(arrBytes);
  
             memoryStream.Write(decompressed, 0, decompressed.Length);
             memoryStream.Seek(0, SeekOrigin.Begin);

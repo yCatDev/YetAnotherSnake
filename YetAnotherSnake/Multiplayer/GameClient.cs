@@ -92,15 +92,15 @@ namespace YetAnotherSnake.Multiplayer
 
                 var inStream = new byte[10025];
                 _serverStream.Read(inStream, 0, inStream.Length);
-                try
-                {
+                //try
+                //{
                     _readPacket.FromBytes(inStream);
                     _readPacket.ProcessAll();
-                }
+                /*}
                 catch (Exception ex)
                 {
                     Console.WriteLine($"Error reading packet, skipping \n-{ex.Message}\n-{ex.StackTrace}\n -END");
-                }
+                }*/
                 
             }
         }
