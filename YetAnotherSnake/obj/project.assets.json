@@ -280,7 +280,8 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\ycatd\\.nuget\\packages\\": {}
+    "C:\\Users\\ycatd\\.nuget\\packages\\": {},
+    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
@@ -291,6 +292,9 @@
       "packagesPath": "C:\\Users\\ycatd\\.nuget\\packages\\",
       "outputPath": "Y:\\YetAnotherSnake\\YetAnotherSnake\\obj\\",
       "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+      ],
       "configFilePaths": [
         "C:\\Users\\ycatd\\AppData\\Roaming\\NuGet\\NuGet.Config"
       ],

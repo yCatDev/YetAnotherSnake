@@ -6,6 +6,9 @@
     "projectPath": "Y:\\YetAnotherSnake\\YetAnotherSnake\\YetAnotherSnake.csproj",
     "outputPath": "Y:\\YetAnotherSnake\\YetAnotherSnake\\obj\\",
     "projectStyle": "PackageReference",
+    "fallbackFolders": [
+      "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+    ],
     "originalTargetFrameworks": [
       "netcoreapp3.1"
     ],

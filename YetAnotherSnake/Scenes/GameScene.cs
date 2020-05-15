@@ -57,7 +57,7 @@ namespace YetAnotherSnake.Scenes
             SetDesignResolution(Screen.MonitorWidth,Screen.MonitorHeight,SceneResolutionPolicy.ShowAll);
             Instance = this;
             
-            Console.WriteLine($"Connected {MyGame.GameInstance.GameClient.SnakeIds.Length} clients");
+            Console.WriteLine($"Connected {MyGame.GameInstance.GameClient.Snakes.Count} clients");
             width = 1280;
             height = 720;
             Camera.AddComponent(new CameraBounds(new Vector2(-width, -height),new Vector2(width, height)));
@@ -94,25 +94,24 @@ namespace YetAnotherSnake.Scenes
             var score = CreateEntity("scoreText");
             score.AddComponent<TextComponent>().AddComponent<ScoreDisplay>();
             
-            
-            for (var i = 0; i < MyGame.GameInstance.GameClient.SnakeIds.Length; i++)
+            foreach (var item in MyGame.GameInstance.GameClient.Snakes)
             {
-                var id = MyGame.GameInstance.GameClient.SnakeIds[i];
+                var id = item.Key;
                 
                 var snake = CreateEntity("SnakeHead" + id);
 
                 var s = AddSceneComponent(new Snake(id == MyGame.GameInstance.GameClient.Id, SnakeSize,
                     snake.Position,
                     new Vector2(10, 10)));
-                s.SnakeHead.Position = new Vector2(MyGame.GameInstance.GameClient.SnakePositions[i].Item1,
-                    MyGame.GameInstance.GameClient.SnakePositions[i].Item2);
+                s.SnakeHead.Position = item.Value.ToVector2();
                 Snakes.Add(id, s);
 
-                var p = MyGame.GameInstance.GameClient.FoodPositions[i];
-                FoodSpawner.CreateFood(new Vector2(p.Item1, p.Item2));
+                //var p = MyGame.GameInstance.GameClient.FoodPositions[i];
+                //FoodSpawner.CreateFood(new Vector2(p.Item1, p.Item2));
             }
 
             CreateUI();
+            _isReady = true;
         }
 
         public void Start()
@@ -121,10 +120,13 @@ namespace YetAnotherSnake.Scenes
         }
 
         private GamePacket _lastPacket;
-        
+        private bool _isReady = false;
+
+        /*
         public void ProcessData(int id, GamePacket data)
         {
             if (data == _lastPacket) return;
+            if (!_isReady) return;
             //Console.WriteLine($"Recived data from {id}");
             //if (!data.StartGame) return;
             if (Snakes.ContainsKey(id))
@@ -135,7 +137,7 @@ namespace YetAnotherSnake.Scenes
                         new Vector2(data.SnakeHeadPosition.Item1, data.SnakeHeadPosition.Item2), 10f);
                     
                 }
-                Console.WriteLine($"ID ({id}): {data.SnakeHeadPosition.Item1} {data.SnakeHeadPosition.Item2}");
+                //Console.WriteLine($"ID ({id}): {data.SnakeHeadPosition.Item1} {data.SnakeHeadPosition.Item2}");
                 //Console.WriteLine($"Recived packet from {id} to {MyGame.GameInstance.GameClient.Id}");
 
                 if (data.SpawnFood)
@@ -149,6 +151,7 @@ namespace YetAnotherSnake.Scenes
             _lastPacket = data;
             //MyGame.GameInstance.GameServer.SyncData(id,data);
         }
+        */
         
         #region UI
         

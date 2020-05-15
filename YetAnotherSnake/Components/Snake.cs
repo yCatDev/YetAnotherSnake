@@ -213,8 +213,12 @@ namespace YetAnotherSnake.Components
                     {
                         SnakeHead.GetComponent<GridModifier>().Impulse( 200);
                         IncSnake(5);
-                        //_score.IncScore();
-                        MyGame.GameInstance.AudioManager.PickUpSound.Play();
+                        if (_isReally)
+                        {
+                            _score.IncScore();
+                            MyGame.GameInstance.AudioManager.PickUpSound.Play();
+                        }
+
                         MyGame.GameInstance.GameClient.SpawnFood();
                         c.Destroy();
                     }
@@ -243,10 +247,11 @@ namespace YetAnotherSnake.Components
         /// </summary>
         public void Die()
         {
-            return;
+            //return;
             IsAlive = false;
-            _score.CheckHiScore();
-            MyGame.GameInstance.GameClient.Disconnect();
+            
+          
+            //MyGame.GameInstance.GameClient.Disconnect();
             //Create death-vectors
             _deathVectors = new List<Vector2>(_snakeParts.Count);
             for (int i = 0; i < _snakeParts.Count; i++)
@@ -257,9 +262,6 @@ namespace YetAnotherSnake.Components
                     dir = new Vector2(Random.Range(-1, 2),Random.Range(-1, 2))*Random.Range(20000, 35000);
                     
                 }
-
-                
-                
                 //Adding "trail" particle to bodies
                 var render = _snakeParts[i].GetComponent<SpriteRenderer>();
                 if (i > 0)
@@ -275,12 +277,16 @@ namespace YetAnotherSnake.Components
                 SnakeHead.RemoveComponent<SpriteRenderer>();
                 _deathVectors.Add(dir);
             }
-            MyGame.GameInstance.AudioManager.DeathSound.Play();
-            SnakeHead.AddComponent<CameraShake>().Shake(75, 1.5f);
 
-            MyGame.GameInstance.AudioManager.StopMusic();
-                      
-            Core.StartCoroutine(ReturnToMenu());
+            if (_isReally)
+            {
+                MyGame.GameInstance.AudioManager.DeathSound.Play();
+                SnakeHead.AddComponent<CameraShake>().Shake(75, 1.5f);
+
+                MyGame.GameInstance.AudioManager.StopMusic();
+                _score.CheckHiScore();
+                Core.StartCoroutine(ReturnToMenu());
+            }
         }
         
         
@@ -297,7 +303,7 @@ namespace YetAnotherSnake.Components
             e.AddComponent<BoxCollider>();
             _snakeParts.Add(e);
         }
-        
+
         /// <summary>
         /// Load menu scene
         /// </summary>
@@ -305,10 +311,16 @@ namespace YetAnotherSnake.Components
         private IEnumerator ReturnToMenu()
         {
             yield return Coroutine.WaitForSeconds(2);
-            
-            Core.StartSceneTransition(new FadeTransition(() => new MenuScene()));
+
+            Core.StartSceneTransition(new FadeTransition(() =>
+            {
+                MyGame.GameInstance.GameClient.Disconnect();
+                return new MenuScene();
+            }));
+
             Scene.RemovePostProcessor(MyGame.GameInstance.BloomPostProcessor);
             Scene.RemovePostProcessor(MyGame.GameInstance.VignettePostProcessor);
+           
             yield return null;
         }
         

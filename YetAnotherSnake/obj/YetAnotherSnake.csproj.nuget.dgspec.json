@@ -13,6 +13,9 @@
         "packagesPath": "C:\\Users\\ycatd\\.nuget\\packages\\",
         "outputPath": "Y:\\YetAnotherSnake\\Nez\\Nez.Portable\\obj\\Nez\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
         "configFilePaths": [
           "C:\\Users\\ycatd\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
@@ -73,6 +76,9 @@
         "packagesPath": "C:\\Users\\ycatd\\.nuget\\packages\\",
         "outputPath": "Y:\\YetAnotherSnake\\YetAnotherSnake\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
         "configFilePaths": [
           "C:\\Users\\ycatd\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],

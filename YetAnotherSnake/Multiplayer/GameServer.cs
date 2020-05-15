@@ -10,6 +10,7 @@ using Microsoft.Xna.Framework;
 using YetAnotherSnake.Components;
 using YetAnotherSnake.Scenes;
 using Random = Nez.Random;
+using Timer = System.Timers.Timer;
 
 namespace YetAnotherSnake.Multiplayer
 {
@@ -18,7 +19,7 @@ namespace YetAnotherSnake.Multiplayer
         private TcpListener _serverSocket;
         private TcpClient _clientSocket = default(TcpClient);
         private List<HandleClient> _handlers;
-
+        
         private string _address = "0.0.0.0";
         private int _connectionCount = 0;
 
@@ -80,46 +81,43 @@ namespace YetAnotherSnake.Multiplayer
         public void Disconnect(int id)
         {
             _connectionCount--;
-            _handlers.Remove(_handlers.FirstOrDefault(x => x.id == id));
+            var h = _handlers.FirstOrDefault(x => x.Id == id);
+            h?.Dispose();
+            _handlers.Remove(h);
             ConnectEvent?.Invoke();
         }
 
         public void StartGame()
         {
             isWorking = true;
-            var ids = new int[_connectionCount];
-            for (var j = 0; j < _connectionCount; j++)
-                ids[j] = _handlers[j].id;
 
             var possibleWidth = 1280;
             var possibleHeight = 720;
 
-            var sp = new List<(float, float)>();
-            var fp = new List<(float, float)>();
-            
-            for (int i = 0; i < ids.Length; i++)
+            var snakes = new Dictionary<int, NetworkVector>();
+
+            for (var i = 0; i < _connectionCount; i++)
             {
-                sp.Add((Random.Range(-possibleWidth, possibleWidth), Random.Range(-possibleHeight, possibleHeight)));
-                fp.Add((Random.Range(-possibleWidth, possibleWidth), Random.Range(-possibleHeight, possibleHeight)));
+                snakes.Add(_handlers[i].Id,
+                    new NetworkVector(Random.Range(-possibleWidth, possibleWidth),
+                        Random.Range(-possibleHeight, possibleHeight)));
             }
             
             for (var i = 0; i < _handlers.Count; i++)
             {
-                Console.WriteLine($"{_handlers[i].id} start");
-               
-                _handlers[i].SendDataToClient(new GamePacket()
+                Console.WriteLine($"{_handlers[i].Id} start");
+                var packet = new GamePacket();
+                packet.AddPacket(Protocol.Start, new StartGamePacket()
                 {
-                    ServiceData = true,
-                    idsToCreate = ids,
-                    Id = _handlers[i].id,
-                    StartGame = true,
-                    SnakePositions = sp.ToArray(),
-                    FoodPositions = fp.ToArray()
+                    GeneratedId = _handlers[i].Id,
+                    SnakePositions = snakes
                 });
+                
+                _handlers[i].SendDataToClient(packet);
             }
         }
 
-        public void SyncData(int id, GamePacket packet)
+        public void SyncData(GamePacket packet)
         {
             for (var i = 0; i < _handlers.Count; i++)
             {
@@ -139,72 +137,76 @@ namespace YetAnotherSnake.Multiplayer
     public class HandleClient : IDisposable
     {
         private TcpClient _clientSocket;
-        private Task _thread;
         private NetworkStream _networkStream;
-        private byte[] _bytesFrom = new byte[10025];
-        public int id = 0;
-        private bool _working = true;
-
+        
+        public int Id = 0;
+        
+        private GamePacket _writePacket;
+        private Timer _sendTimer;
+        private Task _readTask;
+        private byte[] _bytesFrom;
+        
         public HandleClient(TcpClient client, int id)
         {
             _clientSocket = client;
-            _thread = Task.Run(Process);
-            SendDataToClient(new GamePacket()
+
+            _writePacket = new GamePacket();
+            _readTask = Task.Run(ReceiveDataFromClient);
+            _sendTimer = new Timer()
             {
-                Id = id
-            });
-            this.id = id;
+                AutoReset = true,
+                Interval = 50
+            };
+            _sendTimer.Elapsed += (s, e) => SendDataToClient();
+            
+            this.Id = id;
         }
 
-        private void Process()
+        private void ReceiveDataFromClient()
         {
-            while (_working)
-            {
-                var data = GetDataFromClient();
-                    if (data == null) continue;
-                    if (data.Disconnect && !data.StartGame)
-                    {
-                        Console.WriteLine($"Disconnecting {id}");
-                        DisconnectClient();
-                    }
-
-                    if (data.Test)
-                        Console.WriteLine("Test");
-                    
-                    //Console.WriteLine("Got package");
-                    if (!data.ServiceData)
-                        MyGame.GameInstance.GameServer.SyncData(data.Id, data);
-            }
+            if (!_networkStream.DataAvailable) return;
+            
+            _networkStream.Read(_bytesFrom, 0, _bytesFrom.Length);
+            var readPacket = GamePacket.FromBytes(_bytesFrom);
+            if (readPacket.Contains(Protocol.Disconnect)) DisconnectClient();
+            MyGame.GameInstance.GameServer.SyncData(readPacket);
         }
 
+        
+
+        private void SendDataToClient()
+        {
+            if (_writePacket.IsEmpty()) return;
+            
+            _networkStream = _clientSocket.GetStream();
+
+            var sendBytes = _writePacket.ToBytes();
+            _networkStream.Write(sendBytes, 0, sendBytes.Length);
+            _networkStream.Flush();
+            _writePacket. Clear();
+        }
+        
         private void DisconnectClient()
         {
-            MyGame.GameInstance.GameServer.Disconnect(id);
+            MyGame.GameInstance.GameServer.Disconnect(Id);
             Dispose();
         }
 
-        private GamePacket GetDataFromClient()
-        {
-            if (_networkStream.DataAvailable) return null;
-            
-            _networkStream.Read(_bytesFrom, 0, _bytesFrom.Length);
-            return GamePacket.FromBytes(_bytesFrom);
-        }
+
 
         public void SendDataToClient(GamePacket packet)
         {
-            _networkStream = _clientSocket.GetStream();
-            
-            var sendBytes = GamePacket.GetBytes(packet);
-            _networkStream.Write(sendBytes, 0, sendBytes.Length);
-            _networkStream.Flush();
+            _writePacket.Assimilate(packet);
         }
+        
         
         
         public void Dispose()
         {
-            _working = false;
+            //_working = false;
             //_thread.Interrupt();
+            _sendTimer.Dispose();
+            _readTask.Dispose();
             _clientSocket?.Dispose();
         }
     }
