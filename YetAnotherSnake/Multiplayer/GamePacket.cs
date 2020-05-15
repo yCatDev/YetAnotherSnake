@@ -111,7 +111,7 @@ namespace YetAnotherSnake.Multiplayer
  
             memoryStream.Write(decompressed, 0, decompressed.Length);
             memoryStream.Seek(0, SeekOrigin.Begin);
- 
+            
             this._packets = (List<KeyValuePair<Protocol,IPacket>>) binaryFormatter.Deserialize(memoryStream);
         }
         

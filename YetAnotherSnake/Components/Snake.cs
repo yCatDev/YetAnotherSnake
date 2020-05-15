@@ -83,6 +83,7 @@ namespace YetAnotherSnake.Components
         private bool _isReally;
         public bool MoveLeft;
         public bool MoveRight;
+        private Vector2 _startSnakePosition;
 
         /// <summary>
         /// Create new snake
@@ -102,6 +103,7 @@ namespace YetAnotherSnake.Components
                 Console.WriteLine($"Snake from {MyGame.GameInstance.GameClient.Id} real");
             
             _startSnakeSize = startSnakeSize;
+            _startSnakePosition = startPosition;
             _snakeParts = new List<Entity>(1000);
             
             _leftArrow = new VirtualButton();
@@ -130,7 +132,7 @@ namespace YetAnotherSnake.Components
             for (int i = 0; i < _startSnakeSize; i++)
             {
                 var e =Scene.CreateEntity($"Snake{_snakeParts.Count}", 
-                    new Vector2(0, 0+(_bodySprite.Height/4*i)));
+                    new Vector2(0, 0));
                 e.AddComponent(new SpriteRenderer(_bodySprite));   
                 //Skip first 10 bodies to prevent false collisions
                 if (i > 10)
@@ -247,7 +249,7 @@ namespace YetAnotherSnake.Components
         /// </summary>
         public void Die()
         {
-            return;
+            //return;
             IsAlive = false;
             
           

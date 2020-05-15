@@ -19,7 +19,7 @@ namespace YetAnotherSnake.Scenes
         /// <summary>
         /// Default snake length 
         /// </summary>
-        private const int SnakeSize = 40;
+        private const int SnakeSize = 10;
         
         /// <summary>
         /// Background grid object
@@ -99,9 +99,12 @@ namespace YetAnotherSnake.Scenes
                 var id = item.Key;
                 
                 var snake = CreateEntity("SnakeHead" + id);
+                //snake.Position = item.Value.ToVector2();
                 Console.WriteLine($"Snake id: {id}, client id: {MyGame.GameInstance.GameClient.Id}");
-                var s = AddSceneComponent(new Snake(id == MyGame.GameInstance.GameClient.Id, SnakeSize,
-                    snake.Position,
+                var s = AddSceneComponent(new Snake(
+                    id == MyGame.GameInstance.GameClient.Id, 
+                    SnakeSize,
+                    item.Value.ToVector2(),
                     new Vector2(10, 10)));
                 s.SnakeHead.Position = item.Value.ToVector2();
                 Snakes.Add(id, s);

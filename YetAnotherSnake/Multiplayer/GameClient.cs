@@ -70,10 +70,16 @@ namespace YetAnotherSnake.Multiplayer
 
                 var inStream = new byte[10025];
                 _serverStream.Read(inStream, 0, inStream.Length);
-                _readPacket.FromBytes(inStream);
-
-
-                _readPacket.ProcessAll();
+                try
+                {
+                    _readPacket.FromBytes(inStream);
+                    _readPacket.ProcessAll();
+                }
+                catch
+                {
+                    Console.WriteLine("Error reading packet, skipping");
+                }
+                
             }
         }
         private void SendDataToServer()
@@ -114,7 +120,7 @@ namespace YetAnotherSnake.Multiplayer
            {
               ClientId = Id
            });
-           Thread.Sleep(100);
+           Thread.Sleep(200);
            Dispose();
            OnClient?.Invoke();
         }
