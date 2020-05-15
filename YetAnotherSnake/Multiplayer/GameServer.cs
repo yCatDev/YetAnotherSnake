@@ -174,7 +174,8 @@ namespace YetAnotherSnake.Multiplayer
                 if (!_networkStream.DataAvailable) continue;
 
                 _networkStream.Read(_bytesFrom, 0, _bytesFrom.Length);
-                var readPacket = GamePacket.FromBytes(_bytesFrom);
+                var readPacket = new GamePacket();
+                readPacket.FromBytes(_bytesFrom);
                 if (readPacket.Contains(Protocol.Disconnect))
                 {
                     DisconnectClient();

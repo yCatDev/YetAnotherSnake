@@ -70,7 +70,7 @@ namespace YetAnotherSnake.Multiplayer
 
                 var inStream = new byte[10025];
                 _serverStream.Read(inStream, 0, inStream.Length);
-                _readPacket = GamePacket.FromBytes(inStream);
+                _readPacket.FromBytes(inStream);
 
 
                 _readPacket.ProcessAll();
