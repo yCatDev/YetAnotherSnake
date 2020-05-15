@@ -48,7 +48,7 @@ namespace YetAnotherSnake.Multiplayer
 
             _serverSocket = new TcpListener(IPAddress.Any, 8888);
             _serverSocket.Start();
-            Console.WriteLine("Server start listening");
+            Console.WriteLine("[SERVER] Server started");
 
             _handlers = new List<HandleClient>();
             _serverThread = new Thread(ServerUpdate);
@@ -65,7 +65,7 @@ namespace YetAnotherSnake.Multiplayer
                     _clientSocket, idManager.GenerateNext()));
                 _connectionCount++;
                 ConnectEvent?.Invoke();
-                Console.WriteLine($"Connected client: {_connectionCount}");
+                Console.WriteLine($"[SERVER] Connected new client (index: {_connectionCount})");
             }
         }
 
@@ -76,6 +76,7 @@ namespace YetAnotherSnake.Multiplayer
             _clientSocket?.Dispose();
             _handlers.ForEach(x => x.Dispose());
             _handlers.Clear();
+            Console.WriteLine("[SERVER] Stopping...");
         }
 
         public void Disconnect(int id)
@@ -102,7 +103,7 @@ namespace YetAnotherSnake.Multiplayer
             
             for (var i = 0; i < _handlers.Count; i++)
             {
-                Console.WriteLine($"{_handlers[i].Id} start");
+                Console.WriteLine($"[SERVER] Starting game on client with ID: {_handlers[i].Id}");
                 var packet = new GamePacket();
                 packet.AddPacket(Protocol.Start, new StartGamePacket()
                 {

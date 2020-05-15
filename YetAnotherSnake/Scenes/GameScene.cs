@@ -57,7 +57,7 @@ namespace YetAnotherSnake.Scenes
             SetDesignResolution(Screen.MonitorWidth,Screen.MonitorHeight,SceneResolutionPolicy.ShowAll);
             Instance = this;
             
-            Console.WriteLine($"Connected {MyGame.GameInstance.GameClient.Snakes.Count} clients");
+            Console.WriteLine($"[CLIENT] Connected {MyGame.GameInstance.GameClient.Snakes.Count} inner clients");
             width = 1280;
             height = 720;
             Camera.AddComponent(new CameraBounds(new Vector2(-width, -height),new Vector2(width, height)));
@@ -100,7 +100,7 @@ namespace YetAnotherSnake.Scenes
                 
                 var snake = CreateEntity("SnakeHead" + id);
                 //snake.Position = item.Value.ToVector2();
-                Console.WriteLine($"Snake id: {id}, client id: {MyGame.GameInstance.GameClient.Id}");
+                Console.WriteLine($"[CLIENT] Create snake for client ({id}) on client ({MyGame.GameInstance.GameClient.Id})");
                 var direction = (Vector2.Zero - value.ToVector2());
                 direction.Normalize();
                 var s = AddSceneComponent(new Snake(

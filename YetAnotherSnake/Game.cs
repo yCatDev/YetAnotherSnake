@@ -64,7 +64,7 @@ namespace YetAnotherSnake
             EnableOrDisableCloseButton(false);
             GameServer = new GameServer();
             GameClient = new GameClient();
-            Console.WriteLine(TargetElapsedTime.TotalMilliseconds);
+            //Console.WriteLine(TargetElapsedTime.TotalMilliseconds);
            // TargetElapsedTime = TimeSpan.FromSeconds(1d / 30d);
             IsFixedTimeStep = true;
             //Console.WriteLine(TargetElapsedTime.TotalMilliseconds);

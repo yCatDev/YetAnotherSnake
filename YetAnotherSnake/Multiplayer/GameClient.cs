@@ -165,7 +165,7 @@ namespace YetAnotherSnake.Multiplayer
         public void Disconnect()
         {
            // _reading.Wait();
-           Console.WriteLine($"Disconnect {Id}");
+           Console.WriteLine($"[SERVER] Disconnect client ({Id})");
            _writePacket.AddPacket(Protocol.Disconnect, new DisconnectGamePacket()
            {
               ClientId = Id
@@ -178,7 +178,7 @@ namespace YetAnotherSnake.Multiplayer
         public void SpawnFood()
         {
             var foodPos = MyGame.CreateRandomPositionInWindowSpace().ToNetworkVector();
-            Console.WriteLine($"Spawn food from {Id}");
+            Console.WriteLine($"[SERVER] Spawn food due to client ({Id})");
             _writePacket.AddPacket(Protocol.SpawnFood, new SpawnFoodPacket()
             {
                 ClientId = Id,
@@ -188,7 +188,7 @@ namespace YetAnotherSnake.Multiplayer
         
         public void SetPaused(bool paused)
         {
-            Console.WriteLine($"Client {Id} set pause to {paused}");
+            Console.WriteLine($"[CLIENT] Client ({Id}) set pause to {paused}");
             _writePacket.AddPacket(Protocol.Pause, new PauseGamePacket()
             {
                 PauseState = paused

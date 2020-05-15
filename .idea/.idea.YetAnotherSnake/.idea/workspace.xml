@@ -21,10 +21,11 @@
   <component name="ChangeListManager">
     <list default="true" id="8c3d319f-f824-433f-8414-570341c89373" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.YetAnotherSnake/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.YetAnotherSnake/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/YetAnotherSnake/Components/Snake.cs" beforeDir="false" afterPath="$PROJECT_DIR$/YetAnotherSnake/Components/Snake.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/YetAnotherSnake/Game.cs" beforeDir="false" afterPath="$PROJECT_DIR$/YetAnotherSnake/Game.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/YetAnotherSnake/Multiplayer/GameClient.cs" beforeDir="false" afterPath="$PROJECT_DIR$/YetAnotherSnake/Multiplayer/GameClient.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/YetAnotherSnake/Multiplayer/GamePacket.cs" beforeDir="false" afterPath="$PROJECT_DIR$/YetAnotherSnake/Multiplayer/GamePacket.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/YetAnotherSnake/Multiplayer/GameServer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/YetAnotherSnake/Multiplayer/GameServer.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/YetAnotherSnake/Scenes/GameScene.cs" beforeDir="false" afterPath="$PROJECT_DIR$/YetAnotherSnake/Scenes/GameScene.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/YetAnotherSnake/bin/Debug/netcoreapp3.1/YetAnotherSnake.dll" beforeDir="false" afterPath="$PROJECT_DIR$/YetAnotherSnake/bin/Debug/netcoreapp3.1/YetAnotherSnake.dll" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/YetAnotherSnake/bin/Debug/netcoreapp3.1/YetAnotherSnake.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/YetAnotherSnake/bin/Debug/netcoreapp3.1/YetAnotherSnake.pdb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/YetAnotherSnake/obj/Debug/netcoreapp3.1/YetAnotherSnake.dll" beforeDir="false" afterPath="$PROJECT_DIR$/YetAnotherSnake/obj/Debug/netcoreapp3.1/YetAnotherSnake.dll" afterDir="false" />
@@ -40,6 +41,43 @@
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/Nez/Nez.Portable/Utils/BitSet.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/EC5D8DF9-3472-442C-9F9D-18E9177D0A3C/5d/a27e413f/Vector2.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Nez/Nez.Portable/Graphics/Effects/EffectResource.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Nez/Nez.Portable/Graphics/Batcher/Batcher.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/EC5D8DF9-3472-442C-9F9D-18E9177D0A3C/08/7e1ca374/SdlGamePlatform.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Nez/Nez.Portable/Assets/Tiled/Runtime/TiledMapLoader.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Nez/Nez.Portable/Utils/Collections/FastList.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Nez/Nez.Portable/Utils/Extensions/Vector2Ext.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Nez/Nez.Portable/Debug/Inspector/Inspectors/Vector2Inspector.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Nez/Nez.Portable/Assets/BitmapFonts/BMFontConverter.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Nez/Nez.Portable/Utils/Extensions/SpriteBatchExt.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Nez/Nez.Portable/Utils/Extensions/IEnumerableExt.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Nez/Nez.Portable/Debug/Inspector/Inspectors/ColorInspector.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Nez/Nez.Portable/Utils/Extensions/GameServiceContainerExt.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Nez/Nez.Portable/Utils/Extensions/ComponentExt.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Nez/Nez.Portable/Utils/Coroutines/CoroutineManager.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Nez/Nez.Portable/Debug/Insist.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Nez/Nez.Portable/Utils/Coroutines/Coroutine.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Nez/Nez.Portable/Physics/Verlet/Constraints/DistanceConstraint.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Nez/Nez.Portable/Utils/Analysis/TimeRuler.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/8E8AC665-0807-420D-AFED-C676272708A2/E/Timer.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Nez/Nez.Portable/Utils/Tweens/Tween.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Nez/Nez.Portable/Physics/Verlet/Composites/Cloth.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Nez/Nez.Portable/Math/Matrix2D.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Nez/Nez.Portable/Math/Mathf.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Nez/Nez.Portable/Math/Bezier.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Nez/Nez.Portable/Utils/Tweens/AbstractTweenable.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Nez/Nez.Portable/Physics/Shapes/ShapeCollisions/ShapeCollisionsLine.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Nez/Nez.Portable/Utils/Timers/TimerManager.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Nez/Nez.Portable/Utils/Fonts/NezSpriteFont.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/C33AFD71-6EE0-4892-B8AD-69B81D88AE1C/5d/846fec34/Action`2.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Nez/Nez.Portable/UI/Utils/Selection.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Nez/Nez.Portable/Physics/SpatialHash.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Nez/Nez.Portable/Physics/RaycastHit.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/YetAnotherSnake/Content/uiskin.json" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/YetAnotherSnake/Content/Content.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/9866B98A-9EF4-4ED2-AE88-85257EFA417D/26/TCPListener.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Nez/Nez.Portable/UI/Stage.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/9866B98A-9EF4-4ED2-AE88-85257EFA417D/1F/Socket.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Nez/Nez.Portable/Core.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/YetAnotherSnake/Multiplayer/GameClient.cs" root0="FORCE_HIGHLIGHTING" />
@@ -51,7 +89,6 @@
     <setting file="file://$PROJECT_DIR$/YetAnotherSnake/UI/UIAnimations.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/YetAnotherSnake/UI/GameUI.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/C33AFD71-6EE0-4892-B8AD-69B81D88AE1C/13B/Thread.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/EC5D8DF9-3472-442C-9F9D-18E9177D0A3C/5d/a27e413f/Vector2.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/EC5D8DF9-3472-442C-9F9D-18E9177D0A3C/6c/39eaba81/Game.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/YetAnotherSnake/AudioManager.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/YetAnotherSnake/Utils.cs" root0="FORCE_HIGHLIGHTING" />
@@ -60,8 +97,6 @@
     <setting file="file://$PROJECT_DIR$/YetAnotherSnake/Multiplayer/GamePacket.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/YetAnotherSnake/Program.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/YetAnotherSnake/SaveFile.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Nez/Nez.Portable/Graphics/Batcher/Batcher.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/EC5D8DF9-3472-442C-9F9D-18E9177D0A3C/08/7e1ca374/SdlGamePlatform.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/9866B98A-9EF4-4ED2-AE88-85257EFA417D/1B/NetworkStream.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/C33AFD71-6EE0-4892-B8AD-69B81D88AE1C/1E0/ExceptionDispatchInfo.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/C33AFD71-6EE0-4892-B8AD-69B81D88AE1C/13A/Thread.CoreCLR.cs" root0="SKIP_HIGHLIGHTING" />
@@ -69,46 +104,40 @@
     <setting file="file://$PROJECT_DIR$/Nez/Nez.Portable/UI/Widgets/TextField.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/C33AFD71-6EE0-4892-B8AD-69B81D88AE1C/14E/ExecutionContext.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Nez/Nez.Portable/ECS/InternalUtils/ComponentList.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Nez/Nez.Portable/Assets/Tiled/Runtime/TiledMapLoader.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Nez/Nez.Portable/Graphics/SVG/Shapes/Paths/SvgPathSegments.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Nez/Nez.Portable/Graphics/SVG/Shapes/Paths/SvgPathParser.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/C33AFD71-6EE0-4892-B8AD-69B81D88AE1C/3DC/List.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Nez/Nez.Portable/Utils/Collections/FastList.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Nez/Nez.Portable/Graphics/SVG/Shapes/Paths/FauxGraphicsPath.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/4F96F694-DCB9-40E0-8F49-F304D01ACF66/1F/Lookup.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Nez/Nez.Portable/ECS/Systems/EntityProcessingSystem.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Nez/Nez.Portable/Utils/Extensions/Vector2Ext.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Nez/Nez.Portable/Utils/Tweens/Interfaces/ITweenTarget.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/C33AFD71-6EE0-4892-B8AD-69B81D88AE1C/3D9/KeyValuePair.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Nez/Nez.Portable/Assets/BitmapFonts/BMFontConverter.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Nez/Nez.Portable/Utils/Tweens/Interfaces/ITweenControl.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Nez/Nez.Portable/Utils/Extensions/SpriteBatchExt.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/C33AFD71-6EE0-4892-B8AD-69B81D88AE1C/388/DebugProvider.Windows.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Nez/Nez.Portable/Utils/Tweens/Interfaces/ITweenable.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Nez/Nez.Portable/Utils/Tweens/Interfaces/ITween.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Nez/Nez.Portable/Utils/Tweens/Easing/Lerps.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/YetAnotherSnake/Components/MenuGrid.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/YetAnotherSnake/Components/SnakeFood.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Nez/Nez.Portable/Utils/Tweens/Easing/EaseType.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/YetAnotherSnake/Components/GridModifier.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/YetAnotherSnake/Components/ScoreDisplay.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/YetAnotherSnake/Components/Snake.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/YetAnotherSnake/Components/FoodSpawner.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/YetAnotherSnake/Components/CameraBounds.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Nez/Nez.Portable/Utils/Extensions/ComponentExt.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Nez/Nez.Portable/Utils/Coroutines/CoroutineManager.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Nez/Nez.Portable/Debug/Insist.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Nez/Nez.Portable/Utils/Coroutines/Coroutine.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Nez/Nez.Portable/Utils/Analysis/TimeRuler.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/8E8AC665-0807-420D-AFED-C676272708A2/E/Timer.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Nez/Nez.Portable/Utils/Tweens/Tween.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Nez/Nez.Portable/Input/TouchInput.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Nez/Nez.Portable/Input/Input.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Nez/Nez.Portable/Input/GamePadData.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/YetAnotherSnake/obj/project.assets.json" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Nez/Nez.Portable/Utils/Timers/TimerManager.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Nez/Nez.Portable/Utils/Fonts/NezSpriteFont.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/C33AFD71-6EE0-4892-B8AD-69B81D88AE1C/5d/846fec34/Action`2.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Nez/Nez.Portable/Graphics/DeferredLighting/DeferredLightingRenderer.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Nez/Nez.Portable/Utils/Time.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Nez/Nez.Portable/Utils/Screen.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/C33AFD71-6EE0-4892-B8AD-69B81D88AE1C/D3/ThrowHelper.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Nez/Nez.Portable/Graphics/Transitions/SceneTransition.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Nez/Nez.Portable/Utils/ReflectionUtils.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Nez/Nez.Portable/Utils/MonoGameCompat.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Nez/Nez.Portable/Physics/RaycastHit.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/C33AFD71-6EE0-4892-B8AD-69B81D88AE1C/16B/Task.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/YetAnotherSnake/Content/uiskin.json" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/YetAnotherSnake/Content/Content.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/9866B98A-9EF4-4ED2-AE88-85257EFA417D/26/TCPListener.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Nez/Nez.Portable/Utils/Emitter.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
@@ -156,14 +185,14 @@
         <option value="$PROJECT_DIR$/YetAnotherSnake/Scenes/BlankScene.cs" />
         <option value="$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/EC5D8DF9-3472-442C-9F9D-18E9177D0A3C/5d/a27e413f/Vector2.cs" />
         <option value="$PROJECT_DIR$/YetAnotherSnake/Components/FoodSpawner.cs" />
-        <option value="$PROJECT_DIR$/YetAnotherSnake/Components/Snake.cs" />
         <option value="$PROJECT_DIR$/YetAnotherSnake/UI/GameUI.cs" />
-        <option value="$PROJECT_DIR$/YetAnotherSnake/Scenes/GameScene.cs" />
         <option value="$PROJECT_DIR$/YetAnotherSnake/Scenes/MenuScene.cs" />
-        <option value="$PROJECT_DIR$/YetAnotherSnake/Game.cs" />
         <option value="$PROJECT_DIR$/YetAnotherSnake/Multiplayer/GamePacket.cs" />
-        <option value="$PROJECT_DIR$/YetAnotherSnake/Multiplayer/GameServer.cs" />
+        <option value="$PROJECT_DIR$/YetAnotherSnake/Scenes/GameScene.cs" />
+        <option value="$PROJECT_DIR$/YetAnotherSnake/Components/Snake.cs" />
         <option value="$PROJECT_DIR$/YetAnotherSnake/Multiplayer/GameClient.cs" />
+        <option value="$PROJECT_DIR$/YetAnotherSnake/Game.cs" />
+        <option value="$PROJECT_DIR$/YetAnotherSnake/Multiplayer/GameServer.cs" />
       </list>
     </option>
   </component>
@@ -221,7 +250,7 @@
       <workItem from="1587323215821" duration="3771000" />
       <workItem from="1589256721978" duration="94665000" />
       <workItem from="1589445264004" duration="8251000" />
-      <workItem from="1589531760448" duration="23560000" />
+      <workItem from="1589531760448" duration="25139000" />
     </task>
     <servers />
   </component>
@@ -258,26 +287,26 @@
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
     <state x="865" y="293" key="#xdebugger.XInspectDialog/0.0.1920.1080@0.0.1920.1080" timestamp="1589389349512" />
-    <state width="1877" height="295" key="GridCell.Tab.0.bottom" timestamp="1589556653457">
+    <state width="1877" height="295" key="GridCell.Tab.0.bottom" timestamp="1589558446993">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
     <state width="1877" height="195" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1587389666299" />
-    <state width="1877" height="295" key="GridCell.Tab.0.bottom/0.0.1920.1080@0.0.1920.1080" timestamp="1589556653457" />
-    <state width="1877" height="295" key="GridCell.Tab.0.center" timestamp="1589556653457">
+    <state width="1877" height="295" key="GridCell.Tab.0.bottom/0.0.1920.1080@0.0.1920.1080" timestamp="1589558446993" />
+    <state width="1877" height="295" key="GridCell.Tab.0.center" timestamp="1589558446993">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
     <state width="1877" height="195" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1587389666299" />
-    <state width="1877" height="295" key="GridCell.Tab.0.center/0.0.1920.1080@0.0.1920.1080" timestamp="1589556653457" />
-    <state width="1877" height="295" key="GridCell.Tab.0.left" timestamp="1589556653457">
+    <state width="1877" height="295" key="GridCell.Tab.0.center/0.0.1920.1080@0.0.1920.1080" timestamp="1589558446993" />
+    <state width="1877" height="295" key="GridCell.Tab.0.left" timestamp="1589558446993">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
     <state width="1877" height="195" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1587389666299" />
-    <state width="1877" height="295" key="GridCell.Tab.0.left/0.0.1920.1080@0.0.1920.1080" timestamp="1589556653457" />
-    <state width="1877" height="295" key="GridCell.Tab.0.right" timestamp="1589556653457">
+    <state width="1877" height="295" key="GridCell.Tab.0.left/0.0.1920.1080@0.0.1920.1080" timestamp="1589558446993" />
+    <state width="1877" height="295" key="GridCell.Tab.0.right" timestamp="1589558446993">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
     <state width="1877" height="195" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1587389666299" />
-    <state width="1877" height="295" key="GridCell.Tab.0.right/0.0.1920.1080@0.0.1920.1080" timestamp="1589556653457" />
+    <state width="1877" height="295" key="GridCell.Tab.0.right/0.0.1920.1080@0.0.1920.1080" timestamp="1589558446993" />
     <state width="1877" height="363" key="GridCell.Tab.1.bottom" timestamp="1589555547348">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
@@ -380,11 +409,11 @@
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
     <state x="514" y="269" key="com.intellij.xdebugger.impl.breakpoints.ui.BreakpointsDialogFactory$2/0.0.1920.1080@0.0.1920.1080" timestamp="1589372743643" />
-    <state x="638" y="262" width="647" height="557" key="find.popup" timestamp="1589554034634">
+    <state x="638" y="262" width="647" height="557" key="find.popup" timestamp="1589558420509">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
     <state x="638" y="252" width="647" height="536" key="find.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1586570650396" />
-    <state x="638" y="262" width="647" height="557" key="find.popup/0.0.1920.1080@0.0.1920.1080" timestamp="1589554034634" />
+    <state x="638" y="262" width="647" height="557" key="find.popup/0.0.1920.1080@0.0.1920.1080" timestamp="1589558420509" />
     <state x="616" y="249" key="run.anything.popup" timestamp="1589547819071">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>

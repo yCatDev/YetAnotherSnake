@@ -100,7 +100,7 @@ namespace YetAnotherSnake.Components
             IsReally = real;
 
             if (IsReally)
-                Console.WriteLine($"Snake from {MyGame.GameInstance.GameClient.Id} real");
+                Console.WriteLine($"[CLIENT] Create snake is controllable for client ({MyGame.GameInstance.GameClient.Id})");
             
             _startSnakeSize = startSnakeSize;
             _startSnakePosition = startPosition;
