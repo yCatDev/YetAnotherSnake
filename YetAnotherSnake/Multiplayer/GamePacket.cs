@@ -64,8 +64,10 @@ namespace YetAnotherSnake.Multiplayer
                 case Protocol.Pause:
                     OnPauseReceived?.Invoke((PauseGamePacket) pair.Value);
                     break;
+                case Protocol.None:
+                    return;
                 default:
-                    throw new ArgumentOutOfRangeException();
+                    return;
             }
 
             _counter++;
