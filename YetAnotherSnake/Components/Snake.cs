@@ -349,7 +349,7 @@ namespace YetAnotherSnake.Components
 
         public void SetMarkerPosition(Vector2 position)
         {
-            SnakeHead.Position = position;
+            SnakeHead.Position = Vector2.Lerp(SnakeHead.Position, position, 0.75f);
         }
     }
 }
