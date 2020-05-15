@@ -54,7 +54,7 @@ namespace YetAnotherSnake.Multiplayer
             _readPacket.OnPauseReceived += ReadPacketOnOnPauseReceived;
             _readPacket.OnMoveSnakeReceived += ReadPacketOnOnMoveSnakeReceived;
             
-            _writeTimer = new Timer {Interval = 50, AutoReset = true};
+            _writeTimer = new Timer {Interval = 10, AutoReset = true};
             _writeTimer.Elapsed += (sender, args) => SendDataToServer();
             _writeTimer.Start();
 
@@ -66,7 +66,7 @@ namespace YetAnotherSnake.Multiplayer
 
         private void ReadPacketOnOnMoveSnakeReceived(MoveSnakePacket received)
         {
-            GameScene.Instance.SetSnakePosition(received.ClientId, received.SnakeMarkerPosition);
+            GameScene.Instance.SetSnakePosition(received.ClientId, received.SnakeMarkerPosition, received.SyncDelta);
         }
 
         private void ReadPacketOnOnPauseReceived(PauseGamePacket received)
@@ -141,7 +141,8 @@ namespace YetAnotherSnake.Multiplayer
             _writePacket.AddPacket(Protocol.MoveSnake, new MoveSnakePacket()
             {
                 ClientId = Id,
-                SnakeMarkerPosition = position.ToNetworkVector()
+                SnakeMarkerPosition = position.ToNetworkVector(),
+                SyncDelta = Time.DeltaTime
             });
         }
 

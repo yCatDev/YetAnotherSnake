@@ -154,7 +154,7 @@ namespace YetAnotherSnake.Multiplayer
             _sendTimer = new Timer()
             {
                 AutoReset = true,
-                Interval = 50
+                Interval = 10
             };
             _sendTimer.Elapsed += (s, e) => SendDataToClient();
             _sendTimer.Start();

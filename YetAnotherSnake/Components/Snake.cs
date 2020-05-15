@@ -176,14 +176,14 @@ namespace YetAnotherSnake.Components
                         Marker.Position = Utils.RotateAboutOrigin(Marker.Position, Marker.Parent.Position, -0.1f);
                     if (_rightArrow.IsDown)
                         Marker.Position = Utils.RotateAboutOrigin(Marker.Position, Marker.Parent.Position, 0.1f);
-
                     
+                    //Moving snake head
+                    SnakeHead.Position = Utils.Move(SnakeHead.Position, Marker.Position, _step * 10);
+                    SnakeHead.Position = Utils.Move(SnakeHead.Position, Marker.Position, _step);
+                    MyGame.GameInstance.GameClient.SendSnakePosition(SnakeHead.Position);
+
                 }
                 
-                //Moving snake head
-                SnakeHead.Position = Utils.Move(SnakeHead.Position, Marker.Position, _step * 10);
-                SnakeHead.Position = Utils.Move(SnakeHead.Position, Marker.Position, _step);
-                MyGame.GameInstance.GameClient.SendSnakePosition(SnakeHead.Position);
 
                 for (int i = _snakeParts.Count - 1; i > 0; i--)
                 {
@@ -347,9 +347,9 @@ namespace YetAnotherSnake.Components
         }
 
 
-        public void SetMarkerPosition(Vector2 position)
+        public void SetMarkerPosition(Vector2 position, float delta)
         {
-            SnakeHead.Position = Vector2.Lerp(SnakeHead.Position, position, 0.75f);
+            SnakeHead.Position = Utils.Move(SnakeHead.Position, position, delta);
         }
     }
 }

@@ -202,6 +202,7 @@ namespace YetAnotherSnake.Multiplayer
     {
         public int ClientId { get; set; }
         public NetworkVector SnakeMarkerPosition;
+        public float SyncDelta;
     }
 
     [Serializable]
