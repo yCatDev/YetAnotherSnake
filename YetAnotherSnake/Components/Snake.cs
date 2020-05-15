@@ -349,7 +349,8 @@ namespace YetAnotherSnake.Components
 
         public void SetMarkerPosition(Vector2 position, float delta)
         {
-            SnakeHead.Position = Utils.Move(SnakeHead.Position, position, delta);
+            var speed = Math.Max(delta, Time.DeltaTime);
+            SnakeHead.Position = Utils.Move(SnakeHead.Position, position, 1);
         }
     }
 }

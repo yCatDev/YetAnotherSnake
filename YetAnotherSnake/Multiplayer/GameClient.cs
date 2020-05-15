@@ -79,7 +79,8 @@ namespace YetAnotherSnake.Multiplayer
 
         private void ReadPacketOnOnSpawnFoodReceived(SpawnFoodPacket received)
         {
-            GameScene.Instance.FoodSpawner.CreateFood(received.NextFoodPosition.ToVector2());
+            if (received.ClientId!=Id)
+                GameScene.Instance.FoodSpawner.CreateFood(received.NextFoodPosition.ToVector2());
         }
 
         private void ReceivePacketFromServer()
@@ -167,6 +168,7 @@ namespace YetAnotherSnake.Multiplayer
             Console.WriteLine($"Spawn food from {Id}");
             _writePacket.AddPacket(Protocol.SpawnFood, new SpawnFoodPacket()
             {
+                ClientId = Id,
                 NextFoodPosition = foodPos
             });
         }
