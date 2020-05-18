@@ -245,10 +245,19 @@ namespace YetAnotherSnake.Scenes
             table.SetFillParent(true);
             _uiHelper.CreateTitleLabel(table, "Yet another snake");
             table.Row();
-            _uiHelper.CreateRegularLabel(table, $"High score: {MyGame.GameInstance.SaveSystem.SaveFile.Score}");
-            _uiHelper.CreateVerticalIndent(table, 200);
+            _uiHelper.CreateRegularLabel(table, 
+                $"High score").SetScale(0.5f);
             table.Row();
-
+    
+            table.Row();
+            _uiHelper.CreateRegularLabel(table,
+                $"Classic: {MyGame.GameInstance.SaveSystem.SaveFile.ClassicScore}", 0.5f);
+            table.Row();
+            _uiHelper.CreateRegularLabel(table,
+                $"Time Attack: {MyGame.GameInstance.SaveSystem.SaveFile.TimeAttackScore}",0.5f);
+            table.Row();
+            _uiHelper.CreateVerticalIndent(table, 50);
+            table.Row();
             _uiHelper.CreateBtn(table, "Play", button =>
             {
                 Core.StartCoroutine(UIAnimations.MoveToY(_rootTable, Screen.MonitorHeight));

@@ -18,7 +18,9 @@ namespace YetAnotherSnake
         /// <summary>
         /// High score
         /// </summary>
-        public int Score { get; set; } = 0;
+        public int ClassicScore { get; set; } = 0;
+
+        public int TimeAttackScore { get; set; } = 0;
 
         /// <summary>
         /// Fullscreen mode
@@ -28,12 +30,12 @@ namespace YetAnotherSnake
         /// <summary>
         /// Enable vignette post-processing 
         /// </summary>
-        public bool IsVignette { get; set; } = true;
+        public bool IsVignette { get; set; } = false;
 
         /// <summary>
         /// Enable bloom post-processing 
         /// </summary>
-        public bool IsBloom { get; set; } = true;
+        public bool IsBloom { get; set; } = false;
     }
 
     /// <summary>

@@ -22,6 +22,13 @@ namespace YetAnotherSnake.Components
         /// </summary>
         private int _score = 0, _hiscore;
 
+        private bool _classicMode;
+
+        public ScoreDisplay(bool classicMode)
+        {
+            _classicMode = classicMode;
+        }
+        
         public override void OnAddedToEntity()
         {
             base.OnAddedToEntity();
@@ -32,7 +39,13 @@ namespace YetAnotherSnake.Components
             _text.SetText("Score: 0");
             Entity.Scale *= 0.75f;
             _camera = Entity.Scene.Camera;
-            _hiscore = MyGame.GameInstance.SaveSystem.SaveFile.Score;
+            
+            if (_classicMode)
+                _hiscore = MyGame.GameInstance.SaveSystem.SaveFile.ClassicScore;
+            else
+            {
+                _hiscore = MyGame.GameInstance.SaveSystem.SaveFile.TimeAttackScore;
+            }
         }
 
         public void Update()
@@ -58,7 +71,10 @@ namespace YetAnotherSnake.Components
         {
             if (_score > _hiscore)
             {
-                MyGame.GameInstance.SaveSystem.SaveFile.Score = _score;
+                if (_classicMode)
+                    MyGame.GameInstance.SaveSystem.SaveFile.ClassicScore = _score;
+                else 
+                    MyGame.GameInstance.SaveSystem.SaveFile.TimeAttackScore = _score;
                 MyGame.GameInstance.SaveSystem.SaveChanges();
             }
         }

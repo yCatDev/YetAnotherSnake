@@ -112,12 +112,13 @@ namespace YetAnotherSnake
         /// <param name="t">Target table</param>
         /// <param name="text">Text</param>
         /// <returns>Element</returns>
-        public Label CreateRegularLabel(Table t, string text)
+        public Label CreateRegularLabel(Table t, string text, float fontScale = 1)
         {
             var label = new Label(text,
                 _skin.Skin.Get<LabelStyle>("label"));
+            label.SetFontScale(fontScale);
             t.Add(label);
-
+            
             return label;
         }
 
