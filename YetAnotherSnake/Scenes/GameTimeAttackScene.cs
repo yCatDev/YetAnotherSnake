@@ -14,7 +14,7 @@ using YetAnotherSnake.UI;
 
 namespace YetAnotherSnake.Scenes
 {
-    public class GameClassicScene: Scene, INetworkScene
+    public class GameTimeAttackScene: Scene,INetworkScene
     {
         /// <summary>
         /// Default snake length 
@@ -26,7 +26,7 @@ namespace YetAnotherSnake.Scenes
         /// </summary>
         private Entity _gridEntity;
 
-        public static GameClassicScene Instance;
+        public static GameTimeAttackScene Instance;
 
         public Dictionary<int, Snake> Snakes { get; private set; }
         
@@ -127,8 +127,8 @@ namespace YetAnotherSnake.Scenes
         {
             _started = true;
         }
-
-
+        
+        
         #region UI
         
         private void CreateUI()
@@ -323,7 +323,7 @@ namespace YetAnotherSnake.Scenes
             
         }
 
-  
+       
 
         public void SetSnakePosition(int id,NetworkVector receivedSnakeMarkerPosition, float delta)
         {

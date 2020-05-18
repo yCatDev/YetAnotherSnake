@@ -124,18 +124,6 @@ namespace YetAnotherSnake.Multiplayer
             this._packets = (List<KeyValuePair<Protocol,IPacket>>) binaryFormatter.Deserialize(memoryStream);
         }
         
-        /*public static GamePacket FromBytes(byte[] arrBytes)
-        {
-            using var memoryStream = new MemoryStream();
-            var binaryFormatter = new BinaryFormatter();               
-            var decompressed = Decompress(arrBytes);
- 
-            memoryStream.Write(decompressed, 0, decompressed.Length);
-            memoryStream.Seek(0, SeekOrigin.Begin);
- 
-            return (GamePacket) binaryFormatter.Deserialize(memoryStream);
-        }*/
-
         private static byte[] Compress(byte[] input)
         {
             byte[] compressesData;
@@ -183,6 +171,7 @@ namespace YetAnotherSnake.Multiplayer
         public int GeneratedId;
         public Dictionary<int, NetworkVector> SnakePositions;
         public float TargetFrameRate;
+        public bool Classic = false;
 
         public StartGamePacket()
         {

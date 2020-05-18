@@ -20,22 +20,17 @@ namespace YetAnotherSnake.Multiplayer
 
         public bool Connected = false, GameStarted;
 
-        public float PossibleWidth, PossibleHeight;
-        
-        //private Task<int> _reading; 
-        
         public delegate void ClientChanged();
         public Dictionary<int, NetworkVector> Snakes { get; private set; }
-        
         
         private Timer _writeTimer;
         private Thread _readTask;
         
         public event ClientChanged OnClient;
-
         private GamePacket _writePacket, _readPacket;
-        
 
+        private INetworkScene _currnetScene;
+        
         public int Id { get; private set; }
 
         public bool InitClient(string address, int port)
@@ -79,22 +74,22 @@ namespace YetAnotherSnake.Multiplayer
         private void ReadPacketOnOnMoveSnakeReceived(MoveSnakePacket received)
         {
             if (received.ClientId!=Id)
-                GameScene.Instance.SetSnakePosition(received.ClientId, received.SnakeMarkerPosition, received.SyncDelta);
+               _currnetScene.SetSnakePosition(received.ClientId, received.SnakeMarkerPosition, received.SyncDelta);
         }
 
         private void ReadPacketOnOnPauseReceived(PauseGamePacket received)
         {
             if (received.PauseState)
-                GameScene.Instance.Pause();
+                _currnetScene.Pause();
             else
-                GameScene.Instance.UnPause();
+                _currnetScene.UnPause();
         }
 
         private void ReadPacketOnOnSpawnFoodReceived(SpawnFoodPacket received)
         {
             //if (received.ClientId!=Id)
-            if (GameScene.Instance.IsReady)
-                GameScene.Instance.FoodSpawner.CreateFood(received.NextFoodPosition.ToVector2());
+            if (_currnetScene.IsReady)
+                _currnetScene.CreateFood(received.NextFoodPosition.ToVector2(), Vector2.Zero);
         }
 
         private void ReceivePacketFromServer()
@@ -142,11 +137,24 @@ namespace YetAnotherSnake.Multiplayer
             /*if (packet.TargetFrameRate > MyGame.GameInstance.TargetFrameRate.TotalMilliseconds)
                 MyGame.GameInstance.TargetFrameRate = TimeSpan.FromMilliseconds(packet.TargetFrameRate);*/
             //MyGame.GameInstance.TargetFrameRate = TimeSpan.FromSeconds(1d / 30d);
-            Core.StartSceneTransition(new FadeTransition(() =>
+            if (packet.Classic)
             {
-                var target = new GameScene();
-                return target;
-            }));
+                Core.StartSceneTransition(new FadeTransition(() =>
+                {
+                    var target = new GameClassicScene();
+                    _currnetScene = target;
+                    return target;
+                }));
+            }
+            else
+            {
+                Core.StartSceneTransition(new FadeTransition(() =>
+                {
+                    var target = new GameTimeAttackScene();
+                    _currnetScene = target;
+                    return target;
+                }));
+            }
 
         }
 

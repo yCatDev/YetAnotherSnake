@@ -20,6 +20,8 @@ namespace YetAnotherSnake.Scenes
         private Table _rootTable, _tableMain, _tableSettings, _tableHowToPlay, _tableMultipayer, _tableMultipayerServer,
             _tableMultipayerClient;
 
+        private Table _tablePlayMode;
+
         public static MenuScene Instance { get; set; }
 
 
@@ -63,16 +65,19 @@ namespace YetAnotherSnake.Scenes
             _uiHelper = new GameUIHelper(Content);
 
             _tableMain = InitMainMenu();
+            _tablePlayMode = InitPlayModeMenu();
             _tableHowToPlay = InitHowToPlayMenu();
             _tableSettings = InitSettingsMenu();
             
             _tableMultipayer = InitMultiplayerMenu();
             _tableMultipayerClient = InitMultiplayerClientMenu();
             _tableMultipayerServer = InitMultiplayerServerMenu();
+            
 
             _rootTable.Pack();
 
             _tableMain.SetPosition(Screen.MonitorWidth / 2f, Screen.MonitorHeight / 2f);
+            _tablePlayMode.SetPosition(Screen.MonitorWidth / 2f, -Screen.MonitorHeight/2f);
             _tableHowToPlay.SetPosition(-Screen.MonitorWidth / 2f, Screen.MonitorHeight / 2f);
             _tableSettings.SetPosition(Screen.MonitorWidth * 1.5f, Screen.MonitorHeight / 2f);
             _tableMultipayer.SetPosition(Screen.MonitorWidth / 2f, Screen.MonitorHeight*1.5f);
@@ -89,7 +94,7 @@ namespace YetAnotherSnake.Scenes
             table.Row();
             _uiHelper.CreateRegularLabel(table, $"Server address: {MyGame.GameInstance.GameServer.Address}");
                                                 table.Row();
-            _uiHelper.CreateRegularLabel(table, $"Server port {"8888"}");
+            _uiHelper.CreateRegularLabel(table, $"Server port {MyGame.GameInstance.GameServer.Port}");
             table.Row();
             var connectedLabel = _uiHelper.CreateRegularLabel(table, $"Ready players: {MyGame.GameInstance.GameServer.ConnectedCount}");
             _uiHelper.CreateVerticalIndent(table, 300);
@@ -103,7 +108,7 @@ namespace YetAnotherSnake.Scenes
                 {
                     MyGame.GameInstance.GameClient.InitClient(MyGame.GameInstance.GameServer.Address, 8888);
                     Thread.Sleep(100);
-                    MyGame.GameInstance.GameServer.StartGame();
+                    MyGame.GameInstance.GameServer.StartGame(true);
                 }
             });
             startBtn.SetDisabled(true);
@@ -207,12 +212,7 @@ namespace YetAnotherSnake.Scenes
 
             _uiHelper.CreateBtn(table, "Play", button =>
             {
-                MyGame.GameInstance.GameClient.InitClient(MyGame.GameInstance.GameServer.Address, 8888);
-                Thread.Sleep(100);
-                MyGame.GameInstance.GameServer.StartGame();
-                /*Core.StartSceneTransition(new FadeTransition(() => new GameScene()));
-                RemovePostProcessor(MyGame.GameInstance.BloomPostProcessor);
-                RemovePostProcessor(MyGame.GameInstance.VignettePostProcessor);*/
+                Core.StartCoroutine(UIAnimations.MoveToY(_rootTable, Screen.MonitorHeight));
             });
             
             table.Row();
@@ -237,6 +237,42 @@ namespace YetAnotherSnake.Scenes
             return table;
         }
 
+        private Table InitPlayModeMenu()
+        {
+            var table = _rootTable.AddElement(new Table());
+            table.SetFillParent(true);
+            
+            _uiHelper.CreateTitleLabel(table, "Select play mode").SetFontScale(0.75f);
+            var el = new Container();
+            el.SetHeight(200);
+            table.Add(el);
+            table.Row();
+            
+            _uiHelper.CreateBtn(table, "Classic", button =>
+            {
+                MyGame.GameInstance.GameClient.InitClient(MyGame.GameInstance.GameServer.Address, 8888);
+                Thread.Sleep(100);
+                MyGame.GameInstance.GameServer.StartGame(true);
+            });
+            table.Row();
+            _uiHelper.CreateBtn(table, "Time attack", button =>
+            {
+                MyGame.GameInstance.GameClient.InitClient(MyGame.GameInstance.GameServer.Address, 8888);
+                Thread.Sleep(100);
+                MyGame.GameInstance.GameServer.StartGame(false);
+            });
+          
+            table.Row();
+            _uiHelper.CreateBtn(table, "Back", button =>
+            {
+                Core.StartCoroutine(UIAnimations.MoveToY(_rootTable, 0));
+            });
+            table.Row();
+            
+            table.Pack();
+            return table;
+        }
+        
         private Table InitHowToPlayMenu()
         {
             var table = _rootTable.AddElement(new Table());

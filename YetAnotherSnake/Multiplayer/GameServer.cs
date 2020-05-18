@@ -33,6 +33,7 @@ namespace YetAnotherSnake.Multiplayer
 
         public string Address => _address;
         public int ConnectedCount => _connectionCount;
+        public int Port = 8888;
 
         public delegate void OnConnected();
 
@@ -46,7 +47,7 @@ namespace YetAnotherSnake.Multiplayer
                 .FirstOrDefault(x => x.AddressFamily == AddressFamily.InterNetwork)
                 ?.ToString();
 
-            _serverSocket = new TcpListener(IPAddress.Any, 8888);
+            _serverSocket = new TcpListener(IPAddress.Any, Port);
             _serverSocket.Start();
             Console.WriteLine("[SERVER] Server started");
 
@@ -88,7 +89,7 @@ namespace YetAnotherSnake.Multiplayer
             ConnectEvent?.Invoke();
         }
 
-        public void StartGame()
+        public void StartGame(bool classicMode)
         {
             isWorking = true;
 
@@ -103,13 +104,14 @@ namespace YetAnotherSnake.Multiplayer
             
             for (var i = 0; i < _handlers.Count; i++)
             {
-                Console.WriteLine($"[SERVER] Starting game on client with ID: {_handlers[i].Id}");
+                Console.WriteLine($"[SERVER] Starting game on client with ID: {_handlers[i].Id}, classicMode: {classicMode}");
                 var packet = new GamePacket();
                 packet.AddPacket(Protocol.Start, new StartGamePacket()
                 {
                     GeneratedId = _handlers[i].Id,
                     SnakePositions = snakes,
-                    TargetFrameRate = (float) MyGame.GameInstance.TargetFrameRate.TotalMilliseconds
+                    TargetFrameRate = (float) MyGame.GameInstance.TargetFrameRate.TotalMilliseconds,
+                    Classic = classicMode
                 });
                 
                 _handlers[i].SendDataToClient(packet);
@@ -157,7 +159,7 @@ namespace YetAnotherSnake.Multiplayer
             {
                 AutoReset = true,
                 Interval = 10
-            };
+            };    
             _sendTimer.Elapsed += (s, e) => SendDataToClient();
             _sendTimer.Start();
             
@@ -167,6 +169,7 @@ namespace YetAnotherSnake.Multiplayer
         private void ReceiveDataFromClient()
         {
             //var i = 0;
+            Console.WriteLine(true);
             while (true)
             {
                 //Console.WriteLine(++i);
@@ -175,6 +178,7 @@ namespace YetAnotherSnake.Multiplayer
                 _networkStream.Read(_bytesFrom, 0, _bytesFrom.Length);
                 var readPacket = new GamePacket();
                 readPacket.FromBytes(_bytesFrom);
+                
                 if (readPacket.Contains(Protocol.Disconnect))
                 {
                     DisconnectClient();

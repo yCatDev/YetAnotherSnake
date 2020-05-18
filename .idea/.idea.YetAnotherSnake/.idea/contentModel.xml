@@ -817,6 +817,7 @@
           <e p="GameClient.cs" t="Include" />
           <e p="GamePacket.cs" t="Include" />
           <e p="GameServer.cs" t="Include" />
+          <e p="INetworkScene.cs" t="Include" />
         </e>
         <e p="obj" t="ExcludeRecursive">
           <e p="Debug" t="Include">
@@ -830,6 +831,7 @@
         <e p="Scenes" t="Include">
           <e p="BlankScene.cs" t="Include" />
           <e p="GameScene.cs" t="Include" />
+          <e p="GameTimeAttackScene.cs" t="Include" />
           <e p="MenuScene.cs" t="Include" />
         </e>
         <e p="UI" t="Include">
