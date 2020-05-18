@@ -93,7 +93,32 @@ namespace YetAnotherSnake.Components
             }).RenderLayer = 9999;
             
             
+            
             return food;
+        }
+
+        public Entity CreateStone(Vector2 position)
+        {
+            var stone = Scene.CreateEntity("Stone").AddComponent<SnakeStone>()
+                .AddComponent(new GridModifier()).Entity;
+            var stoneCollider = stone.AddComponent<BoxCollider>();
+            stoneCollider.Width = 300;
+            stoneCollider.Height = 300;
+         
+            //Create render
+            var stoneRender = stone.AddComponent(new SpriteRenderer(_foodSprite));
+            stone.Scale = new Vector2(0.4f, 0.4f);
+            stone.Position = position;
+            stoneRender.Color = Color.Gray * Nez.Random.Range(1f, 2.1f);
+            
+            //Create outline
+            stone.AddComponent(new SpriteOutlineRenderer(stoneRender)
+            {
+                OutlineColor =  new Color(61,9,107),
+                OutlineWidth = 10
+            }).RenderLayer = 9999;
+
+            return stone;
         }
         
     }

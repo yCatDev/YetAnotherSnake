@@ -75,8 +75,8 @@ namespace YetAnotherSnake
 
         public static Vector2 CreateRandomPositionInWindowSpace()
         {
-            var possibleWidth = 1280;
-            var possibleHeight = 720;
+            var possibleWidth = 1000;
+            var possibleHeight = 600;
             return new Vector2(Random.Range(-possibleWidth, possibleWidth),
                 Random.Range(-possibleHeight, possibleHeight));
         }

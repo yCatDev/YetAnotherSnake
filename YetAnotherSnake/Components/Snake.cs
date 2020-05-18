@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
@@ -79,7 +80,11 @@ namespace YetAnotherSnake.Components
         /// </summary>
         public Entity SnakeHead;
 
+        private bool _isTimeDepended;
 
+        private readonly Stopwatch _hungerTimer;
+        private float _maxTimeWithoutFood;
+        
         public readonly bool IsReally;
         public bool MoveLeft;
         public bool MoveRight;
@@ -92,7 +97,7 @@ namespace YetAnotherSnake.Components
         /// <param name="startPosition">Start position</param>
         /// <param name="startDirection">Start direction</param>
         /// <param name="step">Move step</param>
-        public Snake(bool real, int startSnakeSize, Vector2 startPosition, Vector2 startDirection, float step = 0.05f)
+        public Snake(bool real, int startSnakeSize, Vector2 startPosition, Vector2 startDirection, float step = 0.075f, bool isTimeDepended = false)
         {
             _startDirection = startDirection;
             _step = step;
@@ -117,6 +122,9 @@ namespace YetAnotherSnake.Components
                 _rightArrow.AddKeyboardKey(Keys.D);
             }
 
+            _isTimeDepended = isTimeDepended;
+            if (_isTimeDepended)
+                _hungerTimer = new Stopwatch();
             IsAlive = true;
         }
 
@@ -145,6 +153,10 @@ namespace YetAnotherSnake.Components
 
             //Separately setup snake head
             SnakeHead = _snakeParts[0];
+            var render =  SnakeHead.GetComponent<SpriteRenderer>();
+            render.RenderLayer = 0;
+            //render.Color = new Color(18 , 64, 171);
+            
             _snakeHeadCollider = SnakeHead.AddComponent<BoxCollider>();
             _snakeHeadCollider.Width -= 2;
             _snakeHeadCollider.Height -= 2;
@@ -155,11 +167,17 @@ namespace YetAnotherSnake.Components
             Marker.Parent = SnakeHead.Transform;
 
             _cameraBounds = Scene.Camera.Entity.GetComponent<CameraBounds>();
+            
             if (IsReally)
             {
                 Scene.Camera.Entity.AddComponent(new FollowCamera(SnakeHead));
-                
                 _score = Scene.FindEntity("scoreText").GetComponent<ScoreDisplay>();
+            }
+
+            if (_isTimeDepended)
+            {
+                _hungerTimer.Start();
+                _maxTimeWithoutFood = ((_startSnakeSize)/2f)*1000;
             }
         }
 
@@ -168,8 +186,11 @@ namespace YetAnotherSnake.Components
             if (IsAlive)
             {
                 if (MyGame.GameInstance.Pause)
+                {
+                    if (_isTimeDepended) _hungerTimer.Stop();
                     return;
-
+                }
+                if (_isTimeDepended && !_hungerTimer.IsRunning) _hungerTimer.Start();
                 if (IsReally)
                 {
                     if (_leftArrow.IsDown)
@@ -198,7 +219,17 @@ namespace YetAnotherSnake.Components
                         _snakeParts[i].AddComponent(new SpriteRenderer(_bodySprite));
                     var render = _snakeParts[i].GetComponent<SpriteRenderer>();
                     render.RenderLayer = i;
-                    render.Color = new Color(51 + i, 30, 213 - i);
+                    var newColor = new Color(51 + i, 30, 213 - i);
+                    if (_isTimeDepended)
+                    {
+                        newColor*=((_startSnakeSize)/2f+1 -
+                         ((_maxTimeWithoutFood - _hungerTimer.ElapsedMilliseconds) / 1000));
+                        newColor.A = 255;
+                    }
+
+                    render.Color = newColor;
+
+
                 }
                 
                 //Checking for collisions
@@ -206,13 +237,14 @@ namespace YetAnotherSnake.Components
                 {
                     var c = result.Collider.Entity;
                     
-                    //"Gameover" if touch self
-                    if (c.Name.Contains("Snake"))
+                    //"Gameover" if touch self or Stone
+                    if (c.Name.Contains("Snake") || c.Name.Contains("Stone"))
                     {
                         SnakeHead.GetComponent<GridModifier>().Impulse( 500);
+                        c.Destroy();
                         Die();
                     }
-
+                    
                     //Increment snake length if touch food
                     if (c.HasComponent<SnakeFood>())
                     {
@@ -225,12 +257,18 @@ namespace YetAnotherSnake.Components
                         }
 
                         MyGame.GameInstance.GameClient.SpawnFood();
+                        if (_isTimeDepended)
+                        {
+                            _hungerTimer.Restart();
+                            //_maxTimeWithoutFood = (_snakeParts.Count/2f)*1000*0.5f;
+                        }
+
                         c.Destroy();
                     }
                 }
 
                 //If snake head is out of camera view - "Gameover"
-                if (_cameraBounds.OutOfBounds(SnakeHead.Position)) 
+                if (_cameraBounds.OutOfBounds(SnakeHead.Position) || (_isTimeDepended && _hungerTimer.ElapsedMilliseconds>_maxTimeWithoutFood)) 
                  Die();
                 
                 MyGame.GameInstance.GameClient.SendSnakePosition(SnakeHead.Position);
@@ -257,8 +295,6 @@ namespace YetAnotherSnake.Components
             //return;
             IsAlive = false;
             
-          
-            //MyGame.GameInstance.GameClient.Disconnect();
             //Create death-vectors
             _deathVectors = new List<Vector2>(_snakeParts.Count);
             for (int i = 0; i < _snakeParts.Count; i++)
@@ -266,8 +302,9 @@ namespace YetAnotherSnake.Components
                 Vector2 dir = Vector2.Zero;
                 while (dir == Vector2.Zero)
                 {
-                    dir = new Vector2(Random.Range(-1, 2),Random.Range(-1, 2))*Random.Range(20000, 35000);
-                    
+                    dir = new Vector2(Random.Range(-1f, 2f), Random.Range(-1f, 2f));
+                    dir.Normalize();
+                    dir*=Random.Range(20000, 35000);
                 }
                 //Adding "trail" particle to bodies
                 var render = _snakeParts[i].GetComponent<SpriteRenderer>();

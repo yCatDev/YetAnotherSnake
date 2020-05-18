@@ -84,9 +84,10 @@ namespace YetAnotherSnake.Scenes
             _gridEntity  = CreateEntity("grid");
             _gridEntity.AddComponent(new SpringGrid(new Rectangle((int) -width, (int) -height, (int) (width+1280), (int) (height+720)), new Vector2(30))
             {
-                GridMinorThickness = 0f,
+                GridMinorThickness = 1f,
                 GridMajorThickness = 8,
-                GridMajorColor = new Color(61,9,107)
+                GridMajorColor = new Color(61,9,107),
+                GridMinorColor = new Color(61, 9, 107)*0.75f,
             });
             _gridEntity.GetComponent<SpringGrid>().RenderLayer = 9999;
             FoodSpawner = AddSceneComponent<FoodSpawner>();
@@ -108,7 +109,7 @@ namespace YetAnotherSnake.Scenes
                     id == MyGame.GameInstance.GameClient.Id, 
                     SnakeSize,
                     value.ToVector2(),
-                    direction*12
+                    direction*12, 0.09f, true
                     ));
                 
                 if (id == MyGame.GameInstance.GameClient.Id)
@@ -320,7 +321,9 @@ namespace YetAnotherSnake.Scenes
 
         public void CreateFood(Vector2 foodPos, Vector2 stonePos)
         {
-            
+            FoodSpawner.CreateFood(foodPos);
+            if (stonePos != Vector2.Zero)
+                FoodSpawner.CreateStone(stonePos);
         }
 
        

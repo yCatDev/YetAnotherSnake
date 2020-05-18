@@ -88,8 +88,12 @@ namespace YetAnotherSnake.Multiplayer
         private void ReadPacketOnOnSpawnFoodReceived(SpawnFoodPacket received)
         {
             //if (received.ClientId!=Id)
+            var stonePos = Vector2.Zero;
+            if (Random.Range(0, 11) > 5)
+                stonePos = MyGame.CreateRandomPositionInWindowSpace();
+            
             if (_currnetScene.IsReady)
-                _currnetScene.CreateFood(received.NextFoodPosition.ToVector2(), Vector2.Zero);
+                _currnetScene.CreateFood(received.NextFoodPosition.ToVector2(), stonePos);
         }
 
         private void ReceivePacketFromServer()

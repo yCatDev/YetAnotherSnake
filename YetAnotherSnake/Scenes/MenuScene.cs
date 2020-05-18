@@ -23,7 +23,8 @@ namespace YetAnotherSnake.Scenes
         private Table _tablePlayMode;
 
         public static MenuScene Instance { get; set; }
-
+        private bool _classicMultiplayerMode = false;
+        private Table _tableMultipayerModeSelect;
 
         public MenuScene()
         {
@@ -41,9 +42,10 @@ namespace YetAnotherSnake.Scenes
             var gridEntity = CreateEntity("grid");
             gridEntity.AddComponent(new SpringGrid(new Rectangle(0, 0, 2560, 1440), new Vector2(30))
             {
-                GridMinorThickness = 0f,
+                GridMinorThickness = 1f,
                 GridMajorThickness = 8,
-                GridMajorColor = new Color(61, 9, 107)
+                GridMajorColor = new Color(61,9,107),
+                GridMinorColor = new Color(61, 9, 107)*0.75f,
             });
             gridEntity.AddComponent(new MenuGrid(3500));
             gridEntity.GetComponent<SpringGrid>().RenderLayer = 9999;
@@ -72,6 +74,7 @@ namespace YetAnotherSnake.Scenes
             _tableMultipayer = InitMultiplayerMenu();
             _tableMultipayerClient = InitMultiplayerClientMenu();
             _tableMultipayerServer = InitMultiplayerServerMenu();
+            _tableMultipayerModeSelect = InitMultiplayerModeSelect(); 
             
 
             _rootTable.Pack();
@@ -81,7 +84,8 @@ namespace YetAnotherSnake.Scenes
             _tableHowToPlay.SetPosition(-Screen.MonitorWidth / 2f, Screen.MonitorHeight / 2f);
             _tableSettings.SetPosition(Screen.MonitorWidth * 1.5f, Screen.MonitorHeight / 2f);
             _tableMultipayer.SetPosition(Screen.MonitorWidth / 2f, Screen.MonitorHeight*1.5f);
-            _tableMultipayerServer.SetPosition(-Screen.MonitorWidth /2f, Screen.MonitorHeight*1.5f);
+            _tableMultipayerModeSelect.SetPosition(-Screen.MonitorWidth / 2f, Screen.MonitorHeight * 1.5f);
+            _tableMultipayerServer.SetPosition(-Screen.MonitorWidth *1.5f, Screen.MonitorHeight*1.5f);
             _tableMultipayerClient.SetPosition(Screen.MonitorWidth *1.5f, Screen.MonitorHeight*1.5f);
         }
 
@@ -108,14 +112,14 @@ namespace YetAnotherSnake.Scenes
                 {
                     MyGame.GameInstance.GameClient.InitClient(MyGame.GameInstance.GameServer.Address, 8888);
                     Thread.Sleep(100);
-                    MyGame.GameInstance.GameServer.StartGame(true);
+                    MyGame.GameInstance.GameServer.StartGame(_classicMultiplayerMode);
                 }
             });
             startBtn.SetDisabled(true);
             
             table.Row();
             _uiHelper.CreateBtn(table, "Cancel", (b) =>
-                { Core.StartCoroutine(UIAnimations.MoveToX(_rootTable, 0));  });
+                { Core.StartCoroutine(UIAnimations.MoveToX(_rootTable, Screen.MonitorWidth));  });
             table.Row();
             
             MyGame.GameInstance.GameServer.ConnectEvent += () =>
@@ -128,6 +132,40 @@ namespace YetAnotherSnake.Scenes
             return table;
         }
 
+        private Table InitMultiplayerModeSelect()
+        {
+            var table = _rootTable.AddElement(new Table());
+            table.SetFillParent(true);
+            
+            _uiHelper.CreateTitleLabel(table, "Select play mode").SetFontScale(0.75f);
+            var el = new Container();
+            el.SetHeight(200);
+            table.Add(el);
+            table.Row();
+            
+            _uiHelper.CreateBtn(table, "Classic", button =>
+            {
+                _classicMultiplayerMode = true;
+                Core.StartCoroutine(UIAnimations.MoveToX(_rootTable, Screen.MonitorWidth*2f));
+            });
+            table.Row();
+            _uiHelper.CreateBtn(table, "Time attack", button =>
+            {
+                _classicMultiplayerMode = false;
+                Core.StartCoroutine(UIAnimations.MoveToX(_rootTable, Screen.MonitorWidth*2f));
+            });
+          
+            table.Row();
+            _uiHelper.CreateBtn(table, "Back", button =>
+            {
+                Core.StartCoroutine(UIAnimations.MoveToX(_rootTable, 0));
+            });
+            table.Row();
+            
+            table.Pack();
+            return table;
+        }
+        
         private Table InitMultiplayerClientMenu()
         {
             var table = _rootTable.AddElement(new Table());
@@ -176,6 +214,7 @@ namespace YetAnotherSnake.Scenes
             _uiHelper.CreateBtn(table, "Back", (b) => {Core.StartCoroutine(UIAnimations.MoveToX(_rootTable, 0)); });
             table.Row();
             
+            table.Pack();
             return table;
         }
 
