@@ -179,7 +179,12 @@ namespace YetAnotherSnake.Components
                 _hungerTimer.Start();
                 _maxTimeWithoutFood = ((_startSnakeSize)/2f)*1000;
             }
+
+            Eyes = Scene.AddSceneComponent(new SnakeEyes(SnakeHead, Marker, _bodySprite));
+
         }
+
+        public SnakeEyes Eyes { get; private set; }
 
         public override void Update()
         {
@@ -218,7 +223,7 @@ namespace YetAnotherSnake.Components
                     if (!_snakeParts[i].HasComponent<SpriteRenderer>())
                         _snakeParts[i].AddComponent(new SpriteRenderer(_bodySprite));
                     var render = _snakeParts[i].GetComponent<SpriteRenderer>();
-                    render.RenderLayer = i;
+                    render.RenderLayer = i+3;
                     var newColor = new Color(51 + i, 30, 213 - i);
                     if (_isTimeDepended)
                     {
@@ -294,7 +299,7 @@ namespace YetAnotherSnake.Components
         {
             //return;
             IsAlive = false;
-            
+            Eyes.Remove();
             //Create death-vectors
             _deathVectors = new List<Vector2>(_snakeParts.Count);
             for (int i = 0; i < _snakeParts.Count; i++)

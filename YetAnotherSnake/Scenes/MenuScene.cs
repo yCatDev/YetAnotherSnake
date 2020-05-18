@@ -97,7 +97,7 @@ namespace YetAnotherSnake.Scenes
             _uiHelper.CreateVerticalIndent(table, 200);
             table.Row();
             _uiHelper.CreateRegularLabel(table, $"Server address: {MyGame.GameInstance.GameServer.Address}");
-                                                table.Row();
+            table.Row();
             _uiHelper.CreateRegularLabel(table, $"Server port {MyGame.GameInstance.GameServer.Port}");
             table.Row();
             var connectedLabel = _uiHelper.CreateRegularLabel(table, $"Ready players: {MyGame.GameInstance.GameServer.ConnectedCount}");

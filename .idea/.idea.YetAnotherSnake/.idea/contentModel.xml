@@ -663,6 +663,7 @@
           <e p="MenuGrid.cs" t="Include" />
           <e p="ScoreDisplay.cs" t="Include" />
           <e p="Snake.cs" t="Include" />
+          <e p="SnakeEyes.cs" t="Include" />
           <e p="SnakeFood.cs" t="Include" />
           <e p="SnakeStone.cs" t="Include" />
         </e>
