@@ -214,7 +214,7 @@ namespace YetAnotherSnake.Scenes
             _uiHelper.CreateBtn(table, "Back", (b) => {Core.StartCoroutine(UIAnimations.MoveToX(_rootTable, 0)); });
             table.Row();
             
-            table.Pack();
+            //table.Pack();
             return table;
         }
 
@@ -254,7 +254,7 @@ namespace YetAnotherSnake.Scenes
                 $"Classic: {MyGame.GameInstance.SaveSystem.SaveFile.ClassicScore}", 0.5f);
             table.Row();
             _uiHelper.CreateRegularLabel(table,
-                $"Time Attack: {MyGame.GameInstance.SaveSystem.SaveFile.TimeAttackScore}",0.5f);
+                $"Time Attack: {TimeDisplay.Format(MyGame.GameInstance.SaveSystem.SaveFile.TimeAttackScore)}",0.5f);
             table.Row();
             _uiHelper.CreateVerticalIndent(table, 50);
             table.Row();
@@ -329,14 +329,36 @@ namespace YetAnotherSnake.Scenes
 
             _uiHelper.CreateTitleLabel(table, "How to Play").SetFontScale(0.75f);
 
-            var el = new Container();
-            el.SetHeight(200);
-            table.Add(el);
+            _uiHelper.CreateVerticalIndent(table, 100);
             table.Row();
 
+            var tmp = YetAnotherSnake.Content.HowToPlayText.Split('#');
+            foreach (var item in tmp)
+            {
+                _uiHelper.CreateRegularLabel(table, item, 0.75f);
+                table.Row();
+            }
 
-            _uiHelper.CreateRegularLabel(table, YetAnotherSnake.Content.HowToPlayText);
+            _uiHelper.CreateRegularLabel(table, "\nClassic mode",0.75f);
             table.Row();
+            
+            tmp = YetAnotherSnake.Content.HowToPlayClassicText.Split('#');
+            foreach (var item in tmp)
+            {
+                _uiHelper.CreateRegularLabel(table, item, 0.75f);
+                table.Row();
+            }
+            
+            _uiHelper.CreateRegularLabel(table, "\nTime attack mode",0.75f);
+            table.Row();
+            
+            tmp = YetAnotherSnake.Content.HowToPlayTimeAttackText.Split('#');
+            foreach (var item in tmp)
+            {
+                _uiHelper.CreateRegularLabel(table, item, 0.75f);
+                table.Row();
+            }
+            
             _uiHelper.CreateBtn(table, "Back", button => { Core.StartCoroutine(UIAnimations.MoveToX(_rootTable, 0)); });
             table.Row();
             table.Pack();

@@ -93,8 +93,8 @@ namespace YetAnotherSnake.Scenes
             FoodSpawner = AddSceneComponent<FoodSpawner>();
 
             //Create text label for displaying score
-            var score = CreateEntity("scoreText");
-            score.AddComponent<TextComponent>().AddComponent(new ScoreDisplay(false));
+            var time = CreateEntity("scoreText");
+            time.AddComponent<TextComponent>().AddComponent<TimeDisplay>();
             
             foreach (var (key, value) in MyGame.GameInstance.GameClient.Snakes)
             {
@@ -218,14 +218,6 @@ namespace YetAnotherSnake.Scenes
             
             var cFullScreen = _uiHelper.CreateCheckBox(table, "FullScreen", MyGame.GameInstance.SaveSystem.SaveFile.IsFullScreen,b =>
             {
-                /*if (b)
-                    Screen.SetSize(Screen.MonitorWidth, Screen.MonitorHeight);
-                else
-                {
-                    Screen.SetSize((int) (Screen.MonitorWidth*0.75f), (int) (Screen.MonitorHeight*0.75f));
-                }
-                MyGame.GameInstance.SaveSystem.SaveFile.IsFullScreen = b;
-                Screen.IsFullscreen = b;*/
                 
             });
             table.Row();

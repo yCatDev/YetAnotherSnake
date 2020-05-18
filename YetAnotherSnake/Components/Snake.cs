@@ -64,7 +64,8 @@ namespace YetAnotherSnake.Components
         /// SnakeDisplay for displaying score
         /// </summary>
         private ScoreDisplay _score;
-        
+        private TimeDisplay _time;
+
         /// <summary>
         /// Is out snake alive?
         /// </summary>
@@ -171,7 +172,13 @@ namespace YetAnotherSnake.Components
             if (IsReally)
             {
                 Scene.Camera.Entity.AddComponent(new FollowCamera(SnakeHead));
-                _score = Scene.FindEntity("scoreText").GetComponent<ScoreDisplay>();
+                if (!_isTimeDepended)
+                    _score = Scene.FindEntity("scoreText").GetComponent<ScoreDisplay>();
+                else
+                {
+                    _time = Scene.FindEntity("scoreText").GetComponent<TimeDisplay>();
+                }
+                
             }
 
             if (_isTimeDepended)
@@ -257,7 +264,7 @@ namespace YetAnotherSnake.Components
                         IncSnake(5);
                         if (IsReally)
                         {
-                            _score.IncScore();
+                            if (!_isTimeDepended) _score.IncScore();
                             MyGame.GameInstance.AudioManager.PickUpSound.Play();
                         }
 
@@ -333,7 +340,7 @@ namespace YetAnotherSnake.Components
                 SnakeHead.AddComponent<CameraShake>().Shake(75, 1.5f);
 
                 MyGame.GameInstance.AudioManager.StopMusic();
-                _score.CheckHiScore();
+                if (!_isTimeDepended) _score.CheckHiScore(); else _time.CheckHigh();
                 Core.StartCoroutine(ReturnToMenu());
             }
         }

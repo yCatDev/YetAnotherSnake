@@ -666,6 +666,7 @@
           <e p="SnakeEyes.cs" t="Include" />
           <e p="SnakeFood.cs" t="Include" />
           <e p="SnakeStone.cs" t="Include" />
+          <e p="TimeDisplay.cs" t="Include" />
         </e>
         <e p="Content" t="Include">
           <e p="Audio" t="Include">

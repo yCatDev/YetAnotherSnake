@@ -20,7 +20,7 @@ namespace YetAnotherSnake
         /// </summary>
         public int ClassicScore { get; set; } = 0;
 
-        public int TimeAttackScore { get; set; } = 0;
+        public long TimeAttackScore { get; set; } = 0;
 
         /// <summary>
         /// Fullscreen mode

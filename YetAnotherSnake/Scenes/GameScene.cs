@@ -94,7 +94,7 @@ namespace YetAnotherSnake.Scenes
 
             //Create text label for displaying score
             var score = CreateEntity("scoreText");
-            score.AddComponent<TextComponent>().AddComponent(new ScoreDisplay(true));
+            score.AddComponent<TextComponent>().AddComponent<ScoreDisplay>();
             
             foreach (var (key, value) in MyGame.GameInstance.GameClient.Snakes)
             {

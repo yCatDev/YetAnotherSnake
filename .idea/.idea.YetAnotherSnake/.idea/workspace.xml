@@ -20,16 +20,20 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8c3d319f-f824-433f-8414-570341c89373" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/YetAnotherSnake/Components/TimeDisplay.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.YetAnotherSnake/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.YetAnotherSnake/.idea/contentModel.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.YetAnotherSnake/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.YetAnotherSnake/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/YetAnotherSnake/Components/ScoreDisplay.cs" beforeDir="false" afterPath="$PROJECT_DIR$/YetAnotherSnake/Components/ScoreDisplay.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/YetAnotherSnake/Components/Snake.cs" beforeDir="false" afterPath="$PROJECT_DIR$/YetAnotherSnake/Components/Snake.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/YetAnotherSnake/Content/Content.cs" beforeDir="false" afterPath="$PROJECT_DIR$/YetAnotherSnake/Content/Content.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/YetAnotherSnake/SaveFile.cs" beforeDir="false" afterPath="$PROJECT_DIR$/YetAnotherSnake/SaveFile.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/YetAnotherSnake/Scenes/GameScene.cs" beforeDir="false" afterPath="$PROJECT_DIR$/YetAnotherSnake/Scenes/GameScene.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/YetAnotherSnake/Scenes/GameTimeAttackScene.cs" beforeDir="false" afterPath="$PROJECT_DIR$/YetAnotherSnake/Scenes/GameTimeAttackScene.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/YetAnotherSnake/Scenes/MenuScene.cs" beforeDir="false" afterPath="$PROJECT_DIR$/YetAnotherSnake/Scenes/MenuScene.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/YetAnotherSnake/UI/GameUI.cs" beforeDir="false" afterPath="$PROJECT_DIR$/YetAnotherSnake/UI/GameUI.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/YetAnotherSnake/bin/Debug/netcoreapp3.1/Content/save.file" beforeDir="false" afterPath="$PROJECT_DIR$/YetAnotherSnake/bin/Debug/netcoreapp3.1/Content/save.file" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/YetAnotherSnake/bin/Debug/netcoreapp3.1/YetAnotherSnake.dll" beforeDir="false" afterPath="$PROJECT_DIR$/YetAnotherSnake/bin/Debug/netcoreapp3.1/YetAnotherSnake.dll" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/YetAnotherSnake/bin/Debug/netcoreapp3.1/YetAnotherSnake.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/YetAnotherSnake/bin/Debug/netcoreapp3.1/YetAnotherSnake.pdb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/YetAnotherSnake/obj/Debug/netcoreapp3.1/YetAnotherSnake.csproj.CoreCompileInputs.cache" beforeDir="false" afterPath="$PROJECT_DIR$/YetAnotherSnake/obj/Debug/netcoreapp3.1/YetAnotherSnake.csproj.CoreCompileInputs.cache" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/YetAnotherSnake/obj/Debug/netcoreapp3.1/YetAnotherSnake.dll" beforeDir="false" afterPath="$PROJECT_DIR$/YetAnotherSnake/obj/Debug/netcoreapp3.1/YetAnotherSnake.dll" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/YetAnotherSnake/obj/Debug/netcoreapp3.1/YetAnotherSnake.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/YetAnotherSnake/obj/Debug/netcoreapp3.1/YetAnotherSnake.pdb" afterDir="false" />
     </list>
@@ -49,6 +53,7 @@
     <setting file="file://$PROJECT_DIR$/Nez/Nez.Portable/Graphics/Batcher/Batcher.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/EC5D8DF9-3472-442C-9F9D-18E9177D0A3C/08/7e1ca374/SdlGamePlatform.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Nez/Nez.Portable/Assets/Tiled/Runtime/TiledMapLoader.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/YetAnotherSnake/Components/TimeDisplay.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Nez/Nez.Portable/Utils/Collections/FastList.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Nez/Nez.Portable/Utils/Extensions/Vector2Ext.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Nez/Nez.Portable/Debug/Inspector/Inspectors/Vector2Inspector.cs" root0="FORCE_HIGHLIGHTING" />
@@ -72,12 +77,14 @@
     <setting file="file://$PROJECT_DIR$/Nez/Nez.Portable/Utils/Tweens/AbstractTweenable.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Nez/Nez.Portable/Physics/Shapes/ShapeCollisions/ShapeCollisionsLine.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Nez/Nez.Portable/Utils/Timers/TimerManager.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Nez/Nez.Portable/UI/Base/Element.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Nez/Nez.Portable/Utils/Fonts/NezSpriteFont.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/C33AFD71-6EE0-4892-B8AD-69B81D88AE1C/5d/846fec34/Action`2.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Nez/Nez.Portable/UI/Utils/Selection.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Nez/Nez.Portable/Physics/SpatialHash.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Nez/Nez.Portable/Physics/RaycastHit.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/YetAnotherSnake/Content/uiskin.json" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Nez/Nez.Portable/UI/Skin.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/YetAnotherSnake/Content/Content.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/9866B98A-9EF4-4ED2-AE88-85257EFA417D/26/TCPListener.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Nez/Nez.Portable/UI/Stage.cs" root0="FORCE_HIGHLIGHTING" />
@@ -107,6 +114,7 @@
     <setting file="file://$PROJECT_DIR$/Nez/Nez.Portable/ECS/Components/Physics/TiledMapMover.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Nez/Nez.Portable/UI/Widgets/TextField.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/C33AFD71-6EE0-4892-B8AD-69B81D88AE1C/14E/ExecutionContext.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Nez/Nez.Portable/UI/Widgets/Label.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Nez/Nez.Portable/ECS/InternalUtils/ComponentList.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Nez/Nez.Portable/Graphics/SVG/Shapes/Paths/SvgPathSegments.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Nez/Nez.Portable/Graphics/SVG/Shapes/Paths/SvgPathParser.cs" root0="FORCE_HIGHLIGHTING" />
@@ -149,7 +157,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/EC5D8DF9-3472-442C-9F9D-18E9177D0A3C/f4/fc319fe9/RenderTarget2D.cs" />
         <option value="$PROJECT_DIR$/Nez/Nez.Portable/Graphics/Textures/RenderTexture.cs" />
         <option value="$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/EC5D8DF9-3472-442C-9F9D-18E9177D0A3C/8c/a3d313ef/GraphicsDevice.cs" />
         <option value="$PROJECT_DIR$/Nez/Nez.Portable/Graphics/PostProcessing/PostProcessors/BloomSettings.cs" />
@@ -175,12 +182,10 @@
         <option value="$PROJECT_DIR$/YetAnotherSnake/Components/MenuGrid.cs" />
         <option value="$PROJECT_DIR$/YetAnotherSnake/Components/SnakeFood.cs" />
         <option value="$PROJECT_DIR$/YetAnotherSnake/Coroutines.cs" />
-        <option value="$PROJECT_DIR$/YetAnotherSnake/Content/Content.cs" />
         <option value="$PROJECT_DIR$/Nez/Nez.Portable/Nez.csproj" />
         <option value="$PROJECT_DIR$/YetAnotherSnake/YetAnotherSnake.csproj" />
         <option value="$PROJECT_DIR$/YetAnotherSnake/Program.cs" />
         <option value="$PROJECT_DIR$/YetAnotherSnake/UI/UIAnimations.cs" />
-        <option value="$PROJECT_DIR$/YetAnotherSnake/UI/GameSkin.cs" />
         <option value="$PROJECT_DIR$/Nez/Nez.Portable/UI/Widgets/TextButton.cs" />
         <option value="$PROJECT_DIR$/YetAnotherSnake/Utils.cs" />
         <option value="$PROJECT_DIR$/YetAnotherSnake/Scenes/BlankScene.cs" />
@@ -193,13 +198,16 @@
         <option value="$PROJECT_DIR$/YetAnotherSnake/Components/FoodSpawner.cs" />
         <option value="$PROJECT_DIR$/YetAnotherSnake/Components/SnakeStone.cs" />
         <option value="$PROJECT_DIR$/YetAnotherSnake/Components/SnakeEyes.cs" />
-        <option value="$PROJECT_DIR$/YetAnotherSnake/Components/Snake.cs" />
-        <option value="$PROJECT_DIR$/YetAnotherSnake/Components/ScoreDisplay.cs" />
-        <option value="$PROJECT_DIR$/YetAnotherSnake/SaveFile.cs" />
-        <option value="$PROJECT_DIR$/YetAnotherSnake/Scenes/GameTimeAttackScene.cs" />
-        <option value="$PROJECT_DIR$/YetAnotherSnake/Scenes/GameScene.cs" />
+        <option value="$PROJECT_DIR$/YetAnotherSnake/UI/GameSkin.cs" />
         <option value="$PROJECT_DIR$/YetAnotherSnake/UI/GameUI.cs" />
+        <option value="$PROJECT_DIR$/YetAnotherSnake/Content/Content.cs" />
         <option value="$PROJECT_DIR$/YetAnotherSnake/Scenes/MenuScene.cs" />
+        <option value="$PROJECT_DIR$/YetAnotherSnake/SaveFile.cs" />
+        <option value="$PROJECT_DIR$/YetAnotherSnake/Components/ScoreDisplay.cs" />
+        <option value="$PROJECT_DIR$/YetAnotherSnake/Scenes/GameScene.cs" />
+        <option value="$PROJECT_DIR$/YetAnotherSnake/Scenes/GameTimeAttackScene.cs" />
+        <option value="$PROJECT_DIR$/YetAnotherSnake/Components/TimeDisplay.cs" />
+        <option value="$PROJECT_DIR$/YetAnotherSnake/Components/Snake.cs" />
       </list>
     </option>
   </component>
@@ -261,7 +269,7 @@
       <workItem from="1589531760448" duration="26900000" />
       <workItem from="1589640332739" duration="5525000" />
       <workItem from="1589791471020" duration="1579000" />
-      <workItem from="1589793702315" duration="18661000" />
+      <workItem from="1589793702315" duration="21940000" />
     </task>
     <servers />
   </component>
@@ -298,26 +306,26 @@
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
     <state x="865" y="293" key="#xdebugger.XInspectDialog/0.0.1920.1080@0.0.1920.1080" timestamp="1589389349512" />
-    <state width="1877" height="295" key="GridCell.Tab.0.bottom" timestamp="1589814785794">
+    <state width="1877" height="295" key="GridCell.Tab.0.bottom" timestamp="1589818119117">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
     <state width="1877" height="195" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1587389666299" />
-    <state width="1877" height="295" key="GridCell.Tab.0.bottom/0.0.1920.1080@0.0.1920.1080" timestamp="1589814785794" />
-    <state width="1877" height="295" key="GridCell.Tab.0.center" timestamp="1589814785794">
+    <state width="1877" height="295" key="GridCell.Tab.0.bottom/0.0.1920.1080@0.0.1920.1080" timestamp="1589818119117" />
+    <state width="1877" height="295" key="GridCell.Tab.0.center" timestamp="1589818119117">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
     <state width="1877" height="195" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1587389666299" />
-    <state width="1877" height="295" key="GridCell.Tab.0.center/0.0.1920.1080@0.0.1920.1080" timestamp="1589814785794" />
-    <state width="1877" height="295" key="GridCell.Tab.0.left" timestamp="1589814785794">
+    <state width="1877" height="295" key="GridCell.Tab.0.center/0.0.1920.1080@0.0.1920.1080" timestamp="1589818119117" />
+    <state width="1877" height="295" key="GridCell.Tab.0.left" timestamp="1589818119117">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
     <state width="1877" height="195" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1587389666299" />
-    <state width="1877" height="295" key="GridCell.Tab.0.left/0.0.1920.1080@0.0.1920.1080" timestamp="1589814785794" />
-    <state width="1877" height="295" key="GridCell.Tab.0.right" timestamp="1589814785794">
+    <state width="1877" height="295" key="GridCell.Tab.0.left/0.0.1920.1080@0.0.1920.1080" timestamp="1589818119117" />
+    <state width="1877" height="295" key="GridCell.Tab.0.right" timestamp="1589818119117">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
     <state width="1877" height="195" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1587389666299" />
-    <state width="1877" height="295" key="GridCell.Tab.0.right/0.0.1920.1080@0.0.1920.1080" timestamp="1589814785794" />
+    <state width="1877" height="295" key="GridCell.Tab.0.right/0.0.1920.1080@0.0.1920.1080" timestamp="1589818119117" />
     <state width="1877" height="363" key="GridCell.Tab.1.bottom" timestamp="1589806406623">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
@@ -412,6 +420,10 @@
     </state>
     <state x="461" y="162" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1586037827901" />
     <state x="461" y="168" key="SettingsEditor/0.0.1920.1080@0.0.1920.1080" timestamp="1589794422793" />
+    <state width="498" height="448" key="SwitcherDM" timestamp="1589816527998">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state width="498" height="448" key="SwitcherDM/0.0.1920.1080@0.0.1920.1080" timestamp="1589816527998" />
     <state x="92" y="92" width="1736" height="896" key="VCS.FileHistoryDialog" timestamp="1589389998396">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
@@ -439,5 +451,24 @@
     </state>
     <state x="623" y="225" width="672" height="678" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1586578798284" />
     <state x="623" y="234" width="672" height="705" key="search.everywhere.popup/0.0.1920.1080@0.0.1920.1080" timestamp="1589539251719" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/YetAnotherSnake/Components/Snake.cs</url>
+          <line>342</line>
+          <properties documentPath="$PROJECT_DIR$/YetAnotherSnake/Components/Snake.cs" initialLine="335">
+            <startOffsets>
+              <option value="12165" />
+            </startOffsets>
+            <endOffsets>
+              <option value="12187" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="3" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

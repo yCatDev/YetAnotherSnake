@@ -1,13 +1,11 @@
-﻿using Microsoft.Xna.Framework;
+﻿using System;
+using System.Diagnostics;
+using Microsoft.Xna.Framework;
 using Nez;
-using Nez.BitmapFonts;
 
 namespace YetAnotherSnake.Components
 {
-    /// <summary>
-    /// Entity component that displaying score on text label
-    /// </summary>
-    public class ScoreDisplay: Component, IUpdatable
+    public class TimeDisplay: Component, IUpdatable
     {
         /// <summary>
         /// Text component for setting text
@@ -17,15 +15,12 @@ namespace YetAnotherSnake.Components
         /// Scene camera
         /// </summary>
         private Camera _camera;
+
         /// <summary>
         /// Score
         /// </summary>
-        private int _score = 0, _hiscore;
-        
-
-        public ScoreDisplay()
-        {
-        }
+        private Stopwatch _timer = new Stopwatch();
+        private long _hitime;
         
         public override void OnAddedToEntity()
         {
@@ -37,36 +32,35 @@ namespace YetAnotherSnake.Components
             _text.SetText("Score: 0");
             Entity.Scale *= 0.75f;
             _camera = Entity.Scene.Camera;
-            _hiscore = MyGame.GameInstance.SaveSystem.SaveFile.ClassicScore;
+            _hitime = MyGame.GameInstance.SaveSystem.SaveFile.TimeAttackScore;
+            _timer.Start();
         }
-
+        
         public void Update()
         {
-            //Updating score position on screen
             var newPos = new Vector2(_camera.Bounds.Left, _camera.Bounds.Top)*0.95f;
             Entity.Position = Utils.Move(Entity.Position, newPos, 0.5f);
-        }
+            _text.SetText(Format(_timer.ElapsedMilliseconds));
 
-        /// <summary>
-        /// Increment score 
-        /// </summary>
-        public void IncScore()
-        {
-            _score++;
-            _text.SetText($"Score: {_score}");
-        }
-
-        /// <summary>
-        /// Check and save high score
-        /// </summary>
-        public void CheckHiScore()
-        {
-            if (_score > _hiscore)
+            if (MyGame.GameInstance.Pause)
             {
-                MyGame.GameInstance.SaveSystem.SaveFile.ClassicScore = _score;
+                _timer.Stop();
+                return;
+            }
+            if (!_timer.IsRunning) _timer.Start();
+        }
+        
+        
+        public void CheckHigh()
+        {
+            if (_timer.ElapsedMilliseconds > _hitime)
+            {
+                MyGame.GameInstance.SaveSystem.SaveFile.TimeAttackScore = _timer.ElapsedMilliseconds;
                 MyGame.GameInstance.SaveSystem.SaveChanges();
             }
         }
+
+        public static string Format(long ms) => TimeSpan.FromMilliseconds(ms).ToString(@"hh\:mm\:ss");
 
     }
 }
