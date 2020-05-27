@@ -13,6 +13,7 @@
       "netcoreapp3.1"
     ],
     "sources": {
+      "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
       "https://api.nuget.org/v3/index.json": {}
     },
     "frameworks": {
@@ -33,13 +34,9 @@
   "frameworks": {
     "netcoreapp3.1": {
       "dependencies": {
-        "MonoGame.Content.Builder": {
+        "MonoGame.Framework.Portable": {
           "target": "Package",
-          "version": "[3.7.0.9, )"
-        },
-        "MonoGame.Framework.DesktopGL.Core": {
-          "target": "Package",
-          "version": "[3.8.0.13, )"
+          "version": "[3.7.1.189, )"
         }
       },
       "imports": [
@@ -52,12 +49,18 @@
       ],
       "assetTargetFallback": true,
       "warn": true,
+      "downloadDependencies": [
+        {
+          "name": "Microsoft.AspNetCore.App.Ref",
+          "version": "[3.1.2, 3.1.2]"
+        }
+      ],
       "frameworkReferences": {
         "Microsoft.NETCore.App": {
           "privateAssets": "all"
         }
       },
-      "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.201\\RuntimeIdentifierGraph.json"
+      "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.300\\RuntimeIdentifierGraph.json"
     }
   }
 }

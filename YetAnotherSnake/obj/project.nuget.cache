@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "kwEY7jCeqENiMBoreCkyZsXHPQ8M3fOiFDnLwf/UgDO1EnFy4/qm5OeTgztZ+n6x0PVqsVL2P5x10/biRR+oqw==",
+  "dgSpecHash": "XZTeWY6y5R1r5ZyP4cvz8/fgipvgnkkXZQAqOodKloPg00Atcb8eO2etuImKRBbf3DTb8RnRIACYPSp3x0n2AQ==",
   "success": true,
   "projectFilePath": "Y:\\YetAnotherSnake\\YetAnotherSnake\\YetAnotherSnake.csproj",
   "expectedPackageFiles": [
@@ -9,7 +9,8 @@
     "C:\\Users\\ycatd\\.nuget\\packages\\monogame.content.builder\\3.7.0.9\\monogame.content.builder.3.7.0.9.nupkg.sha512",
     "C:\\Users\\ycatd\\.nuget\\packages\\monogame.framework.desktopgl.core\\3.8.0.13\\monogame.framework.desktopgl.core.3.8.0.13.nupkg.sha512",
     "C:\\Users\\ycatd\\.nuget\\packages\\monogame.framework.portable\\3.7.1.189\\monogame.framework.portable.3.7.1.189.nupkg.sha512",
-    "C:\\Users\\ycatd\\.nuget\\packages\\system.drawing.common\\4.6.0\\system.drawing.common.4.6.0.nupkg.sha512"
+    "C:\\Users\\ycatd\\.nuget\\packages\\system.drawing.common\\4.6.0\\system.drawing.common.4.6.0.nupkg.sha512",
+    "C:\\Users\\ycatd\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\3.1.2\\microsoft.aspnetcore.app.ref.3.1.2.nupkg.sha512"
   ],
   "logs": [
     {

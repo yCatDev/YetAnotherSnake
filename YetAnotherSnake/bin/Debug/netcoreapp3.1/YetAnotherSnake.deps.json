@@ -8,8 +8,7 @@
     ".NETCoreApp,Version=v3.1": {
       "YetAnotherSnake/1.0.0": {
         "dependencies": {
-          "MonoGame.Content.Builder": "3.7.0.9",
-          "MonoGame.Framework.DesktopGL.Core": "3.8.0.13",
+          "MonoGame.Framework.Portable": "3.7.1.189",
           "Nez": "1.0.0"
         },
         "runtime": {
@@ -116,7 +115,8 @@
       },
       "Nez/1.0.0": {
         "dependencies": {
-          "MonoGame.Framework.Portable": "3.7.1.189",
+          "MonoGame.Content.Builder": "3.7.0.9",
+          "MonoGame.Framework.DesktopGL.Core": "3.8.0.13",
           "System.Drawing.Common": "4.6.0"
         },
         "runtime": {

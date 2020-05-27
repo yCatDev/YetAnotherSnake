@@ -20,22 +20,66 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8c3d319f-f824-433f-8414-570341c89373" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/YetAnotherSnake/Components/TimeDisplay.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.YetAnotherSnake/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.YetAnotherSnake/.idea/contentModel.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.YetAnotherSnake/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.YetAnotherSnake/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/YetAnotherSnake/Components/ScoreDisplay.cs" beforeDir="false" afterPath="$PROJECT_DIR$/YetAnotherSnake/Components/ScoreDisplay.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/YetAnotherSnake/Components/Snake.cs" beforeDir="false" afterPath="$PROJECT_DIR$/YetAnotherSnake/Components/Snake.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/YetAnotherSnake/Content/Content.cs" beforeDir="false" afterPath="$PROJECT_DIR$/YetAnotherSnake/Content/Content.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/YetAnotherSnake/SaveFile.cs" beforeDir="false" afterPath="$PROJECT_DIR$/YetAnotherSnake/SaveFile.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/YetAnotherSnake/Scenes/GameScene.cs" beforeDir="false" afterPath="$PROJECT_DIR$/YetAnotherSnake/Scenes/GameScene.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/YetAnotherSnake/Scenes/GameTimeAttackScene.cs" beforeDir="false" afterPath="$PROJECT_DIR$/YetAnotherSnake/Scenes/GameTimeAttackScene.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/YetAnotherSnake/Scenes/MenuScene.cs" beforeDir="false" afterPath="$PROJECT_DIR$/YetAnotherSnake/Scenes/MenuScene.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/YetAnotherSnake/bin/Debug/netcoreapp3.1/Content/save.file" beforeDir="false" afterPath="$PROJECT_DIR$/YetAnotherSnake/bin/Debug/netcoreapp3.1/Content/save.file" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Nez/Nez.Portable/Nez.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Nez/Nez.Portable/Nez.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/YetAnotherSnake/Content/bin/DesktopGL/Audio/bg.ogg" beforeDir="false" afterPath="$PROJECT_DIR$/YetAnotherSnake/Content/bin/DesktopGL/Audio/bg.ogg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/YetAnotherSnake/Content/bin/DesktopGL/Audio/menu.ogg" beforeDir="false" afterPath="$PROJECT_DIR$/YetAnotherSnake/Content/bin/DesktopGL/Audio/menu.ogg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/YetAnotherSnake/Content/obj/DesktopGL/.mgcontent" beforeDir="false" afterPath="$PROJECT_DIR$/YetAnotherSnake/Content/obj/DesktopGL/.mgcontent" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/YetAnotherSnake/Content/obj/DesktopGL/.mgstats" beforeDir="false" afterPath="$PROJECT_DIR$/YetAnotherSnake/Content/obj/DesktopGL/.mgstats" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/YetAnotherSnake/Content/obj/DesktopGL/Audio/bg.mgcontent" beforeDir="false" afterPath="$PROJECT_DIR$/YetAnotherSnake/Content/obj/DesktopGL/Audio/bg.mgcontent" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/YetAnotherSnake/Content/obj/DesktopGL/Audio/menu.mgcontent" beforeDir="false" afterPath="$PROJECT_DIR$/YetAnotherSnake/Content/obj/DesktopGL/Audio/menu.mgcontent" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/YetAnotherSnake/Content/obj/DesktopGL/Audio/snake_death.mgcontent" beforeDir="false" afterPath="$PROJECT_DIR$/YetAnotherSnake/Content/obj/DesktopGL/Audio/snake_death.mgcontent" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/YetAnotherSnake/Content/obj/DesktopGL/Audio/snake_pickup.mgcontent" beforeDir="false" afterPath="$PROJECT_DIR$/YetAnotherSnake/Content/obj/DesktopGL/Audio/snake_pickup.mgcontent" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/YetAnotherSnake/Content/obj/DesktopGL/Sprites/blank.mgcontent" beforeDir="false" afterPath="$PROJECT_DIR$/YetAnotherSnake/Content/obj/DesktopGL/Sprites/blank.mgcontent" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/YetAnotherSnake/Content/obj/DesktopGL/Sprites/circle.mgcontent" beforeDir="false" afterPath="$PROJECT_DIR$/YetAnotherSnake/Content/obj/DesktopGL/Sprites/circle.mgcontent" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/YetAnotherSnake/Content/obj/DesktopGL/Sprites/snake_body.mgcontent" beforeDir="false" afterPath="$PROJECT_DIR$/YetAnotherSnake/Content/obj/DesktopGL/Sprites/snake_body.mgcontent" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/YetAnotherSnake/Content/obj/DesktopGL/Sprites/white.mgcontent" beforeDir="false" afterPath="$PROJECT_DIR$/YetAnotherSnake/Content/obj/DesktopGL/Sprites/white.mgcontent" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/YetAnotherSnake/YetAnotherSnake.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/YetAnotherSnake/YetAnotherSnake.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/YetAnotherSnake/bin/Debug/netcoreapp3.1/Content/Audio/bg.ogg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/YetAnotherSnake/bin/Debug/netcoreapp3.1/Content/Audio/bg.xnb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/YetAnotherSnake/bin/Debug/netcoreapp3.1/Content/Audio/menu.ogg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/YetAnotherSnake/bin/Debug/netcoreapp3.1/Content/Audio/menu.xnb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/YetAnotherSnake/bin/Debug/netcoreapp3.1/Content/Audio/snake_death.xnb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/YetAnotherSnake/bin/Debug/netcoreapp3.1/Content/Audio/snake_pickup.xnb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/YetAnotherSnake/bin/Debug/netcoreapp3.1/Content/FX/FXAA.xnb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/YetAnotherSnake/bin/Debug/netcoreapp3.1/Content/Fonts/inria.fnt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/YetAnotherSnake/bin/Debug/netcoreapp3.1/Content/Fonts/inria_0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/YetAnotherSnake/bin/Debug/netcoreapp3.1/Content/Fonts/inria_0.tga" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/YetAnotherSnake/bin/Debug/netcoreapp3.1/Content/Fonts/oswald.fnt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/YetAnotherSnake/bin/Debug/netcoreapp3.1/Content/Fonts/oswald_0.tga" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/YetAnotherSnake/bin/Debug/netcoreapp3.1/Content/Fonts/oswald_title.fnt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/YetAnotherSnake/bin/Debug/netcoreapp3.1/Content/Fonts/oswald_title_0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/YetAnotherSnake/bin/Debug/netcoreapp3.1/Content/Fonts/oswald_title_0.tga" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/YetAnotherSnake/bin/Debug/netcoreapp3.1/Content/Fonts/oswald_title_1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/YetAnotherSnake/bin/Debug/netcoreapp3.1/Content/Fonts/oswald_title_1.tga" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/YetAnotherSnake/bin/Debug/netcoreapp3.1/Content/Fonts/oswald_title_2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/YetAnotherSnake/bin/Debug/netcoreapp3.1/Content/Fonts/oswald_title_2.tga" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/YetAnotherSnake/bin/Debug/netcoreapp3.1/Content/Fonts/oswald_title_3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/YetAnotherSnake/bin/Debug/netcoreapp3.1/Content/Fonts/oswald_title_4.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/YetAnotherSnake/bin/Debug/netcoreapp3.1/Content/Other/font.xnb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/YetAnotherSnake/bin/Debug/netcoreapp3.1/Content/Sprites/blank.xnb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/YetAnotherSnake/bin/Debug/netcoreapp3.1/Content/Sprites/circle.xnb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/YetAnotherSnake/bin/Debug/netcoreapp3.1/Content/Sprites/snake_body.xnb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/YetAnotherSnake/bin/Debug/netcoreapp3.1/Content/Sprites/white.xnb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/YetAnotherSnake/bin/Debug/netcoreapp3.1/Content/uiskin.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/YetAnotherSnake/bin/Debug/netcoreapp3.1/Nez.dll" beforeDir="false" afterPath="$PROJECT_DIR$/YetAnotherSnake/bin/Debug/netcoreapp3.1/Nez.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/YetAnotherSnake/bin/Debug/netcoreapp3.1/Nez.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/YetAnotherSnake/bin/Debug/netcoreapp3.1/Nez.pdb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/YetAnotherSnake/bin/Debug/netcoreapp3.1/YetAnotherSnake.deps.json" beforeDir="false" afterPath="$PROJECT_DIR$/YetAnotherSnake/bin/Debug/netcoreapp3.1/YetAnotherSnake.deps.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/YetAnotherSnake/bin/Debug/netcoreapp3.1/YetAnotherSnake.dll" beforeDir="false" afterPath="$PROJECT_DIR$/YetAnotherSnake/bin/Debug/netcoreapp3.1/YetAnotherSnake.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/YetAnotherSnake/bin/Debug/netcoreapp3.1/YetAnotherSnake.exe" beforeDir="false" afterPath="$PROJECT_DIR$/YetAnotherSnake/bin/Debug/netcoreapp3.1/YetAnotherSnake.exe" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/YetAnotherSnake/bin/Debug/netcoreapp3.1/YetAnotherSnake.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/YetAnotherSnake/bin/Debug/netcoreapp3.1/YetAnotherSnake.pdb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/YetAnotherSnake/obj/Debug/netcoreapp3.1/YetAnotherSnake.assets.cache" beforeDir="false" afterPath="$PROJECT_DIR$/YetAnotherSnake/obj/Debug/netcoreapp3.1/YetAnotherSnake.assets.cache" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/YetAnotherSnake/obj/Debug/netcoreapp3.1/YetAnotherSnake.csproj.CoreCompileInputs.cache" beforeDir="false" afterPath="$PROJECT_DIR$/YetAnotherSnake/obj/Debug/netcoreapp3.1/YetAnotherSnake.csproj.CoreCompileInputs.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/YetAnotherSnake/obj/Debug/netcoreapp3.1/YetAnotherSnake.csproj.FileListAbsolute.txt" beforeDir="false" afterPath="$PROJECT_DIR$/YetAnotherSnake/obj/Debug/netcoreapp3.1/YetAnotherSnake.csproj.FileListAbsolute.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/YetAnotherSnake/obj/Debug/netcoreapp3.1/YetAnotherSnake.csprojAssemblyReference.cache" beforeDir="false" afterPath="$PROJECT_DIR$/YetAnotherSnake/obj/Debug/netcoreapp3.1/YetAnotherSnake.csprojAssemblyReference.cache" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/YetAnotherSnake/obj/Debug/netcoreapp3.1/YetAnotherSnake.dll" beforeDir="false" afterPath="$PROJECT_DIR$/YetAnotherSnake/obj/Debug/netcoreapp3.1/YetAnotherSnake.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/YetAnotherSnake/obj/Debug/netcoreapp3.1/YetAnotherSnake.exe" beforeDir="false" afterPath="$PROJECT_DIR$/YetAnotherSnake/obj/Debug/netcoreapp3.1/YetAnotherSnake.exe" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/YetAnotherSnake/obj/Debug/netcoreapp3.1/YetAnotherSnake.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/YetAnotherSnake/obj/Debug/netcoreapp3.1/YetAnotherSnake.pdb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/YetAnotherSnake/obj/YetAnotherSnake.csproj.nuget.dgspec.json" beforeDir="false" afterPath="$PROJECT_DIR$/YetAnotherSnake/obj/YetAnotherSnake.csproj.nuget.dgspec.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/YetAnotherSnake/obj/YetAnotherSnake.csproj.nuget.g.targets" beforeDir="false" afterPath="$PROJECT_DIR$/YetAnotherSnake/obj/YetAnotherSnake.csproj.nuget.g.targets" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/YetAnotherSnake/obj/project.assets.json" beforeDir="false" afterPath="$PROJECT_DIR$/YetAnotherSnake/obj/project.assets.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/YetAnotherSnake/obj/project.nuget.cache" beforeDir="false" afterPath="$PROJECT_DIR$/YetAnotherSnake/obj/project.nuget.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/YetAnotherSnake/obj/project.packagespec.json" beforeDir="false" afterPath="$PROJECT_DIR$/YetAnotherSnake/obj/project.packagespec.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -100,13 +144,10 @@
     <setting file="file://$PROJECT_DIR$/YetAnotherSnake/UI/GameUI.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/C33AFD71-6EE0-4892-B8AD-69B81D88AE1C/13B/Thread.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/EC5D8DF9-3472-442C-9F9D-18E9177D0A3C/6c/39eaba81/Game.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/YetAnotherSnake/AudioManager.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/YetAnotherSnake/Utils.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/YetAnotherSnake/Game.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/YetAnotherSnake/Multiplayer/GameServer.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/YetAnotherSnake/Multiplayer/GamePacket.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/YetAnotherSnake/Program.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/YetAnotherSnake/SaveFile.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Nez/Nez.Portable/ECS/Components/Renderables/SpringGrid.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/9866B98A-9EF4-4ED2-AE88-85257EFA417D/1B/NetworkStream.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/C33AFD71-6EE0-4892-B8AD-69B81D88AE1C/1E0/ExceptionDispatchInfo.cs" root0="SKIP_HIGHLIGHTING" />
@@ -140,11 +181,15 @@
     <setting file="file://$PROJECT_DIR$/YetAnotherSnake/Components/FoodSpawner.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/YetAnotherSnake/Components/CameraBounds.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Nez/Nez.Portable/Input/TouchInput.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Nez/Nez.Portable/Input/InputUtils.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Nez/Nez.Portable/Input/Input.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Nez/Nez.Portable/Input/GamePadData.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/YetAnotherSnake/obj/project.assets.json" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/YetAnotherSnake/Components/SnakeStone.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Nez/Nez.Portable/Graphics/DeferredLighting/DeferredLightingRenderer.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/YetAnotherSnake/AudioManager.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/YetAnotherSnake/SaveFile.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/YetAnotherSnake/Utils.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Nez/Nez.Portable/Utils/Time.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Nez/Nez.Portable/Utils/Screen.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/C33AFD71-6EE0-4892-B8AD-69B81D88AE1C/D3/ThrowHelper.cs" root0="SKIP_HIGHLIGHTING" />
