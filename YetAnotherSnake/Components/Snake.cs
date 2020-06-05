@@ -218,13 +218,9 @@ namespace YetAnotherSnake.Components
                 
                 for (int i = _snakeParts.Count - 1; i > 0; i--)
                 {
-                    
                     //Move all boies
                     _snakeParts[i].Position =
                         Utils.Move(_snakeParts[i].Position, _snakeParts[i - 1].Position, _step * 10);
-                    //_snakeParts[i].LocalRotationDegrees =
-                    //    Utils.LookAt(_snakeParts[i].Transform, _snakeParts[i - 1].Transform);
-                   
                     
                     //Set up gradient color for whole snake
                     if (!_snakeParts[i].HasComponent<SpriteRenderer>())

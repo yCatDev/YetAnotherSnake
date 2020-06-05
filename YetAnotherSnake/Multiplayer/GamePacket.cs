@@ -191,7 +191,7 @@ namespace YetAnotherSnake.Multiplayer
     public class MoveSnakePacket : IPacket
     {
         public int ClientId { get; set; }
-        public NetworkVector SnakeMarkerPosition;
+        public NetworkVector SnakeMarkerVector;
         public float SyncDelta;
     }
 

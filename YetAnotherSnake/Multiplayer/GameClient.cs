@@ -74,7 +74,7 @@ namespace YetAnotherSnake.Multiplayer
         private void ReadPacketOnOnMoveSnakeReceived(MoveSnakePacket received)
         {
             if (received.ClientId!=Id)
-               _currnetScene.SetSnakePosition(received.ClientId, received.SnakeMarkerPosition, received.SyncDelta);
+               _currnetScene.SetSnakePosition(received.ClientId, received.SnakeMarkerVector, received.SyncDelta);
         }
 
         private void ReadPacketOnOnPauseReceived(PauseGamePacket received)
@@ -167,7 +167,7 @@ namespace YetAnotherSnake.Multiplayer
             _writePacket.AddPacket(Protocol.MoveSnake, new MoveSnakePacket()
             {
                 ClientId = Id,
-                SnakeMarkerPosition = position.ToNetworkVector(),
+                SnakeMarkerVector = position.ToNetworkVector(),
                 SyncDelta = Time.DeltaTime
             });
         }
