@@ -20,27 +20,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8c3d319f-f824-433f-8414-570341c89373" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/UML/Components.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/UML/Components_Other.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/UML/Components_Snake.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/UML/Core.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/UML/Misc.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/UML/MultiplayerClientServer.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/UML/MultiplayerPackets.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/UML/UI.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/YetAnotherSnake/bin/Debug/netcoreapp3.1/publish/publish.exe" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/YetAnotherSnake/bin/Debug/netcoreapp3.1/publish/publish.zip" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/~$ебенюк_Денис_Олегович_ПЗПІ_19_11_Записка.docx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Гребенюк_Денис_Олегович_ПЗПІ_19_11_Записка.docx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Спецификация.docx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.YetAnotherSnake/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.YetAnotherSnake/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/YetAnotherSnake/Components/Snake.cs" beforeDir="false" afterPath="$PROJECT_DIR$/YetAnotherSnake/Components/Snake.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/YetAnotherSnake/Multiplayer/GameClient.cs" beforeDir="false" afterPath="$PROJECT_DIR$/YetAnotherSnake/Multiplayer/GameClient.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/YetAnotherSnake/Multiplayer/GamePacket.cs" beforeDir="false" afterPath="$PROJECT_DIR$/YetAnotherSnake/Multiplayer/GamePacket.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/YetAnotherSnake/bin/Debug/netcoreapp3.1/Content/save.file" beforeDir="false" afterPath="$PROJECT_DIR$/YetAnotherSnake/bin/Debug/netcoreapp3.1/Content/save.file" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/YetAnotherSnake/Game.cs" beforeDir="false" afterPath="$PROJECT_DIR$/YetAnotherSnake/Game.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/YetAnotherSnake/bin/Debug/netcoreapp3.1/YetAnotherSnake.dll" beforeDir="false" afterPath="$PROJECT_DIR$/YetAnotherSnake/bin/Debug/netcoreapp3.1/YetAnotherSnake.dll" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/YetAnotherSnake/bin/Debug/netcoreapp3.1/YetAnotherSnake.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/YetAnotherSnake/bin/Debug/netcoreapp3.1/YetAnotherSnake.pdb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/YetAnotherSnake/bin/Debug/netcoreapp3.1/publish/YetAnotherSnake.exe" beforeDir="false" afterPath="$PROJECT_DIR$/YetAnotherSnake/bin/Debug/netcoreapp3.1/publish/YetAnotherSnake.exe" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/YetAnotherSnake/obj/Debug/netcoreapp3.1/YetAnotherSnake.csprojAssemblyReference.cache" beforeDir="false" afterPath="$PROJECT_DIR$/YetAnotherSnake/obj/Debug/netcoreapp3.1/YetAnotherSnake.csprojAssemblyReference.cache" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/YetAnotherSnake/obj/Debug/netcoreapp3.1/YetAnotherSnake.dll" beforeDir="false" afterPath="$PROJECT_DIR$/YetAnotherSnake/obj/Debug/netcoreapp3.1/YetAnotherSnake.dll" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/YetAnotherSnake/obj/Debug/netcoreapp3.1/YetAnotherSnake.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/YetAnotherSnake/obj/Debug/netcoreapp3.1/YetAnotherSnake.pdb" afterDir="false" />
@@ -71,6 +54,7 @@
     <setting file="file://$PROJECT_DIR$/Nez/Nez.Portable/Debug/Inspector/Inspectors/ColorInspector.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Nez/Nez.Portable/Utils/Extensions/GameServiceContainerExt.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Nez/Nez.Portable/Utils/Extensions/ComponentExt.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Nez/Nez.Portable/Assets/NezContentManager.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Nez/Nez.Portable/Utils/Coroutines/CoroutineManager.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Nez/Nez.Portable/Debug/Insist.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Nez/Nez.Portable/Utils/Coroutines/Coroutine.cs" root0="FORCE_HIGHLIGHTING" />
@@ -201,7 +185,6 @@
         <option value="$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/EC5D8DF9-3472-442C-9F9D-18E9177D0A3C/5d/a27e413f/Vector2.cs" />
         <option value="$PROJECT_DIR$/YetAnotherSnake/Multiplayer/GameServer.cs" />
         <option value="$PROJECT_DIR$/YetAnotherSnake/Multiplayer/INetworkScene.cs" />
-        <option value="$PROJECT_DIR$/YetAnotherSnake/Game.cs" />
         <option value="$PROJECT_DIR$/YetAnotherSnake/Multiplayer/GameClient.cs" />
         <option value="$PROJECT_DIR$/YetAnotherSnake/Components/FoodSpawner.cs" />
         <option value="$PROJECT_DIR$/YetAnotherSnake/Components/SnakeStone.cs" />
@@ -217,6 +200,7 @@
         <option value="$PROJECT_DIR$/YetAnotherSnake/Components/TimeDisplay.cs" />
         <option value="$PROJECT_DIR$/YetAnotherSnake/Components/Snake.cs" />
         <option value="$PROJECT_DIR$/YetAnotherSnake/Multiplayer/GamePacket.cs" />
+        <option value="$PROJECT_DIR$/YetAnotherSnake/Game.cs" />
       </list>
     </option>
   </component>
@@ -281,7 +265,8 @@
       <workItem from="1589793702315" duration="21940000" />
       <workItem from="1590785688544" duration="599000" />
       <workItem from="1591139639186" duration="1203000" />
-      <workItem from="1591260239046" duration="13099000" />
+      <workItem from="1591260239046" duration="14653000" />
+      <workItem from="1592173035006" duration="959000" />
     </task>
     <servers />
   </component>
@@ -318,26 +303,26 @@
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
     <state x="865" y="293" key="#xdebugger.XInspectDialog/0.0.1920.1080@0.0.1920.1080" timestamp="1589389349512" />
-    <state width="1877" height="295" key="GridCell.Tab.0.bottom" timestamp="1591344550767">
+    <state width="1877" height="295" key="GridCell.Tab.0.bottom" timestamp="1592174062558">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
     <state width="1877" height="195" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1587389666299" />
-    <state width="1877" height="295" key="GridCell.Tab.0.bottom/0.0.1920.1080@0.0.1920.1080" timestamp="1591344550767" />
-    <state width="1877" height="295" key="GridCell.Tab.0.center" timestamp="1591344550767">
+    <state width="1877" height="295" key="GridCell.Tab.0.bottom/0.0.1920.1080@0.0.1920.1080" timestamp="1592174062558" />
+    <state width="1877" height="295" key="GridCell.Tab.0.center" timestamp="1592174062558">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
     <state width="1877" height="195" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1587389666299" />
-    <state width="1877" height="295" key="GridCell.Tab.0.center/0.0.1920.1080@0.0.1920.1080" timestamp="1591344550767" />
-    <state width="1877" height="295" key="GridCell.Tab.0.left" timestamp="1591344550767">
+    <state width="1877" height="295" key="GridCell.Tab.0.center/0.0.1920.1080@0.0.1920.1080" timestamp="1592174062558" />
+    <state width="1877" height="295" key="GridCell.Tab.0.left" timestamp="1592174062558">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
     <state width="1877" height="195" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1587389666299" />
-    <state width="1877" height="295" key="GridCell.Tab.0.left/0.0.1920.1080@0.0.1920.1080" timestamp="1591344550767" />
-    <state width="1877" height="295" key="GridCell.Tab.0.right" timestamp="1591344550767">
+    <state width="1877" height="295" key="GridCell.Tab.0.left/0.0.1920.1080@0.0.1920.1080" timestamp="1592174062558" />
+    <state width="1877" height="295" key="GridCell.Tab.0.right" timestamp="1592174062558">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
     <state width="1877" height="195" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1587389666299" />
-    <state width="1877" height="295" key="GridCell.Tab.0.right/0.0.1920.1080@0.0.1920.1080" timestamp="1591344550767" />
+    <state width="1877" height="295" key="GridCell.Tab.0.right/0.0.1920.1080@0.0.1920.1080" timestamp="1592174062558" />
     <state width="1877" height="363" key="GridCell.Tab.1.bottom" timestamp="1589806406623">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
@@ -458,11 +443,11 @@
     </state>
     <state x="616" y="240" key="run.anything.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1586571186777" />
     <state x="616" y="249" key="run.anything.popup/0.0.1920.1080@0.0.1920.1080" timestamp="1589795338787" />
-    <state x="623" y="234" width="672" height="705" key="search.everywhere.popup" timestamp="1589539251719">
+    <state x="623" y="234" width="672" height="705" key="search.everywhere.popup" timestamp="1592173633455">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
     <state x="623" y="225" width="672" height="678" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1586578798284" />
-    <state x="623" y="234" width="672" height="705" key="search.everywhere.popup/0.0.1920.1080@0.0.1920.1080" timestamp="1589539251719" />
+    <state x="623" y="234" width="672" height="705" key="search.everywhere.popup/0.0.1920.1080@0.0.1920.1080" timestamp="1592173633455" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

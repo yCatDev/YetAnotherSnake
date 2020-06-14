@@ -47,7 +47,7 @@ namespace YetAnotherSnake
             //Base setting for game window
             Window.AllowUserResizing = false;
             ExitOnEscapeKeypress = false;
-            
+            Exiting += OnExit;
             //Set texture filter method
             DefaultSamplerState = SamplerState.LinearClamp;
             Screen.SetSize(Screen.MonitorWidth,Screen.MonitorHeight);
@@ -75,7 +75,7 @@ namespace YetAnotherSnake
         
         private void OnExit(object? sender, EventArgs e)
         {
-            DisposeAll();
+            Quit();
         }
 
         public void Quit()
